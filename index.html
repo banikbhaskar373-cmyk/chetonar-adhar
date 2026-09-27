@@ -4,46 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ভাস্কর ডিজিটাল স্টুডিও</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{font-family:'Noto Serif Bengali', serif; background: linear-gradient(180deg, #fff7e6, #ffe8d6); margin:0; padding:12px;}
-.main{max-width:600px; margin:auto; background:white; border-radius:22px; padding:16px; box-shadow:0 8px 25px rgba(0,0,0,0.15); border:3px solid #ff9a3c;}
-h1{text-align:center; background:linear-gradient(90deg,#ff6a00,#ee0979); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:34px; margin:5px 0; line-height:1.3;}
-.sub{text-align:center; color:#666; margin-bottom:18px; font-size:18px;}
-.btn{width:100%; padding:14px 15px; margin:9px 0; border:none; border-radius:13px; font-size:18px; text-align:left; cursor:pointer; color:white; font-weight:700; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
-.c1{background:linear-gradient(90deg,#00b09b,#96c93d);} 
-.c2{background:linear-gradient(90deg,#ff8008,#ffc837);} 
-.c3{background:linear-gradient(90deg,#2193b0,#6dd5ed);} 
-.c4{background:linear-gradient(90deg,#8e2de2,#4a00e0);} 
-.c5{background:linear-gradient(90deg,#ee0979,#ff6a00);} 
-.c6{background:linear-gradient(90deg,#11998e,#38ef7d);} 
-.c7{background:linear-gradient(90deg,#fc4a1a,#f7b733);} 
-.c8{background:linear-gradient(90deg,#fc00ff,#00dbde);}
-.poem{display:none; background:#fffbe6; border-radius:12px; padding:15px; margin:0 0 18px 0; border:2px solid #ffcc70; white-space:pre-line; font-size:17px; line-height:1.9; color:#222;}
-.date{text-align:right; font-size:13px; color:#888; margin-top:10px;}
-</style>
-</head>
-<body>
-<div class="main">
-<h1>ভাস্কর ডিজিটাল<br>স্টুডিও</h1>
-<p class="sub">আমার কবিতা - প্রথম ভাগ (১-২০)</p>
-
-<button class="btn c1" onclick="toggle('k1')">১. আমরা বাঙালি - ২৯/০৪/২০২৪</button>
-<div id="k1" class="poem">আমরা বাঙালি বাংলাতে বলি
-বাংলা বলুক বিশ্বজুড়ে রাজপথ থেকে গলি
-আমরা বাঙালি, আমরা বাঙালি,
-আমরা বাঙালি বাংলাতে বলি।।
-
-চর্চা করি বাংলা সাহিত্যে
-শব্দ সুখে ভাসি মোহিতে
-তোমরা যারা বাংলা ভোলো
-অন্য ভাষার দুয়ার খোলো
-তাদের চোখে আঙুল তুলি
-ভাষার রাখালি।
-আমরা বাঙালি, আমরা বাঙালি,
-আমরা বাঙালি বাংলাতে বলি।।
-
-আমরা বাংলা ভাষী বাংলা শব্দ চাষী
-কবিতা গল্প উপন্যাস লিখতে উল্লাসী।
-আমরা শব্দ গড়ি ভাষায় মন যে ভরি
-বাংলা ভাষার মধুরতায় সুরের সোপান চড়ি।
+*{box-sizing:border-box} body{margin:0; background:#fff3e8; font-family:'Noto Serif Bengali', serif;}
+.phone{max-width:420px; margin:auto; background:#fffaf5; min-height:100vh; position:relative; padding-bottom:90px; overflow:hidden;}
+.top{background: linear-gradient(135deg, #ff9a2e 0%, #ff6a3d 40%, #d93a6e 100%); padding:22px 18px 35px 18px; border-radius:0 0 30px 30px; position:relative;}
+.top h1{margin:0; color:#fff3c4; font-size:36px; line-height:1.1; text-shadow:0 2px 4px #0003;}
+.top h1 span{display:block; font-size:38px;}
+.top p{color:#ffe8d0; margin:5px 0 0 0; font-size:16px;}
+.diya{position:absolute; left:10px; top:18px; font-size:50px;}
+.search{background:white; margin:-20px 15px 15px 15px; border-radius:16px; padding:10px 12px; display:flex; align-items:center; box-shadow:0 6px 18px #0002; position:relative; z-index:2;}
+.search input{flex:1; border:none; outline:none; font-size:16px; font-family:inherit;}
+.badge{background:linear-gradient(90deg,#ffb347,#ff8a2e); border-radius:10px; padding:8px 12px; color:white;}
+.section{padding:0 15px; margin-top:18px;}
+.sec-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;}
+.sec-head h3{margin:0; font-size:22px;}
+.sec-head a{color:#ff7a00; text-decoration:none; font-size:16px; font-weight:700;}
+.today{background:linear-gradient(90deg,#ff9a2e 0%, #ff6a3d 50%, #e93a8a 100%); border-radius:18px; padding:16px; color:white; position:relative; box-shadow:0 6px 16px #0002;}
+.today small{background:#ffffff33; padding:4px 10px; border-radius:20px; font-size:12px;}
+.today h2{margin:8px 0 5px 0; font-size:22px;}
+.today p{margin:0; font-size:14px; opacity:0.95;}
+.cat{border-radius:40px; padding:14px 18px; margin:12px 0; color:white; display:flex; align-items:center; cursor:pointer; box-shadow:0 4px 10px #0001; transition:0.2s;}
+.cat:active{transform:scale(0.98);}
+.cat .ico{font-size:26px; margin-right:14px; width:35px; text-align:center;}
+.cat b{font-size:19px; display:block; line-height:1.2;} .cat span{font-size:13px; opacity:0.9;}
+.c1{background:linear-gradient(90deg,#00c07a,#6fd66f);} .c2{background:linear-gradient(90deg,#ff7a1a,#ffb347);} .c3{background:linear-gradient(90deg,#0bb7ff,#3a7bff);} .c4{background:linear-gradient(90deg,#8a4bff,#5e2bff);} .c5{background:linear-gradient(90deg,#ff4d8d,#ff7ab3);}
+.poem-box{display:none; background:#fffbe6; border:2px solid #ffcc70; border-radius:14px; padding:14px; margin:-5px 0 15px 0; white-space:pre-line; line-height:1.9; font-size:16px;}
+.bottom{position:fixed; bottom:10px; left:50%; transform:translateX(-50%); width:95%; max-width:400px; background:white; border-radius:25px; display:flex; justify
