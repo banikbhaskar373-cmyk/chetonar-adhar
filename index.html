@@ -1,68 +1,115 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>ভাস্কর ডিজিটাল স্টুডিও</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল স্টুডিও</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#fff6e8;font-family:'Noto Serif Bengali',serif}
-.app{width:100%;max-width:100%;min-height:100vh;background:#fffaf3;padding-bottom:68px}
-.header{background:linear-gradient(135deg,#ffaf2e 0%,#ff7a45 50%,#f14b8a 100%);padding:14px 14px 22px 14px;display:flex;align-items:center;gap:12px;position:relative}
-.header .diya{width:62px;height:62px;min-width:62px;background:radial-gradient(circle at 30% 30%,#fff8c0,#ffe082);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 12px #0003;border:2px solid #fff8}
-.header .txt{flex:1}
-.header .txt h1{font-size:20px;line-height:1.2;color:#fff;font-weight:700;text-shadow:0 1px 3px #0003}
-.header .txt h1 span{color:#2b0000;background:#fff3;padding:0 4px;border-radius:4px}
-.search{margin:-12px 12px 0 12px;background:#fff;border-radius:14px;padding:0 6px 0 12px;height:46px;display:flex;align-items:center;box-shadow:0 8px 20px #0002;position:relative;z-index:2}
-.search input{flex:1;border:none;outline:none;font-size:13px}
-.search .btn{width:36px;height:34px;background:#ffad33;border-radius:9px;display:flex;align-items:center;justify-content:center}
-.sec{padding:16px 12px 0 12px}
-.sec-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.sec-top h2{font-size:17px;font-weight:700}
-.sec-top a{font-size:11px;color:#ff6a2a;text-decoration:none;font-weight:600}
-.feat{background:linear-gradient(100deg,#ffb52e 0%,#ff6b7a 60%,#e94e9c 100%);border-radius:16px;padding:14px 12px;display:flex;justify-content:space-between;align-items:center;color:#fff}
-.feat .badge{background:#fff2;border:1px solid #fff3;padding:3px 8px;border-radius:20px;font-size:8px;display:inline-block;margin-bottom:6px}
-.feat h3{font-size:15px;font-weight:700}
-.feat p{font-size:10px;line-height:1.4;margin-top:4px;opacity:.95}
-.pill{height:56px;border-radius:28px;padding:0 14px;margin:9px 0;display:flex;align-items:center;gap:12px;color:#fff;cursor:pointer}
-.pill .ic{width:34px;height:34px;background:#ffffff2e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
-.pill b{font-size:14px;display:block;line-height:1}.pill small{font-size:10px;opacity:.9}
-.g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}
-.poem{display:none;background:#fffbe0;border:1.5px solid #ffd87a;border-radius:12px;padding:12px;margin:4px 0 10px 0;white-space:pre-line;font-size:13px;line-height:1.8;color:#333}
-.bottom{position:fixed;left:0;right:0;bottom:0;height:58px;background:#ffffff;border-top:1px solid #f0d8b8;display:flex;justify-content:space-around;align-items:center;padding-bottom:4px;z-index:10}
-.bi{font-size:10px;color:#9a8a7a;text-align:center;line-height:1}.bi.on{color:#e14a2a;font-weight:700}.bi i{font-size:20px;display:block;margin-bottom:2px;font-style:normal}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#fff6e8;font-family:system-ui}
+.app{width:100%;min-height:100vh;background:#fffaf3;padding-bottom:70px}
+.header{background:linear-gradient(135deg,#ffb52e,#f14b8a);padding:14px;display:flex;gap:12px;align-items:center}
+.diya{width:60px;min-width:60px;height:60px;background:#fff8c0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
+.header h1{font-size:18px;color:#fff;line-height:1.2;font-weight:700}.header h1 b{color:#000;background:#ffffff9a;padding:1px 5px;border-radius:4px;font-size:16px}
+.search{margin:-10px 10px 0 10px;background:#fff;border-radius:13px;height:44px;display:flex;align-items:center;padding:0 10px;box-shadow:0 6px 16px #0002}
+.search input{flex:1;border:none;outline:none;font-size:12px;margin-left:6px}
+.sec{padding:14px 10px 0 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px}.sec h2 span{font-size:11px;color:#ff6a2a}
+.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer}
+.pill{height:52px;border-radius:26px;padding:0 12px;margin:8px 0;display:flex;gap:10px;align-items:center;color:#fff;cursor:pointer;user-select:none}
+.pill .ic{width:32px;height:32px;background:#fff3;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pill b{font-size:13px}.pill small{font-size:10px;opacity:.9;display:block}
+.poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 0 10px 0;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
+.g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
+.bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
+.bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 </style></head><body>
 <div class="app">
-<div class="header">
-<div class="diya">🪔</div>
-<div class="txt"><h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন<br>❤️ <span>বিবেকের আলোক</span></h1></div>
-</div>
-<div class="search"><span>🔍</span><input placeholder="কবিতা, কবি বা বিষয় খুঁজুন..."><div class="btn">⚙️</div></div>
+<div class="header"><div class="diya">🪔</div><h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন<br> <b>♥️বিবেকের আলোক‌ দর্শন♥️</b></h1></div>
+<div class="search">🔍<input placeholder="কবিতা খুঁজুন..."><div style="background:#ffb02e;width:32px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center">⚙️</div></div>
 
 <div class="sec">
-<div class="sec-top"><h2>আজকের কবিতা</h2><a>সব দেখুন ›</a></div>
-<div class="feat" onclick="toggle('k1')"><div><div class="badge">নতুন প্রকাশ • উৎসব সংকলন</div><h3>শরতের আলোয় কবিতা</h3><p>শরতের মেঘ, কাশফুল আর নদীর গল্প –<br>নতুন ৭টি কবিতা</p></div><div style="font-size:32px;line-height:1">🌸<br><span style="font-size:14px">🌙</span></div></div>
-<div id="k1" class="poem">শরতের আকাশ নীল
-কাশফুল দোলে
-নদীর বুকে আলো ঝিলমিল...</div>
+<div><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2></div>
+<div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প –<br>নতুন ৭টি কবিতা</p></div><div style="font-size:26px">🌸🌙</div></div>
+<div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে
+নদীর বুকে আলো ঝিলমিল করে
+তোমার হাসিতে ভোর হয় আমার
+এই শরতে তোমায় মনে পড়ে।</div>
 </div>
 
 <div class="sec">
-<div class="sec-top"><h2>কবিতা সংগ্রহ</h2></div>
+<h2>কবিতা সংগ্রহ</h2>
 
-<div class="pill g" onclick="toggle('k2')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি কবিতা</small></div></div>
-<div id="k2" class="poem">আমরা বাঙালি বাংলাতে বলি
-বাংলা বলুক বিশ্বজুড়ে রাজপথ থেকে গলি।</div>
+<div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div>
+<div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি
+বাংলা বলুক বিশ্বজুড়ে রাজপথ থেকে গলি
+আমরা বাঙালি, আমরা বাঙালি,
+আমরা বাঙালি বাংলাতে বলি।
 
-<div class="pill o" onclick="toggle('k3')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div>
-<div id="k3" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন...</div>
+আমরা বাঙালি আছি বহুদূর
+তবু মন পড়ে থাকে বাংলার ঘরে
+নদীর গানের সুরে সুরে
+বাংলা মা'কে মনে পড়ে।</div>
 
-<div class="pill b" onclick="toggle('k4')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div>
-<div id="k4" class="poem">ওঁম হরি ওঁম-ওঁম হরি ওঁম...</div>
+<div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div>
+<div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন
+অভিশাপ অবহেলা ললাটে অঙ্কিত
+তবুও কৃষক হাসে সোনার ধানে
+মাঠ ভরা স্বপ্ন তার সঞ্চিত।</div>
 
-<div class="pill pu" onclick="toggle('k5')"><div class="ic">🌙</div><div><b>জ্যোৎস্না রাত</b><small>রোমান্টিক • ১০টি</small></div></div>
-<div id="k5" class="poem">সময়ের লাঠি হাতে...</div>
+<div class="pill b" onclick="show('p3')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div>
+<div id="p3" class="poem">ওঁম হরি ওঁম-ওঁম হরি ওঁম
+নাম করো সকলে
+আকাশে মেঘের ভেলা
+মন ভাসে অকারণে।
 
-<div class="pill pi" onclick="toggle('k6')"><div class="ic">🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div>
-<div id="k6" class="poem">প্রাচীন আর বর্তমানে এক হয়ে যে আছে মিশে...</div>
+মেঘ বলে আয় ছুটে
+বৃষ্টি হবি আজ
+আমার সাথে ভিজবি
+এই শ্রাবণের সাজ।</div>
+
+<div class="pill pu" onclick="show('p4')"><div class="ic">🌙</div><div><b>জ্যোৎস্না রাত</b><small>রোমান্টিক • ১০টি</small></div></div>
+<div id="p4" class="poem">সময়ের লাঠি হাতে, জীবনের ধারাপাতে,
+জ্যোৎস্না রাতে তোমায় খুঁজি
+চাঁদের আলোয় মুখটি তোমার
+আজও আমি বড্ড ভালোবাসি।</div>
+
+<div class="pill pi" onclick="show('p5')"><div class="ic">🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div>
+<div id="p5" class="poem">প্রাচীন আর বর্তমানে এক হয়ে যে আছে মিশে
+সে তো ফুলের গন্ধ, ভালোবাসার দেশে
+তোমায় দিলাম আজ গোলাপ একটি
+রেখো যতনে বুকের মাঝে।</div>
+
+<div class="pill te" onclick="show('p6')"><div class="ic">💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div>
+<div id="p6" class="poem">অবেলায় আজি, চেতনায় সাজি
+ভাবনার ঘরে ভাঙা গড়া খেলা
+কি পেলাম আর কি হারালাম
+হিসেব মেলে না এই বেলা।</div>
+
+<div class="pill re" onclick="show('p7')"><div class="ic">❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div>
+<div id="p7" class="poem">আছো তুমি গাছে গাছে, পাতায় পাতায়
+ফুলে ফুলে, সুরে সুরে
+তোমার ছোঁয়ায় জাগে প্রাণ
+আমার এই অন্তরে।</div>
+
+<div class="pill in" onclick="show('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div>
+<div id="p8" class="poem">জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে
+স্বাধীনতা তুমি কোথায়?
+পথে পথে আজও কেন
+মানুষ কাঁদে অসহায়?</div>
 </div>
 
 <div class="bottom">
-<div class="bi on"><i>🏠</i>হোম</div>
-<div
+<div class="bi on"><div>🏠</div>হোম</div>
+<div class="bi"><div>🤍</div>পছন্দ</div>
+<div class="bi"><div>📚</div>লাইব্রেরী</div>
+<div class="bi"><div>👤</div>প্রোফাইল</div>
+</div>
+</div>
+<script>
+function show(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  if(el.style.display==='block'){el.style.display='none';}
+  else{
+    // সব বন্ধ করে শুধু এটা খুলবে
+    document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});
+    el.style.display='block';
+    setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'})},100);
+  }
+}
+</script>
+</body></html>
