@@ -4,13 +4,13 @@
 .app{width:100%;min-height:100vh;background:#fffaf3;padding-bottom:70px}
 .header{background:linear-gradient(135deg,#ffb52e,#f14b8a);padding:14px;display:flex;gap:12px;align-items:center}
 .diya{width:60px;min-width:60px;height:60px;background:#fff8c0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
-.header h1{font-size:18px;color:#fff;line-height:1.2;font-weight:700}.header h1 b{color:#000;background:#ffffff9a;padding:1px 5px;border-radius:4px;font-size:16px}
+.header h1{font-size:18px;color:#fff;line-height:1.2;font-weight:700}.header h1 b{color:#000;background:#ffffff9a;padding:2px 6px;border-radius:6px;font-size:15px}
 .search{margin:-10px 10px 0 10px;background:#fff;border-radius:13px;height:44px;display:flex;align-items:center;padding:0 10px;box-shadow:0 6px 16px #0002}
-.search input{flex:1;border:none;outline:none;font-size:12px;margin-left:6px}
+.search input{flex:1;border:none;outline:none;font-size:13px;margin-left:6px}
 .sec{padding:14px 10px 0 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px}.sec h2 span{font-size:11px;color:#ff6a2a}
-.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer}
-.pill{height:52px;border-radius:26px;padding:0 12px;margin:8px 0;display:flex;gap:10px;align-items:center;color:#fff;cursor:pointer;user-select:none}
-.pill .ic{width:32px;height:32px;background:#fff3;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer;margin-bottom:6px}
+.pill{height:52px;border-radius:26px;padding:0 12px;margin:8px 0;display:flex;gap:10px;align-items:center;color:#fff;cursor:pointer}
+.pill.ic{width:32px;height:32px;background:#fff3;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .pill b{font-size:13px}.pill small{font-size:10px;opacity:.9;display:block}
 .poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 0 10px 0;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
@@ -18,12 +18,17 @@
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 </style></head><body>
 <div class="app">
-<div class="header"><div class="diya">🪔</div><h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন<br> <b>♥️বিবেকের আলোক‌ দর্শন♥️</b></h1></div>
-<div class="search">🔍<input id="searchBox" placeholder="কবিতা, কবি বা বিষয় খুঁজুন... টাইপ করুন" onkeyup="this.dispatchEvent(new Event('input'))"><div style="background:#ffb02e;width:32px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center">⚙️</div></div>
+<div class="header"><div class="diya">🪔</div><h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন<br><b>♥️ বিবেকের আলোক দর্শন ♥️</b></h1></div>
+<div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."><div style="background:#ffb02e;width:32px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center">⚙️</div></div>
+
 <div class="sec">
-<div><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2></div>
-<div class="sec">
-<h2>কবিতা সংগ্রহ</h2>
+<h2>আজকের কবিতা <span>সব দেখুন ›</span></h2>
+<div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প – নতুন ৭টি কবিতা</p></div><div style="font-size:26px">🌸</div></div>
+<div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে
+নদীর বুকে আলো ঝিলমিল করে।</div>
+
+<h2 style="margin-top:14px">কবিতা সংগ্রহ</h2>
+
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div>
 <div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি
 বাংলা বলুক বিশ্বজুড়ে রাজপথ থেকে গলি
@@ -90,23 +95,39 @@
 <div class="bi"><div>👤</div>প্রোফাইল</div>
 </div>
 </div>
+
 <script>
-function show(id){var el=document.getElementById(id);if(!el) return;if(el.style.display==='block'){el.style.display='none';}else
-{document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});el.style.display='block';
-setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'})},100);}}
-// --- সার্চ বার কাজের ---
-const searchInput = document.querySelector('.search input');
-searchInput.addEventListener('input', function(){
-let val = this.value.toLowerCase().trim();
-let allPills = document.querySelectorAll('.pill');
-allPills.forEach(function(pill){
-let title = pill.querySelector('b').innerText.toLowerCase();
-let nextPoem = document.getElementById(pill.getAttribute('onclick').match(/'(.*?)'/)[1]);
-let poemText = nextPoem? nextPoem.innerText.toLowerCase() : "";if(title.includes(val) || poemText.includes(val) || val === ""){
-pill.style.display = 'flex';
-// সার্চ করলে কবিতা বন্ধ রাখা if(val!== "") nextPoem.style.display = 'none';} else {
-pill.style.display = 'none';nextPoem.style.display = 'none';}});
-// আজকের কবিতা কার্ডটাও সার্চ হবে let feat = document.querySelector('.feat');if(val === "" || "শরতের আলোয় কবিতা".includes(val)){
-feat.style.display = 'flex';} else {feat.style.display = 'none';}});
-</script> 
+function show(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  if(el.style.display==='block'){
+    el.style.display='none';
+  } else {
+    document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});
+    el.style.display='block';
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+
+var searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('input', function(){
+  var val = this.value.toLowerCase().trim();
+  var pills = document.querySelectorAll('.pill');
+  pills.forEach(function(pill){
+    var onclick = pill.getAttribute('onclick') || '';
+    var m = onclick.match(/'(.*?)'/);
+    if(!m) return;
+    var pid = m[1];
+    var poemEl = document.getElementById(pid);
+    var title = pill.querySelector('b').innerText.toLowerCase();
+    var text = poemEl? poemEl.innerText.toLowerCase() : '';
+    if(val==='' || title.indexOf(val)>-1 || text.indexOf(val)>-1){
+      pill.style.display='flex';
+    } else {
+      pill.style.display='none';
+      if(poemEl) poemEl.style.display='none';
+    }
+  });
+});
+</script>
 </body></html>
