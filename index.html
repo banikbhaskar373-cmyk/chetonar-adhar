@@ -2,42 +2,102 @@
 <html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ভাস্কর ডিজিটাল স্টুডিও</title>
 <style>
-body{margin:0;background:#fff7e6;font-family:system-ui}
-.app{max-width:440px;margin:auto;background:#fffaf5;min-height:100vh;position:relative;padding-bottom:20px;overflow:hidden;border-left:14px solid #e8f5e0;border-right:14px solid #e8f5e0}
-.h{background:linear-gradient(135deg,#ff9a2e,#e93a6a);padding:26px 18px 38px;border-radius:0 0 24px 24px;color:#fff7d6;position:relative}
-.h:before{content:"🌿 🌸 🌿 🌼 🌿";position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:10px;opacity:.4;letter-spacing:4px}
-.row{display:flex;gap:12px;align-items:center}
-.d{width:54px;height:54px;background:#fff8d0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid #ffd86b}
-.s{margin:-20px 14px 0;background:#fff;border-radius:14px;padding:11px 14px;box-shadow:0 6px 18px #0002;display:flex}
-.s input{flex:1;border:0;outline:0;font-size:14px}
-.sec{padding:14px 12px 0}
-.fe{background:linear-gradient(105deg,#ffb03a,#ff7a2e 45%,#e9408a);border-radius:14px;padding:12px 14px;color:#fff;display:flex;justify-content:space-between;margin-bottom:12px;position:relative}
-.fe:after{content:"🌿🌸🌿";position:absolute;right:10px;bottom:2px;font-size:10px;opacity:.5}
-.card{border-radius:26px;padding:12px 16px;margin:9px 0;display:flex;gap:10px;color:#fff;align-items:center;cursor:pointer;box-shadow:0 3px 8px #0001;border:1px solid #fff5}
-.g{background:linear-gradient(90deg,#00b67a,#4ed17a)}.o{background:linear-gradient(90deg,#ff7a18,#ffaa3a)}.bl{background:linear-gradient(90deg,#1596ff,#3a7bff)}.p{background:linear-gradient(90deg,#8a4aff,#6a2cff)}.pi{background:linear-gradient(90deg,#ff4f8b,#ff7fb3)}.t{background:linear-gradient(90deg,#0fb5a0,#3dd68f)}.r{background:linear-gradient(90deg,#ff4a2e,#ff8a3d)}.in{background:linear-gradient(90deg,#5b5bff,#8e5bff)}
-.po{display:none;margin:0 0 10px;background:#fffbe6;border:2px solid #ffdd8a;border-radius:10px;padding:10px;white-space:pre-line;font-size:13px;line-height:1.7}
-/* কলকা বর্ডার */
-.kolka{position:absolute;top:0;bottom:0;width:14px;display:flex;flex-direction:column;align-items:center;justify-content:space-around;font-size:12px;color:#2d6a2d;opacity:.35;line-height:18px;pointer-events:none}
-.kolka.l{left:0}.kolka.r{right:0}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fdf0dd;font-family:'Noto Serif Bengali',system-ui}
+.app{max-width:430px;margin:auto;background:#fffaf5;min-height:100vh;position:relative;padding-bottom:90px;overflow:hidden;box-shadow:0 0 30px #0001}
+.header{background:linear-gradient(135deg,#ffb641 0%,#ff8a3a 30%,#ff6a6a 70%,#e84a7a 100%);padding:0;position:relative;height:168px;overflow:hidden}
+.header .bg{position:absolute;inset:0;background:radial-gradient(circle at 10% 20%,#fff3 2px,transparent 2px);background-size:20px 20px;opacity:.4}
+.header .mandala{position:absolute;top:8px;left:12px;width:82px;height:82px;border:2px solid #fff5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff8;opacity:.6}
+.header .content{position:relative;z-index:2;padding:22px 16px 0 16px;display:flex;gap:14px;align-items:center}
+.diya{width:72px;height:72px;background:radial-gradient(circle at 50% 30%,#fff9c0,#ffd86b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:46px;box-shadow:0 6px 16px #0004;border:3px solid #fff6}
+.title h1{color:#fff9e6;font-size:30px;line-height:1.05;font-weight:800;text-shadow:0 2px 6px #0004}
+.title p{color:#fff0cc;font-size:13.5px;margin-top:6px;font-weight:500;letter-spacing:.2px}
+.flowers{position:absolute;top:10px;right:14px;font-size:13px;letter-spacing:5px;opacity:.85}
+.search{margin:-18px 14px 0 14px;background:#fff;border-radius:14px;padding:11px 12px 11px 14px;display:flex;align-items:center;box-shadow:0 10px 24px #0002;position:relative;z-index:5}
+.search input{flex:1;border:none;outline:none;font-size:14px;color:#666}
+.search .f{background:#ffb13a;width:38px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;margin-left:8px}
+.sec{padding:18px 14px 0 14px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sec-head h2{font-size:21px;font-weight:800;color:#222}
+.sec-head a{font-size:13px;color:#ff7a18;font-weight:700;text-decoration:none}
+.feat{background:linear-gradient(100deg,#ffad33 0%,#ff8c2e 35%,#ff5a8a 75%,#e94a8a 100%);border-radius:18px;padding:16px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 18px #ff9a2e66}
+.feat .left{flex:1}
+.badge{background:#fff2;border:1px solid #fff4;padding:4px 12px;border-radius:20px;font-size:10px;display:inline-block;margin-bottom:8px;font-weight:600}
+.feat h3{font-size:19px;font-weight:800;line-height:1.2;margin-bottom:6px}
+.feat p{font-size:11.5px;line-height:1.4;opacity:.95}
+.feat .right{width:86px;height:76px;position:relative}
+.feat .right .flower{position:absolute;right:0;top:0;font-size:38px;filter:drop-shadow(0 2px 4px #0003)}
+.feat .right .moon{position:absolute;right:18px;top:2px;font-size:22px;opacity:.9}
+.pill{border-radius:28px;padding:13px 16px;margin:11px 0;display:flex;align-items:center;gap:14px;color:#fff;cursor:pointer;box-shadow:0 4px 12px #0001;transition:.15s}
+.pill:active{transform:scale(.98)}
+.pill .ic{width:38px;height:38px;background:#fff2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.pill b{font-size:18px;display:block;line-height:1.1;font-weight:700}
+.pill span{font-size:11px;opacity:.92;margin-top:2px;display:block}
+.g{background:linear-gradient(90deg,#00b16a,#3ed17a)}.o{background:linear-gradient(90deg,#ff7a18,#ffb03a)}.b{background:linear-gradient(90deg,#1e90ff,#4a7bff)}.pu{background:linear-gradient(90deg,#6a3dff,#8a4aff)}.pi{background:linear-gradient(90deg,#ff3a8a,#ff7ab3)}.te{background:linear-gradient(90deg,#0fb5a0,#3dd68f)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.ind{background:linear-gradient(90deg,#5b5bff,#8e5bff)}
+.po{display:none;margin:-6px 0 12px 0;background:#fffbe6;border:2px solid #ffdd8a;border-radius:12px;padding:12px;white-space:pre-line;line-height:1.8;font-size:13px;color:#222}
+.bottom{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);width:94%;max-width:410px;background:#fff;border-radius:22px;display:flex;justify-content:space-around;padding:8px 4px;box-shadow:0 12px 30px #0003;z-index:20}
+.bitem{text-align:center;font-size:11px;color:#999;padding:4px 14px;border-radius:16px}.bitem.active{color:#ff5a3a;background:#fff1e6}.bitem .ico{font-size:22px;display:block;margin-bottom:1px}
+.bg-deco{position:absolute;bottom:80px;left:0;right:0;height:30px;display:flex;justify-content:space-between;padding:0 10px;font-size:16px;opacity:.22;pointer-events:none}
 </style></head><body>
 <div class="app">
-<div class="kolka l">🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿</div>
-<div class="kolka r">🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿<br>🌸<br>🌿<br>🪷<br>🌿</div>
+<div class="header">
+<div class="bg"></div>
+<div class="flowers">🌼 🍃 🌸</div>
+<div class="content"><div class="diya">🪔</div><div class="title"><h1>ভাস্কর<br>ডিজিটাল স্টুডিও</h1><p>বাংলার কবিতা • গল্প • ছন্দ</p></div></div>
+</div>
 
-<div class="h"><div class="row"><div class="d">🪔</div><div><div style="font-size:26px;font-weight:700;line-height:1.1">ভাস্কর<br>ডিজিটাল স্টুডিও</div><div style="font-size:11px;margin-top:3px;opacity:.9">বাংলার কবিতা • গল্প • ছন্দ</div></div></div></div>
-<div class="s">🔍<input id="q" oninput="filt()" placeholder=" কবিতা খুঁজুন..."></div>
+<div class="search"><span style="opacity:.4;margin-right:8px">🔍</span><input id="q" oninput="filt()" placeholder="কবিতা, কবি বা বিষয় খুঁজুন..."><div class="f">⚙️</div></div>
+
 <div class="sec">
-<div class="fe" onclick="tog('p1')"><div><div style="font-size:10px;background:#fff3;padding:2px 8px;border-radius:10px;display:inline-block">নতুন প্রকাশ • উৎসব সংকলন</div><div style="font-size:16px;font-weight:700;margin-top:4px">শরতের আলোয় কবিতা</div></div><div style="font-size:28px">🌸</div></div>
+<div class="sec-head"><h2>আজকের কবিতা</h2><a href="#" onclick="tog('p1');return false">সব দেখুন ›</a></div>
+<div class="feat" onclick="tog('p1')"><div class="left"><div class="badge">নতুন প্রকাশ • উৎসব সংকলন</div><h3>শরতের আলোয় কবিতা</h3><p>শরতের মেঘ, কাশফুল আর নদীর গল্প –<br>নতুন ৭টি কবিতা</p></div><div class="right"><div class="moon">🌙</div><div class="flower">🌸💮</div></div></div>
+</div>
 
-<div class="card g" onclick="tog('p1')">🌿 ১. আমরা বাঙালি</div><div id="p1" class="po">আমরা বাঙালি বাংলাতে বলি...</div>
-<div class="card o" onclick="tog('p2')">☀️ ২. গরবিনী নারী</div><div id="p2" class="po">রক্তাক্ত জঠর হতে...</div>
-<div class="card bl" onclick="tog('p3')">☁️ ৩. ওঁম হরি ওঁম</div><div id="p3" class="po">ওঁম হরি ওঁম...</div>
-<div class="card p" onclick="tog('p4')">🌙 ৪. শাসন গন্ডি</div><div id="p4" class="po">সময়ের লাঠি হাতে...</div>
-<div class="card pi" onclick="tog('p5')">🪷 ৫. তফাৎ বলো কিসে</div><div id="p5" class="po">প্রাচীন আর বর্তমানে...</div>
-<div class="card t" onclick="tog('p6')">💭 ৬. ভাবনার ভাঙা গড়া</div><div id="p6" class="po">অবেলায় আজি...</div>
-<div class="card r" onclick="tog('p7')">❤️ ৭. প্রিয় কবিতা</div><div id="p7" class="po">আছো তুমি গাছে গাছে...</div>
-<div class="card in" onclick="tog('p8')">🕊️ ৮. এ কেমন স্বাধীনতা</div><div id="p8" class="po">জন্মতো এ জীবন...</div>
+<div class="sec">
+<div class="sec-head"><h2>কবিতা সংগ্রহ</h2></div>
+
+<div class="pill g" onclick="tog('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><span>প্রকৃতি • ১২টি কবিতা</span></div></div>
+<div id="p1" class="po">আমরা বাঙালি বাংলাতে বলি
+বাংলা বলুক বিশ্বজুড়ে রাজপথ থেকে গলি
+আমরা বাঙালি, আমরা বাঙালি,
+আমরা বাঙালি বাংলাতে বলি।</div>
+
+<div class="pill o" onclick="tog('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><span>গ্রামবাংলা • ৯টি কবিতা</span></div></div>
+<div id="p2" class="po">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন
+অভিশাপ অবহেলা ললাটে অঙ্কিত</div>
+
+<div class="pill b" onclick="tog('p3')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><span>প্রকৃতি • ১৫টি কবিতা</span></div></div>
+<div id="p3" class="po">ওঁম হরি ওঁম-ওঁম হরি ওঁম
+নাম করো সকলে</div>
+
+<div class="pill pu" onclick="tog('p4')"><div class="ic">🌙</div><div><b>জ্যোৎস্না রাত</b><span>রোমান্টিক • ১০টি কবিতা</span></div></div>
+<div id="p4" class="po">সময়ের লাঠি হাতে, জীবনের ধারাপাতে,</div>
+
+<div class="pill pi" onclick="tog('p5')"><div class="ic">🪷</div><div><b>ফুলের বার্তা</b><span>প্রেম • ১৪টি কবিতা</span></div></div>
+<div id="p5" class="po">প্রাচীন আর বর্তমানে এক হয়ে যে আছে মিশে</div>
+
+<div class="pill te" onclick="tog('p6')"><div class="ic">💭</div><div><b>ভাবনার ভাঙা গড়া</b><span>চিন্তা • ১টি কবিতা</span></div></div>
+<div id="p6" class="po">অবেলায় আজি, চেতনায় সাজি</div>
+
+<div class="pill re" onclick="tog('p7')"><div class="ic">❤️</div><div><b>প্রিয় কবিতা</b><span>ভালোবাসা • ১টি কবিতা</span></div></div>
+<div id="p7" class="po">আছো তুমি গাছে গাছে</div>
+
+<div class="pill ind" onclick="tog('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><span>স্বাধীনতা • ১টি কবিতা</span></div></div>
+<div id="p8" class="po">জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে</div>
+</div>
+
+<div class="bg-deco"><span>🦙 🌿 🌸</span><span>🌸 🌿 🦙</span></div>
+
+<div class="bottom">
+<div class="bitem active"><span class="ico">🏠</span>হোম</div>
+<div class="bitem"><span class="ico">🤍</span>পছন্দ</div>
+<div class="bitem"><span class="ico">📚</span>লাইব্রেরী</div>
+<div class="bitem"><span class="ico">👤</span>প্রোফাইল</div>
 </div>
 </div>
-<script>function tog(id){var e=document.getElementById(id);e.style.display=e.style.display=='block'?'none':'block'}function filt(){var q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'flex':'none'})}</script>
+<script>
+function tog(id){var e=document.getElementById(id);e.style.display=e.style.display=='block'?'none':'block';if(e.style.display=='block')e.scrollIntoView({behavior:'smooth',block:'start'})}
+function filt(){var q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('.pill').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)||q==''?'flex':'none'})}
+</script>
 </body></html>
