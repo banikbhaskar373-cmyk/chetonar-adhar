@@ -81,7 +81,7 @@ function loadPoems(){
  box.innerHTML='';
  data.forEach((po,i)=>{
   let col=colors[i%colors.length];
-  box.innerHTML+=`<div class="pill ${col} my-pill"><div><h3>${po.title}</h3><p>${po.text}</p></div><div class="my-actions"><button onclick="editPoem(${i})">✏️ এডিট</button><button onclick="delPoem(${i})">🗑️ ডিলিট</button></div></div>`;
+  box.innerHTML+=`<div class="pill ${col}" style="height:auto;min-height:85px;padding:12px 16px;flex-direction:column;align-items:flex-start"><div style="width:100%"><b>${po.title}</b><p style="font-size:13px;white-space:pre-line;margin-top:4px">${po.text}</p></div><div style="display:flex;gap:8px;margin-top:8px;width:100%"><button onclick="editPoem(${i})" style="flex:1;padding:7px;border-radius:20px;border:none;font-weight:700">✏️ এডিট</button><button onclick="delPoem(${i})" style="flex:1;padding:7px;border-radius:20px;border:none;background:#0006;color:#fff;font-weight:700">🗑️ ডিলিট</button></div></div>`;
  });
 }
 function openModal(){document.getElementById('modal').style.display='flex';}
