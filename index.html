@@ -77,12 +77,29 @@ let colors=['g','o','b','pu','pi','te','re','in'];
 function loadPoems(){
  let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
  let box=document.getElementById('myPoems');
- document.getElementById('count').innerText='('+data.length+')';
+ document.getElementById('count').innerText='('+data.length+'টি)';
  box.innerHTML='';
  data.forEach((po,i)=>{
   let col=colors[i%colors.length];
-  box.innerHTML+=`<div class="pill ${col}" style="height:auto;min-height:85px;padding:12px 16px;flex-direction:column;align-items:flex-start"><div style="width:100%"><b>${po.title}</b><p style="font-size:13px;white-space:pre-line;margin-top:4px">${po.text}</p></div><div style="display:flex;gap:8px;margin-top:8px;width:100%"><button onclick="editPoem(${i})" style="flex:1;padding:7px;border-radius:20px;border:none;font-weight:700">✏️ এডিট</button><button onclick="delPoem(${i})" style="flex:1;padding:7px;border-radius:20px;border:none;background:#0006;color:#fff;font-weight:700">🗑️ ডিলিট</button></div></div>`;
+  box.innerHTML+=`<div class="pill ${col}" style="height:auto;min-height:80px;padding:12px 16px"><div class="ic">✍️</div><div style="flex:1"><b>${po.title}</b><small style="display:block;margin-top:2px">${po.text.substring(0,30)}...</small><div style="margin-top:6px;display:flex;gap:6px"><button onclick="editPoem(${i})" style="padding:4px 12px;border-radius:12px;border:none;background:#fff;color:#333;font-weight:700;font-size:12px">✏️ এডিট</button><button onclick="delPoem(${i})" style="padding:4px 12px;border-radius:12px;border:none;background:#0005;color:#fff;font-weight:700;font-size:12px">🗑️ ডিলিট</button></div></div></div>`;
  });
+}
+function editPoem(i){
+ let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
+ let nt=prompt('নাম এডিট করুন:',data[i].title);
+ if(nt===null) return;
+ let tx=prompt('কবিতা এডিট করুন:',data[i].text);
+ if(tx===null) return;
+ data[i]={title:nt,text:tx};
+ localStorage.setItem('bhaskar_poems',JSON.stringify(data));
+ loadPoems();
+}
+function delPoem(i){
+ if(!confirm('ডিলিট করবেন?')) return;
+ let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
+ data.splice(i,1);
+ localStorage.setItem('bhaskar_poems',JSON.stringify(data));
+ loadPoems();
 }
 function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
