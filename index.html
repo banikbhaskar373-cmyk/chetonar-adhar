@@ -84,13 +84,22 @@ function loadPoems(){
 function openModal(){document.getElementById('modal').style.display='flex'}
 function closeModal(){document.getElementById('modal').style.display='none'}
 function savePoem(){
- let title=document.getElementById('t').value.trim();
- let text=document.getElementById('c').value.trim();
- if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}
+ let title=document.getElementById('t').value;
+ let text=document.getElementById('poemText').value;
+ if(!title||!text){alert('নাম ও কবিতা লিখুন'); return;}
  let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- data.push({title:title,text:text,date:new Date().toLocaleDateString('bn-BD')});
+ data.push({title:title,text:text});
  localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- document.getElementById('t').value=''; document.getElementById('c').value='';
+ document.getElementById('t').value='';
+ document.getElementById('poemText').value='';
+
+ // Google Sheet এ পাঠানো
+ fetch('https://script.google.com/macros/s/AKfycbxBxuL8lCGmQ9dmnvaq3APFvlG7GT4QU_eqdPqt6lOv45fzfPq6ft4mJz8y72LkOpLiFg/exec',{
+   method:'POST',
+   mode:'no-cors',
+   body:JSON.stringify({title:title,text:text,date:new Date().toLocaleString()})
+ });
+
  closeModal(); loadPoems();
 }
 function delPoem(i){if(!confirm('ডিলিট করবেন?'))return; let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]'); data.splice(i,1); localStorage.setItem('bhaskar_poems',JSON.stringify(data)); loadPoems();}
