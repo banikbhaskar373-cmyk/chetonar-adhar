@@ -83,19 +83,21 @@ function loadPoems(){
 function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){
- let title=document.getElementById('t').value.trim();
- let text=document.getElementById('c').value.trim();
- if(!title||!text){alert('নাম ও কবিতা লিখুন'); return;}
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- data.push({title:title,text:text});
- localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- document.getElementById('t').value='';
- document.getElementById('c').value='';
- fetch('https://script.google.com/macros/s/AKfycbzyEdzEAifh15gG1Qyuz5ynsoqmkjDkuPGLs3K48qVRmatAu_-XTKyRBwjiPX1Q4HAemQ/exec',{
-   method:'POST',mode:'no-cors',
-   body:JSON.stringify({title:title,text:text,date:new Date().toLocaleString()})
- });
- closeModal(); loadPoems();
+function savePoem(){
+  let title=document.getElementById('t').value.trim();
+  let text=document.getElementById('c').value.trim();
+  if(!title||!text){alert('নাম ও কবিতা লিখুন'); return;}
+  let data=JSON.parse(localStorage.getItem('bhaskar_pomes')||'[]');
+  let now=new Date().toLocaleString('en-IN');
+  data.push({title:title,text:text,date:now});
+  localStorage.setItem('bhaskar_pomes',JSON.stringify(data));
+  document.getElementById('t').value='';
+  document.getElementById('c').value='';
+  fetch('https://script.google.com/macros/s/AKfycbxG4PYyWBqYpNINKMK23ue2Xtu2ZHItlycAF4DH0U5xvD8K7bsGKNRYkT-yAVd43Q6W/exec',{
+    method:'POST',mode:'no-cors',
+    body:JSON.stringify({title:title,text:text,date:now})
+  });
+  closeModal(); loadPoems();
 }
 function editPoem(i){
  let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
