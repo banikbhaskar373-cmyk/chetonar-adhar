@@ -25,12 +25,12 @@
 .modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
 .modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
-.my-pill{height:auto;min-height:70px;border-radius:16px;padding:10px 14px;flex-direction:column;align-items:flex-start}
-.my-pill div{width:100%}
-.my-pill h3{font-size:15px;margin-bottom:4px}
-.my-pill p{font-size:12px;white-space:pre-line;opacity:0.9}
-.my-actions{margin-top:6px;display:flex;gap:8px}
-.my-actions button{border:none;padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;background:rgba(255,255,255,0.3);color:#fff}
+/* আমার লেখার জন্য আলাদা বড় ডিজাইন */
+.my-card{border-radius:18px;padding:14px 16px;margin:10px 0;color:#fff;position:relative}
+.my-card h3{font-size:16px;margin-bottom:4px}
+.my-card p{font-size:13px;white-space:pre-line;opacity:0.95;line-height:1.5}
+.my-actions{margin-top:10px;display:flex;gap:10px}
+.my-actions button{flex:1;border:none;padding:8px 0;border-radius:20px;font-weight:700;font-size:13px;cursor:pointer}
 </style></head><body>
 <div class="app">
 <div class="header">
@@ -43,10 +43,8 @@
 <h2>আজকের কবিতা <span>সব দেখুন ›</span></h2>
 <div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প</p></div><div style="font-size:26px">🌸</div></div>
 <div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে</div>
-
 <h2 style="margin-top:14px">আমার লেখা <span id="count">0</span></h2>
 <div id="myPoems"></div>
-
 <div id="oldPoems">
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
 <div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন</div>
@@ -62,7 +60,6 @@
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
 </div>
-
 <div class="modal" id="modal"><div class="modalBox">
 <h3>নতুন কবিতা যোগ করুন</h3>
 <input id="t" placeholder="কবিতার নাম">
@@ -70,7 +67,6 @@
 <button onclick="savePoem()">সেভ করুন</button>
 <button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button>
 </div></div>
-
 <script>
 function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.display==='block'){el.style.display='none';}else{document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}}
 let colors=['g','o','b','pu','pi','te','re','in'];
@@ -81,25 +77,8 @@ function loadPoems(){
  box.innerHTML='';
  data.forEach((po,i)=>{
   let col=colors[i%colors.length];
-  box.innerHTML+=`<div class="pill ${col}" style="height:auto;min-height:80px;padding:12px 16px"><div class="ic">✍️</div><div style="flex:1"><b>${po.title}</b><small style="display:block;margin-top:2px">${po.text.substring(0,30)}...</small><div style="margin-top:6px;display:flex;gap:6px"><button onclick="editPoem(${i})" style="padding:4px 12px;border-radius:12px;border:none;background:#fff;color:#333;font-weight:700;font-size:12px">✏️ এডিট</button><button onclick="delPoem(${i})" style="padding:4px 12px;border-radius:12px;border:none;background:#0005;color:#fff;font-weight:700;font-size:12px">🗑️ ডিলিট</button></div></div></div>`;
+  box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${i})" style="background:#fff;color:#000">✏️ এডিট</button><button onclick="delPoem(${i})" style="background:#000;color:#fff">🗑️ ডিলিট</button></div></div>`;
  });
-}
-function editPoem(i){
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- let nt=prompt('নাম এডিট করুন:',data[i].title);
- if(nt===null) return;
- let tx=prompt('কবিতা এডিট করুন:',data[i].text);
- if(tx===null) return;
- data[i]={title:nt,text:tx};
- localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- loadPoems();
-}
-function delPoem(i){
- if(!confirm('ডিলিট করবেন?')) return;
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- data.splice(i,1);
- localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- loadPoems();
 }
 function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
@@ -120,19 +99,24 @@ function savePoem(){
 }
 function editPoem(i){
  let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- let po=data[i];
- let newTitle=prompt('নাম এডিট করুন:',po.title);
+ let newTitle=prompt('নাম এডিট করুন:',data[i].title);
  if(newTitle===null) return;
- let newText=prompt('কবিতা এডিট করুন:',po.text);
+ let newText=prompt('কবিতা এডিট করুন:',data[i].text);
  if(newText===null) return;
  if(!newTitle.trim()||!newText.trim()){alert('ফাঁকা রাখা যাবে না');return;}
  data[i]={title:newTitle.trim(),text:newText.trim()};
  localStorage.setItem('bhaskar_poems',JSON.stringify(data));
  loadPoems();
 }
-function delPoem(i){if(!confirm('ডিলিট করবেন?'))return; let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]'); data.splice(i,1); localStorage.setItem('bhaskar_poems',JSON.stringify(data)); loadPoems();}
+function delPoem(i){
+ if(!confirm('ডিলিট করবেন?')) return;
+ let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
+ data.splice(i,1);
+ localStorage.setItem('bhaskar_poems',JSON.stringify(data));
+ loadPoems();
+}
 var searchBox=document.getElementById('searchBox');
-searchBox.addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill').forEach(function(pill){var m=pill.getAttribute('onclick');if(!m)return; var match=m.match(/'(.*?)'/);if(!match)return;var pid=match[1];var poemEl=document.getElementById(pid);var title=pill.querySelector('b')?pill.querySelector('b').innerText.toLowerCase():'';var text=poemEl?poemEl.innerText.toLowerCase():'';if(val===''||title.indexOf(val)>-1||text.indexOf(val)>-1){pill.style.display='flex';}else{pill.style.display='none';if(poemEl)poemEl.style.display='none';}});});
+searchBox.addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl) return; var title=titleEl.innerText.toLowerCase(); if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
 loadPoems();
 </script>
 </body></html>
