@@ -93,7 +93,7 @@ function savePoem(){
   localStorage.setItem('bhaskar_poems',JSON.stringify(data));
   document.getElementById('t').value='';
   document.getElementById('c').value='';
-  fetch('https://script.google.com/macros/s/AKfycbxG4PYyWBqYpNINKMK23ue2Xtu2ZHItlycAF4DH0U5xvD8K7bsGKNRYkT-yAVd43Q6W/exec',{
+  fetch('https://script.google.com/macros/s/AKfycbzdmiQUjLIMtAt3TsBkjcXHnm1u-QPZNc0GRmXPoi43gfvvXA5MJdG6uDcV1IWOpmjNIw/exec',{
     method:'POST',mode:'no-cors',
     body:JSON.stringify({title:title,text:text,date:now})
   });
