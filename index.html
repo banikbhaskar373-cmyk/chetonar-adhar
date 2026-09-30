@@ -105,13 +105,18 @@ function savePoem(){
   setTimeout(loadPoems,3000);
 }
 function editPoem(id){
+  let pass = prompt('এডিট পাসওয়ার্ড দিন গুরুদেব:');
+  if(pass !== 'Biboswan @22'){
+    if(pass !== null) alert('ভুল পাসওয়ার্ড! এডিট করতে পারবেন না।');
+    return;
+  }
   let po=allData.find(p=>p.id==id); if(!po)return;
   let newTitle=prompt('নাম এডিট করুন (কালেকশন করতে পারেন):',po.title); if(newTitle===null)return;
   let newText=prompt('কবিতা এডিট করুন:',po.text); if(newText===null)return;
   if(!newTitle.trim()||!newText.trim()){alert('ফাঁকা রাখা যাবে না');return;}
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',id:id,title:newTitle.trim(),text:newText.trim()})});
-  alert('আপডেট হচ্ছে...'); setTimeout(loadPoems,2500);
-}
+  alert('আপডেট হচ্ছে গুরুদেব...'); setTimeout(loadPoems,2500);
+  }
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
 loadPoems();
 </script>
