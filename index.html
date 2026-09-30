@@ -43,6 +43,15 @@
 <div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প</p></div><div style="font-size:26px">🌸</div></div>
 <div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে</div>
 <h2 style="margin-top:14px">আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
+<h2 style="margin-top:14px">🔗 সরাসরি লিঙ্ক <span>নতুন</span></h2>
+<div class="pill b" onclick="window.open('https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=drivesdk','_blank')" style="border:2.5px solid #ffcc33">
+<div class="ic">📄</div><div><b>আমার গুগল সিট খুলুন</b><small>বিবেকের আলোক দর্শন • সব লেখা</small></div>
+</div>
+
+<div class="pill g" onclick="document.getElementById('sheetFrame').style.display = document.getElementById('sheetFrame').style.display=='block'?'none':'block'" style="margin-top:8px">
+<div class="ic">👁️</div><div><b>সাইটের ভিতরেই সিট দেখুন</b><small>এখানেই খুলবে, বাইরে যাবে না</small></div>
+</div>
+<iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/pubhtml?widget=true&headers=false" style="display:none;width:100%;height:600px;border:2px solid #ffd36a;border-radius:12px;margin-top:10px"></iframe>
 <div id="myPoems"></div>
 <div id="oldPoems">
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
