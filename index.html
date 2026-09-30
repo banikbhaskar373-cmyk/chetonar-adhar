@@ -5,7 +5,7 @@
 .header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:18px 10px 12px 10px;display:flex;flex-direction:column;align-items:center;text-align:center}
 .diya{width:80px;height:80px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:52px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffcc33;margin:0 auto}
 .header h1{font-size:24px;color:#00FF7F;line-height:1.25;font-weight:700;margin-top:8px}
-.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding 10px 08px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffe680, 0 5px 15px #0004;letter-spacing:0.8px;animation:glow 4s infinite alternate}
+.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:10px 8px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffe680, 0 5px 15px #0004;letter-spacing:0.8px;animation:glow 4s infinite alternate}
 @keyframes glow{from{box-shadow:0 0 10px #ffe680, 0 5px 15px #0004}to{box-shadow:0 0 22px #ffcc33, 0 5px 15px #0004}}
 .search{margin:12px 10px 0 10px;background:#fff;border-radius:14px;height:46px;display:flex;align-items:center;padding:0 12px;box-shadow:0 6px 16px #0002}
 .search input{flex:1;border:none;outline:none;font-size:14px;margin-left:6px}
@@ -25,12 +25,9 @@
 .modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
 .modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
-/* আমার লেখার জন্য আলাদা বড় ডিজাইন */
 .my-card{border-radius:18px;padding:14px 16px;margin:10px 0;color:#fff;position:relative}
 .my-card h3{font-size:16px;margin-bottom:4px}
 .my-card p{font-size:13px;white-space:pre-line;opacity:0.95;line-height:1.5}
-.my-actions{margin-top:10px;display:flex;gap:10px}
-.my-actions button{flex:1;border:none;padding:8px 0;border-radius:20px;font-weight:700;font-size:13px;cursor:pointer}
 </style></head><body>
 <div class="app">
 <div class="header">
@@ -43,7 +40,7 @@
 <h2>আজকের কবিতা <span>সব দেখুন ›</span></h2>
 <div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প</p></div><div style="font-size:26px">🌸</div></div>
 <div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে</div>
-<h2 style="margin-top:14px">আমার লেখা <span id="count">0</span></h2>
+<h2 style="margin-top:14px">আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div id="myPoems"></div>
 <div id="oldPoems">
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
@@ -54,17 +51,10 @@
 <div class="pill te" onclick="show('p6')"><div class="ic">💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem">অবেলায় আজি, চেতনায় সাজি</div>
 <div class="pill re" onclick="show('p7')"><div class="ic">❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem">আছো তুমি গাছে গাছে, পাতায় পাতায়</div>
 <div class="pill in" onclick="show('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে</div>
-<div class="pill g" onclick="show('p9')"><div class="ic">🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">
-অজানা অচেনা কত আনাগোনা
+<div class="pill g" onclick="show('p9')"><div class="ic">🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">অজানা অচেনা কত আনাগোনা
 বৃথা কি জানিনা কথার জাল বোনা 
 তবু মন ছুটে চলে চেতনার টানে
-ঝংকারে ভেসে যাই শব্দের বানে।
-
-কেহ বলে ধুত্তোর সময়ের অপচয় 
-কেহ বলে কাব্য! সবার কম্ম নয়,
-অস্ফুটে কানে আসে শব্দের মন্ত্রণা
-বলে উদ্ধার করো কবি, অক্ষর যন্ত্রণা। </div>
- 
+ঝংকারে ভেসে যাই শব্দের বানে।</div>
 </div>
 </div>
 <div class="addBtn" onclick="openModal()">+</div>
@@ -78,58 +68,41 @@
 <button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button>
 </div></div>
 <script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzdmiQUjLIMtAt3TsBkjcXHnm1u-QPZNc0GRmXPoi43gfvvXA5MJdG6uDcV1IWOpmjNIw/exec';
 function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.display==='block'){el.style.display='none';}else{document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}}
 let colors=['g','o','b','pu','pi','te','re','in'];
+
+// *** এখন Google Sheet থেকে লোড হবে বস, localStorage না ***
 function loadPoems(){
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- let box=document.getElementById('myPoems');
- document.getElementById('count').innerText='('+data.length+'টি)';
- box.innerHTML='';
- data.forEach((po,i)=>{
-  let col=colors[i%colors.length];
-  box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${i})" style="background:#fff;color:#000">✏️ এডিট</button><button onclick="delPoem(${i})" style="background:#000;color:#fff">🗑️ ডিলিট</button></div></div>`;
- });
+  fetch(SHEET_URL)
+  .then(r=>r.json())
+  .then(data=>{
+    let box=document.getElementById('myPoems');
+    let filtered=data.filter(po=>po.title && po.text);
+    document.getElementById('count').innerText='('+filtered.length+'টি)';
+    box.innerHTML='';
+    filtered.reverse().forEach((po,i)=>{
+      let col=colors[i%colors.length];
+      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p></div>`;
+    });
+  }).catch(e=>{
+    document.getElementById('count').innerText='(নেট নেই)';
+  });
 }
 function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
-
 function savePoem(){
   let title=document.getElementById('t').value.trim();
   let text=document.getElementById('c').value.trim();
-  if(!title||!text){alert('নাম ও কবিতা লিখুন'); return;}
-  let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
-  let now=new Date().toLocaleString('en-IN');
-  data.push({title:title,text:text,date:now});
-  localStorage.setItem('bhaskar_poems',JSON.stringify(data));
-  document.getElementById('t').value='';
-  document.getElementById('c').value='';
-  fetch('https://script.google.com/macros/s/AKfycbzdmiQUjLIMtAt3TsBkjcXHnm1u-QPZNc0GRmXPoi43gfvvXA5MJdG6uDcV1IWOpmjNIw/exec',{
-    method:'POST',mode:'no-cors',
-    body:JSON.stringify({title:title,text:text,date:now})
-  });
-  closeModal(); loadPoems();
+  if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}
+  let now=new Date().toLocaleString('bn-BD');
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({title:title,text:text,date:now})});
+  document.getElementById('t').value='';document.getElementById('c').value='';
+  closeModal();
+  alert('সেভ হয়েছে! 3 সেকেন্ড পর সবার ফোনে দেখাবে');
+  setTimeout(loadPoems,3000);
 }
-
-function editPoem(i){
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- let newTitle=prompt('নাম এডিট করুন:',data[i].title);
- if(newTitle===null) return;
- let newText=prompt('কবিতা এডিট করুন:',data[i].text);
- if(newText===null) return;
- if(!newTitle.trim()||!newText.trim()){alert('ফাঁকা রাখা যাবে না');return;}
- data[i]={title:newTitle.trim(),text:newText.trim()};
- localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- loadPoems();
-}
-function delPoem(i){
- if(!confirm('ডিলিট করবেন?')) return;
- let data=JSON.parse(localStorage.getItem('bhaskar_poems')||'[]');
- data.splice(i,1);
- localStorage.setItem('bhaskar_poems',JSON.stringify(data));
- loadPoems();
-}
-var searchBox=document.getElementById('searchBox');
-searchBox.addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl) return; var title=titleEl.innerText.toLowerCase(); if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
+document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
 loadPoems();
 </script>
 </body></html>
