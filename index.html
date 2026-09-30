@@ -28,6 +28,8 @@
 .my-card{border-radius:18px;padding:14px 16px;margin:10px 0;color:#fff;position:relative}
 .my-card h3{font-size:16px;margin-bottom:4px}
 .my-card p{font-size:13px;white-space:pre-line;opacity:0.95;line-height:1.5}
+.my-actions{margin-top:10px;display:flex}
+.my-actions button{width:100%;border:none;padding:8px 0;border-radius:20px;font-weight:700;font-size:12px;background:#fff;color:#222}
 </style></head><body>
 <div class="app">
 <div class="header">
@@ -71,19 +73,19 @@
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzdmiQUjLIMtAt3TsBkjcXHnm1u-QPZNc0GRmXPoi43gfvvXA5MJdG6uDcV1IWOpmjNIw/exec';
 function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.display==='block'){el.style.display='none';}else{document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}}
 let colors=['g','o','b','pu','pi','te','re','in'];
-
-// *** এখন Google Sheet থেকে লোড হবে বস, localStorage না ***
+let allData=[];
 function loadPoems(){
   fetch(SHEET_URL)
   .then(r=>r.json())
   .then(data=>{
+    allData=data;
     let box=document.getElementById('myPoems');
     let filtered=data.filter(po=>po.title && po.text);
     document.getElementById('count').innerText='('+filtered.length+'টি)';
     box.innerHTML='';
-    filtered.reverse().forEach((po,i)=>{
-      let col=colors[i%colors.length];
-      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p></div>`;
+    filtered.reverse().forEach((po)=>{
+      let col=colors[po.id % colors.length];
+      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
     });
   }).catch(e=>{
     document.getElementById('count').innerText='(নেট নেই)';
@@ -101,6 +103,14 @@ function savePoem(){
   closeModal();
   alert('সেভ হয়েছে! 3 সেকেন্ড পর সবার ফোনে দেখাবে');
   setTimeout(loadPoems,3000);
+}
+function editPoem(id){
+  let po=allData.find(p=>p.id==id); if(!po)return;
+  let newTitle=prompt('নাম এডিট করুন (কালেকশন করতে পারেন):',po.title); if(newTitle===null)return;
+  let newText=prompt('কবিতা এডিট করুন:',po.text); if(newText===null)return;
+  if(!newTitle.trim()||!newText.trim()){alert('ফাঁকা রাখা যাবে না');return;}
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',id:id,title:newTitle.trim(),text:newText.trim()})});
+  alert('আপডেট হচ্ছে...'); setTimeout(loadPoems,2500);
 }
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
 loadPoems();
