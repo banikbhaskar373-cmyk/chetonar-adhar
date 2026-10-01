@@ -50,10 +50,10 @@
 <div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন</div>
 <div class="pill b" onclick="show('p3')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div><div id="p3" class="poem">ওঁম হরি ওঁম-ওঁম হরি ওঁম</div>
 <div class="pill pu" onclick="show('p4')"><div class="ic">🌙</div><div><b>জ্যোৎস্না রাত</b><small>রোমান্টিক • ১০টি</small></div></div><div id="p4" class="poem">সময়ের লাঠি হাতে, জীবনের ধারাপাতে,</div>
-<div id="oldPoems">
-<div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius:18px; padding:16px 18px; display:flex; align-items:center; gap:14px; margin:12px 0; cursor:pointer;"><div style="background:white; min-width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px;">👁️</div><div><div style="color:white; font-size:18px; font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe; font-size:13px;">আমার সম্পূর্ণ কবিতার খাতা - এক ক্লিকে দেখুন (ডুপ্লিকেট মুক্ত)</div></div></div>
-<div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb">
-<div style="background:#eef2ff;padding:10px;border-radius:8px;text-align:center;margin-bottom:10px">
+<div style="background:#eef2ff;padding:10px;border-radius:8px;text-align:center;margin-bottom:10px">    filtered.reverse().forEach((po, idx)=>{
+      let serial = filtered.length - idx;
+      let col=colors[po.id % colors.length];
+      box.innerHTML+=`<div class="my-card ${col}"><h3>${serial}. ${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
 <p style="font-size:14px;font-weight:700;color:#2563eb">✅ আপনার সম্পূর্ণ খাতা (ডুপ্লিকেট মুক্ত)</p>
 <p style="font-size:11px;color:#666">Sheet2 থেকে লোড হচ্ছে - কোনো ডুপ্লিকেট নেই</p>
 </div>
@@ -95,10 +95,10 @@ function loadPoems(){
     let filtered=data.filter(po=>po.title && po.text);
     document.getElementById('count').innerText='('+filtered.length+'টি)';
     box.innerHTML='';
-    filtered.reverse().forEach((po)=>{
-      let col=colors[po.id % colors.length];
-      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
-    });
+    filtered.reverse().forEach((po, idx)=>{
+  let serial = filtered.length - idx;
+  let col=colors[po.id % colors.length];
+  box.innerHTML+=`<div class="my-card ${col}"><h3>${serial}. ${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
   }).catch(e=>{
     document.getElementById('count').innerText='(নেট নেই)';
   });
