@@ -75,7 +75,13 @@
 <h2 style="margin-top:14px">আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <h2 style="margin-top:14px">🔗 সরাসরি লিঙ্ক <span>নতুন</span></h2>
 <div id="myPoems"></div>
-<div class="pill b" onclick="openSheetDoor()"><div class="ic">🔒</div><div><b>সরাসরি শীটে যান</b><br><small style="font-size:11px">শুধু আমার জন্য</small></div></div>
+<div class="pill b" onclick="openSheet()" style="height:58px">
+  <div>🔒</div>
+  <div style="display:flex;flex-direction:column;justify-content:center;gap:0;line-height:1">
+    <b style="margin:0;padding:0;line-height:16px;color:#fff">সরাসরি শীটে যান</b>
+    <small style="margin:1px 0 0 0;padding:0;line-height:12px;color:rgba(255,255,255,0.9)">শুধু আমার জন্য</small>
+  </div>
+</div>
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
 <div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন</div>
 <div class="pill b" onclick="show('p3')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div><div id="p3" class="poem">ওঁম হরি ওঁম-ওঁম হরি ওঁম</div>
