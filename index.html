@@ -5,57 +5,31 @@
 .header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:18px 10px 12px 10px;display:flex;flex-direction:column;align-items:center;text-align:center}
 .diya{width:80px;height:80px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:52px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffcc33;margin:0 auto}
 .header h1{font-size:24px;color:#00FF7F;line-height:1.25;font-weight:700;margin-top:8px}
-.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:10px 8px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffe680, 0 5px 15px #0004;letter-spacing:0.8px;animation:glow 4s infinite alternate}
-@keyframes glow{from{box-shadow:0 0 10px #ffe680, 0 5px 15px #0004}to{box-shadow:0 0 22px #ffcc33, 0 5px 15px #0004}}
+.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:10px 8px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33;box-shadow:0 0 18px #ffe680, 0 5px 15px #0004}
 .search{margin:12px 10px 0 10px;background:#fff;border-radius:14px;height:46px;display:flex;align-items:center;padding:0 12px;box-shadow:0 6px 16px #0002}
 .search input{flex:1;border:none;outline:none;font-size:14px;margin-left:6px}
 .sec{padding:14px 10px 0 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px}.sec h2 span{font-size:11px;color:#ff6a2a}
-.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer;margin-bottom:6px}
-.pill{height:60px;min-height:60px;max-height:60px;border-radius:30px;padding:0 16px;margin:8px 0;display:flex;gap:12px;align-items:center;color:#fff;cursor:pointer;box-sizing:border-box;overflow:hidden}
-.pill>div:last-child{flex:1;overflow:hidden}
-.pill b{display:block;font-size:15px;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pill small{display:block;font-size:11px;line-height:12px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-.ic{width:34px;height:34px;min-width:34px;max-width:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:18px}
+.pill{height:60px;border-radius:30px;padding:0 16px;margin:8px 0;display:flex;gap:12px;align-items:center;color:#fff;cursor:pointer}
+.pill b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill small{font-size:11px;opacity:.9}
+.ic{width:34px;height:34px;min-width:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:18px}
 .poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 0 10px 0;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
+.my-card{border-radius:18px;padding:14px 16px;margin:10px 0;color:#fff}
+.my-card h3{font-size:16px;margin-bottom:4px}.my-card p{font-size:13px;white-space:pre-line;line-height:1.6}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 .addBtn{position:fixed;right:18px;bottom:70px;width:56px;height:56px;background:#4a00e0;color:#fff;border-radius:50%;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #0004;cursor:pointer;z-index:1000}
 .modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:#0008;z-index:2000;align-items:center;justify-content:center}
 .modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
-.modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
+.modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
-.my-card{border-radius:18px;padding:14px 16px;margin:10px 0;color:#fff;position:relative}
-.my-card h3{font-size:16px;margin-bottom:4px}
-.my-card p{font-size:13px;white-space:pre-line;opacity:0.95;line-height:1.5}
 </style></head><body>
 <div class="app">
-<div class="header">
-<div class="diya">🪔</div>
-<h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন</h1>
-<div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div>
-</div>
+<div class="header"><div class="diya">🪔</div><h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 <div class="sec">
-<h2>আজকের কবিতা <span>সব দেখুন ›</span></h2>
-<div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প</p></div><div style="font-size:26px">🌸</div></div>
-<div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে</div>
-<h2 style="margin-top:14px">আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
+<h2>আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div id="myPoems"></div>
-<div id="oldPoems">
-<div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
-<div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন</div>
-<div class="pill b" onclick="show('p3')"><div class="ic">☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div><div id="p3" class="poem">ওঁম হরি ওঁম-ওঁম হরি ওঁম</div>
-<div class="pill pu" onclick="show('p4')"><div class="ic">🌙</div><div><b>জ্যোৎস্না রাত</b><small>রোমান্টিক • ১০টি</small></div></div><div id="p4" class="poem">সময়ের লাঠি হাতে, জীবনের ধারাপাতে,</div>
-<div class="pill pi" onclick="show('p5')"><div class="ic">🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div><div id="p5" class="poem">প্রাচীন আর বর্তমানে এক হয়ে যে আছে মিশে</div>
-<div class="pill te" onclick="show('p6')"><div class="ic">💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem">অবেলায় আজি, চেতনায় সাজি</div>
-<div class="pill re" onclick="show('p7')"><div class="ic">❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem">আছো তুমি গাছে গাছে, পাতায় পাতায়</div>
-<div class="pill in" onclick="show('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে</div>
-<div class="pill g" onclick="show('p9')"><div class="ic">🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">অজানা অচেনা কত আনাগোনা
-বৃথা কি জানিনা কথার জাল বোনা 
-তবু মন ছুটে চলে চেতনার টানে
-ঝংকারে ভেসে যাই শব্দের বানে।</div>
-</div>
 </div>
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
@@ -69,40 +43,41 @@
 </div></div>
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzdmiQUjLIMtAt3TsBkjcXHnm1u-QPZNc0GRmXPoi43gfvvXA5MJdG6uDcV1IWOpmjNIw/exec';
-function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.display==='block'){el.style.display='none';}else{document.querySelectorAll('.poem').forEach(function(p){p.style.display='none'});el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}}
 let colors=['g','o','b','pu','pi','te','re','in'];
-
-// *** এখন Google Sheet থেকে লোড হবে বস, localStorage না ***
-function loadPoems(){
-  fetch(SHEET_URL)
-  .then(r=>r.json())
-  .then(data=>{
-    let box=document.getElementById('myPoems');
-    let filtered=data.filter(po=>po.title && po.text);
-    document.getElementById('count').innerText='('+filtered.length+'টি)';
-    box.innerHTML='';
-    filtered.reverse().forEach((po,i)=>{
-      let col=colors[i%colors.length];
-      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p></div>`;
-    });
-  }).catch(e=>{
-    document.getElementById('count').innerText='(নেট নেই)';
-  });
-}
+let allData=[];
 function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
+function loadPoems(){
+  fetch(SHEET_URL).then(r=>r.json()).then(data=>{
+    allData=data;
+    let box=document.getElementById('myPoems');
+    document.getElementById('count').innerText='('+data.length+'টি)';
+    box.innerHTML='';
+    data.slice().reverse().forEach((po)=>{
+      let col=colors[po.id % colors.length];
+      box.innerHTML+=`<div class="my-card ${col}"><h3>${po.title}</h3><p>${po.text}</p><div style="margin-top:12px;display:flex;gap:10px"><button onclick="editPoem(${po.id})" style="flex:1;border:none;padding:8px 0;border-radius:20px;background:#fff;color:#000;font-weight:700">✏️ এডিট</button><button onclick="delPoem(${po.id})" style="flex:1;border:none;padding:8px 0;border-radius:20px;background:#000;color:#fff;font-weight:700">🗑️ ডিলিট</button></div></div>`;
+    });
+  });
+}
 function savePoem(){
   let title=document.getElementById('t').value.trim();
   let text=document.getElementById('c').value.trim();
   if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}
-  let now=new Date().toLocaleString('bn-BD');
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({title:title,text:text,date:now})});
-  document.getElementById('t').value='';document.getElementById('c').value='';
-  closeModal();
-  alert('সেভ হয়েছে! 3 সেকেন্ড পর সবার ফোনে দেখাবে');
-  setTimeout(loadPoems,3000);
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({title:title,text:text,date:new Date().toLocaleString()})});
+  document.getElementById('t').value='';document.getElementById('c').value='';closeModal();alert('সেভ হয়েছে বস!');setTimeout(loadPoems,2500);
 }
-document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();if(val===''||title.indexOf(val)>-1){pill.style.display='flex'; if(pill.classList.contains('my-card')) pill.style.display='block';}else{pill.style.display='none';}});});
+function delPoem(id){
+  if(!confirm('ডিলিট করবেন বস? সবার ফোন থেকে মুছে যাবে!'))return;
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',id:id})});
+  alert('ডিলিট হচ্ছে...');setTimeout(loadPoems,2500);
+}
+function editPoem(id){
+  let po=allData.find(p=>p.id==id); if(!po)return;
+  let newTitle=prompt('নাম এডিট করুন:',po.title); if(newTitle===null)return;
+  let newText=prompt('কবিতা এডিট করুন:',po.text); if(newText===null)return;
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',id:id,title:newTitle.trim(),text:newText.trim()})});
+  alert('আপডেট হচ্ছে...');setTimeout(loadPoems,2500);
+}
 loadPoems();
 </script>
 </body></html>
