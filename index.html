@@ -32,13 +32,16 @@
 .my-actions button{width:100%;border:none;padding:8px 0;border-radius:20px;font-weight:700;font-size:12px;background:#fff;color:#222}
 .diya{
   font-size:48px;
-  display:inline-block;
+  display:block;
   text-align:center;
   width:100%;
   filter: drop-shadow(0 0 12px #ff9900) drop-shadow(0 0 25px #ff5500);
-  animation: halka-alo 3s ease-in-out infinite alternate;
+  animation: kom-laf 2.5s ease-in-out infinite alternate;
 }
-@keyframes halka-alo{
+@keyframes kom-laf{
+  0%{ transform: translateY(0) scale(1); }
+  100%{ transform: translateY(-3px) scale(1.02); filter: drop-shadow(0 0 16px #ffcc33) drop-shadow(0 0 30px #ff9900); }
+}
   0%{ transform: scale(1); }
   100%{ transform: scale(1.03); filter: drop-shadow(0 0 16px #ffcc33) drop-shadow(0 0 32px #ff9900); }
 }
