@@ -134,7 +134,16 @@ loadPoems();
 function openSheetDoor(){
   let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
   if(p==='Biboswan @22'){
-    window.open('https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing','_blank');
+    function openSheetDoor(){
+  let w = window.open('about:blank','_blank');
+  let p = prompt('🔒 পাসওয়ার্ড দিন বস:');
+  if(p === 'Biboswan @22'){
+    w.location.href = 'https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';
+  } else {
+    w.close();
+    if(p !== null){ alert('❌ ভুল পাসওয়ার্ড বস!'); }
+  }
+}
   } else if(p!==null){
     alert('❌ ভুল পাসওয়ার্ড বস!');
   }
