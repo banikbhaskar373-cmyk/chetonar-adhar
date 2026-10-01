@@ -96,9 +96,9 @@ function loadPoems(){
     document.getElementById('count').innerText='('+filtered.length+'টি)';
     box.innerHTML='';
     filtered.reverse().forEach((po, idx)=>{
-  let serial = filtered.length - idx;
-  let col=colors[po.id % colors.length];
-  box.innerHTML+=`<div class="my-card ${col}"><h3>${serial}. ${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
+      let serial = filtered.length - idx;
+      let col=colors[po.id % colors.length];
+      box.innerHTML+=`<div class="my-card ${col}"><h3>${serial}. ${po.title}</h3><p>${po.text}</p><div class="my-actions"><button onclick="editPoem(${po.id})">✏️ এডিট করুন</button></div></div>`;
   }).catch(e=>{
     document.getElementById('count').innerText='(নেট নেই)';
   });
