@@ -9,7 +9,7 @@
 .search input{flex:1;border:none;outline:none;font-size:14px;margin-left:6px}
 .sec{padding:14px 10px 6px 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px}.sec h2 span{font-size:11px;color:#ff6a2a}
 .feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer;margin-bottom:6px}
-.pill{height:48px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px !important;margin:6px 10px;color:#fff;cursor:pointer}
+.pill{height:48px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px!important;margin:6px 10px;color:#fff;cursor:pointer}
 .pill b{display:block;font-size:15px;color:#fff}.pill small{display:block;font-size:11px;color:rgba(255,255,255,0.9)}
 .poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 10px 10px 10px;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
@@ -21,7 +21,8 @@
 .modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
 .my-card{border-radius:18px;padding:14px 16px;margin:10px;color:#fff;user-select:none;-webkit-user-select:none}
-.my-card h3{font-size:16px;margin-bottom:4px}.my-card p{font-size:13px;white-space:pre-line;line-height:1.5;margin-top:8px;display:none}
+.my-card h3{font-size:16px;margin-bottom:4px}.my-card p{font-size:13px;white-space:pre-line;line-height:1.6;margin-top:8px}
+.btn-row{display:flex;gap:8px;margin-top:12px}.btn-row button{flex:1;border:none;padding:7px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer}
 </style></head><body>
 <div class="app">
 <div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
@@ -36,7 +37,7 @@
 <div class="pill pi" onclick="show('p5')"><div>🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div><div id="p5" class="poem">প্রাচীন আর বর্তমানে...</div>
 <div class="pill te" onclick="show('p6')"><div>💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem">অবেলায় আজি...</div>
 <div class="pill re" onclick="show('p7')"><div>❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem">আছো তুমি গাছে গাছে...</div>
-<div class="pill in" onclick="show('p8')"><div>🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">আপনার স্বাধীনতার কবিতাটা এখানে থাকবে</div>
+<div class="pill in" onclick="show('p8')"><div>🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">স্বাধীনতার কবিতা</div>
 <div class="pill g" onclick="show('p9')"><div>🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">অজানা অচেনা কত...</div>
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
@@ -48,36 +49,40 @@ let colors=['g','o','b','pu','pi','te','re','in'];
 function loadPoems(){
   let box=document.getElementById('myPoems'); if(!box) return;
   function renderList(list){
-    box.innerHTML=''; 
-    let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা';
-    list.slice().reverse().forEach(po=>{
+    box.innerHTML=''; let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা';
+    list.slice().reverse().forEach((po, revIdx)=>{
       let title=po.title||po.t||'নামহীন'; let text=po.text||po.c||'';
       let col=colors[Number(po.id||0) % 8]||'b';
-      box.innerHTML+=`<div class="my-card ${col}" oncontextmenu="return false" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block'"><h3>❤️ ${title} ❤️</h3><p>${text}</p></div>`;
+      let originalIdx = list.length - 1 - revIdx;
+      box.innerHTML+=`<div class="my-card ${col}" oncontextmenu="return false"><h3>❤️ ${title} ❤️</h3><p>${text}</p><div class="btn-row"><button onclick="editPoem(${originalIdx})" style="background:#fff;color:#4a00e0">✏️ এডিট 🔒</button><button onclick="deletePoem(${originalIdx})" style="background:#ff3a2e;color:#fff">🗑️ ডিলিট 🔒</button></div></div>`;
     });
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   renderList(localList);
-  fetch(SHEET_URL).then(r=>r.json()).then(data=>{ renderList(data.concat(localList)); }).catch(e=>{});
+  fetch(SHEET_URL).then(r=>r.json()).then(data=>{ window._combined = data.concat(localList); renderList(window._combined); }).catch(e=>{ window._combined = localList; });
 }
-function openModal(){
-  let p=prompt('🔒 + বাটনের পাসওয়ার্ড দিন বস:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড বস!'); return; }
-  document.getElementById('modal').style.display='flex';
-}
+function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড দিন বস:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
-function savePoem(){
-  let p=prompt('🔓 সেভ করার পাসওয়ার্ড দিন বস:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড বস!'); return; }
-  let title=document.getElementById('t').value.trim();
-  let text=document.getElementById('c').value.trim();
-  if(!title||!text){alert('নাম ও কবিতা লিখুন বস!');return;}
+function savePoem(){let p=prompt('🔓 সেভ করার পাসওয়ার্ড দিন বস:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন বস!');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে বস! ❤️');}
+function editPoem(idx){
+  let p=prompt('🔒 এডিটের পাসওয়ার্ড দিন বস:'); if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}
+  let data = window._combined || []; let po = data[idx]; if(!po){alert('কবিতা পাওয়া যায়নি বস');return;}
+  let newTitle = prompt('নতুন নাম দিন বস:', po.title||po.t); if(newTitle===null) return;
+  let newText = prompt('নতুন কবিতা দিন বস:', po.text||po.c); if(newText===null) return;
   let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}
-  myPoems.push({id:Date.now(), title:title, t:title, text:text, c:text});
-  localStorage.setItem('myPoems', JSON.stringify(myPoems));
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});
-  document.getElementById('t').value=''; document.getElementById('c').value='';
-  closeModal(); loadPoems(); alert('✅ সেভ হয়েছে বস! ❤️');
+  // local এ খুঁজে এডিট
+  let found=false; for(let i=0;i<myPoems.length;i++){ if(myPoems[i].id==po.id || (myPoems[i].title==po.title && myPoems[i].text==po.text)){ myPoems[i].title=newTitle.trim(); myPoems[i].t=newTitle.trim(); myPoems[i].text=newText.trim(); myPoems[i].c=newText.trim(); found=true; break; } }
+  if(!found){ alert('এটা শীটের কবিতা বস, শীটের দরজা থেকে এডিট করুন 🔒'); return; }
+  localStorage.setItem('myPoems',JSON.stringify(myPoems)); loadPoems(); alert('✅ এডিট হয়েছে বস!');
+}
+function deletePoem(idx){
+  let p=prompt('🔒 ডিলিটের পাসওয়ার্ড দিন বস:'); if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}
+  if(!confirm('পাক্কা ডিলিট করবেন বস?')) return;
+  let data = window._combined || []; let po = data[idx]; if(!po){alert('কবিতা পাওয়া যায়নি');return;}
+  let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}
+  let newList = myPoems.filter(m=>!(m.id==po.id || (m.title==po.title && m.text==po.text)) );
+  if(newList.length==myPoems.length){ alert('এটা শীটের কবিতা বস, শুধু ফোনের গুলো ডিলিট হবে, শীটেরটা শীট থেকে ডিলিট করুন'); return; }
+  localStorage.setItem('myPoems',JSON.stringify(newList)); loadPoems(); alert('🗑️ ডিলিট হয়েছে বস!');
 }
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?(pill.classList.contains('my-card')?'block':'flex'):'none';});});
 loadPoems();
