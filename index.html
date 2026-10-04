@@ -136,14 +136,12 @@
 </div>
 </div>
 </div> <!-- app এখানে বন্ধ হলো বস - এটাই মেইন ফিক্স -->
-function openModal(){
-  let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
-  if(p==='Biboswan @22'){
-    document.getElementById('modal').style.display='flex';
-  }else if(p!==null){
-    alert('❌ ভুল পাসওয়ার্ড বস!');
-  }
-}
+</div> <!-- app এখানে বন্ধ হলো বস -->
+
+<div class="addBtn" onclick="openModal()">+</div>
+
+<div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
+<div class="modal" id="modal"><div class="modalBox">
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox">
 <h3>নতুন কবিতা যোগ করুন</h3>
