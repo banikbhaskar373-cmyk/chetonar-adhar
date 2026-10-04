@@ -168,25 +168,42 @@ function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.d
 let colors=['g','o','b','pu','pi','te','re','in'];
 let allData=[];
 function loadPoems(){
+  let box=document.getElementById('myPoemList');
+  if(!box) box=document.getElementById('poemList');
+  if(!box) return;
+  box.innerHTML='';
+function renderList(list){
+    box.innerHTML='';
+    let c=document.getElementById('count');
+    if(c) c.innerText=list.length+' টি কবিতা';
+    list.slice().reverse().forEach(po=>{
+      let col=colors[po.id % colors.length] || '';
+      let title=po.title || po.t || 'নামহীন কবিতা';
+      let text=po.text || po.c || '';
+      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p><button onclick="event.stopPropagation();copyPoem(this)" style="margin-top:8px;padding:4px 10px;border-radius:6px;border:none;cursor:pointer">📋 কপি</button></div>`;
+    });
+  }
+
+  let localList = (typeof myPoems !== 'undefined') ? myPoems : [];
+  try{ localList = JSON.parse(localStorage.getItem('myPoems')||'[]').concat(localList); }catch(e){}
+
   fetch(SHEET_URL)
   .then(r=>r.json())
   .then(data=>{
     allData=data;
-    let filtered=data;
-    let box=document.getElementById('myPoemList');
-    if(!box) box=document.getElementById('poemList');
-    if(!box) return;
-    box.innerHTML='';
-    let c=document.getElementById('count');
-    if(c) c.innerText=filtered.length+' টি কবিতা';
-    filtered.slice().reverse().forEach(po=>{
-      let col=colors[po.id % colors.length];
-      let title=po.title || po.t || 'নামহীন কবিতা';
-      let text=po.text || po.c || '';
-      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p></div>`;
-    });
+    let combined = data.concat(localList);
+    renderList(combined);
   }).catch(e=>{
     console.log('sheet error', e);
+    renderList(localList);
+  });
+}
+function copyPoem(btn){
+  var txt=btn.parentElement.querySelector('p').innerText;
+  navigator.clipboard.writeText(txt).then(()=>{
+    var old=btn.innerText;
+    btn.innerText='✅ কপি হলো';
+    setTimeout(()=>{ btn.innerText=old; },1500);
   });
 }
 function openModal(){
