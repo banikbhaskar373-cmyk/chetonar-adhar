@@ -171,64 +171,45 @@ function loadPoems(){
   let box=document.getElementById('myPoemList');
   if(!box) box=document.getElementById('poemList');
   if(!box) return;
-
   function renderList(list){
     box.innerHTML='';
     let c=document.getElementById('count');
     if(c) c.innerText=list.length+' টি কবিতা';
-    if(list.length===0){ box.innerHTML='<p style="text-align:center;opacity:.6">এখনো কোনো কবিতা নেই</p>'; return; }
     list.slice().reverse().forEach(po=>{
-      let col = (typeof colors!=='undefined' && po.id) ? colors[po.id % colors.length] : '';
-      let title = po.title || po.t || po.name || 'নামহীন কবিতা';
-      let text = po.text || po.c || po.content || '';
-      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p><button onclick="event.stopPropagation();copyPoem(this)" style="margin-top:8px;padding:4px 10px;border-radius:6px;border:none">📋 কপি</button></div>`;
+      let title=po.title||po.t||'নামহীন';
+      let text=po.text||po.c||'';
+      let col=(typeof colors!=='undefined' && po.id) ? colors[po.id % colors.length] : '';
+      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p><button onclick="event.stopPropagation();navigator.clipboard.writeText(this.parentElement.querySelector('p').innerText);this.innerText='✅ কপি হলো';setTimeout(()=>this.innerText='📋 কপি',1500)" style="margin-top:8px">📋 কপি</button></div>`;
     });
   }
-
-  let localList = [];
-  try{ localList = JSON.parse(localStorage.getItem('myPoems')||'[]'); }catch(e){}
-  
-  fetch(SHEET_URL)
-  .then(r=>r.json())
-  .then(data=>{
+  let localList=[];
+  try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+  renderList(localList);
+  fetch(SHEET_URL).then(r=>r.json()).then(data=>{
     allData=data;
     renderList(data.concat(localList));
-  }).catch(e=>{
-    renderList(localList);
-  });
+  }).catch(e=>{});
 }
 function copyPoem(btn){
   var txt=btn.parentElement.querySelector('p').innerText;
   navigator.clipboard.writeText(txt).then(()=>{ btn.innerText='✅ কপি হলো'; setTimeout(()=>btn.innerText='📋 কপি',1500); });
 }
 function openModal(){
-  let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
-  if(p==='Biboswan @22'){
-    document.getElementById('modal').style.display='flex';
-  }else if(p!==null){
-    alert('❌ ভুল পাসওয়ার্ড বস!');
-  }
-}
-function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){
-  let titleEl=document.getElementById('t') || document.getElementById('poemTitle');
-  let textEl=document.getElementById('c') || document.getElementById('poemContent');
+  let p=prompt('🔓 পাসওয়ার্ড দিন বস:');
+  if(p!=='Biboswan @22'){ if(p!==null) alert('ভুল পাসওয়ার্ড বস!'); return; }
+  let titleEl=document.getElementById('t');
+  let textEl=document.getElementById('c');
   let title=titleEl.value.trim();
   let text=textEl.value.trim();
   if(!title||!text){alert('নাম ও কবিতা লিখুন বস!');return;}
-  
-  try{
-    let myPoems = JSON.parse(localStorage.getItem('myPoems')||'[]');
-    myPoems.push({id:Date.now(), title:title, t:title, text:text, c:text});
-    localStorage.setItem('myPoems', JSON.stringify(myPoems));
-  }catch(e){}
-
-  let now=new Date().toLocaleString('bn-BD');
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text,d:now})});
-
+  let myPoems=[];
+  try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+  myPoems.push({id:Date.now(), title:title, t:title, text:text, c:text});
+  localStorage.setItem('myPoems', JSON.stringify(myPoems));
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});
   titleEl.value=''; textEl.value='';
   closeModal();
-  alert('সেভ হয়েছে বস! ❤️');
   loadPoems();
 }
 function editPoem(id){
