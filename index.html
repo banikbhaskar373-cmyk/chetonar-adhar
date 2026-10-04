@@ -184,9 +184,8 @@ function loadPoems(){
       box.innerHTML+=`<div class="my-card ${col}" onclick="this.querySelector('p').style.display=this.querySelector('p').style.display=='block'?'none':'block'" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p></div>`;
     });
   }).catch(e=>{
-    document.getElementById('count').innerText='লোড করতে সমস্যা';
-  });
-}
+  console.log('sheet error', e);
+});
 function openModal(){
   let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
   if(p==='Biboswan @22'){
