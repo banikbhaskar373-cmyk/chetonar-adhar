@@ -35,9 +35,7 @@
 </style></head><body>
 <div class="app">
 <div class="header">
-<div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;box-shadow:0 0 12px #ffcc33, 0 0 28px #ff9900;">
-<div style="font-size:54px;">🪔</div>
-</div>
+<div class="diya">🪔</div>
 <h1>ভাস্কর ডিজিটাল<br>স্টুডিওর প্রথম নিবেদন</h1>
 <div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div>
 </div>
@@ -45,30 +43,14 @@
 <div class="sec">
 <h2>আজকের কবিতা <span>সব দেখুন ›</span></h2>
 <div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3><p style="font-size:10px;margin-top:4px">শরতের মেঘ, কাশফুল আর নদীর গল্প</p></div><div style="font-size:26px">🌸</div></div>
-<div id="a1" class="poem">
-শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া 
-বাতাসে তার মাতাল করা গন্ধ ভাসে,
-সুদূর নীলে মেঘের বরণ পেঁজা তুলো
-দূগ্গা মায়ের আগমনী কর্ণে আসে।
-শিউলি কিন্তু এই শরতে ফুলের রাণী
-জুঁই, মালতী শরৎ শশীর সাথে হাসে
-এমন সময় খুশির জোয়ার 
-কাশের বনে
-ঢাকের তালে মন দোলে এই আশ্বিন মাসে।
-কামিনী দেয় থোকা ফুলের মিষ্টি সুবাস 
-ঘাসের ডগায় শিশির কণা দেয় যে ধরা 
-মায়ের আসার খবর এলে পাল পাড়াতে 
-ব্যস্ত কুমোর সেরার সেরা ঠাকুর গড়া 
-(পদ্ম বলে) মায়ের পূজায় আমার দাবী সবার আগে 
-একশো সাতে গুণতি আমার থমকে গেলে
-করতে পূরণ সত্য রামের
-চোখ যে লাগে।</div>
+<div id="a1" class="poem">শরতের আকাশ নীল, কাশফুল দোলে</div>
 <h2 style="margin-top:14px">আমার লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <h2 style="margin-top:14px">🔗 সরাসরি লিঙ্ক <span>নতুন</span></h2>
 <div id="myPoems"></div>
-<div class="pill b" onclick="openSheet()">
-<div class="ic">🔒</div>
-<div><b>সরাসরি শীটে যান</b><small>শুধু আমার জন্য</small></div>
+<div class="pill b" onclick="openSheetDoor()">
+    <div class="ic">🔒</div>
+    <div><b>সরাসরি শীটে যান</b><small>শুধু আমার জন্য</small></div>
+</div>
 </div>
 <div class="pill g" onclick="show('p1')"><div class="ic">🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি বাংলাতে বলি...</div>
 <div class="pill o" onclick="show('p2')"><div class="ic">☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর হতে প্রাণের উৎপাদন</div>
@@ -77,75 +59,20 @@
 <div id="oldPoems">
 <div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius:18px; padding:16px 18px; display:flex; align-items:center; gap:14px; margin:12px 10px; cursor:pointer;"><div style="background:white; min-width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px;">👁️</div><div><div style="color:white; font-size:18px; font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe; font-size:13px;">আমার সম্পূর্ণ কবিতার খাতা - এক ক্লিকে দেখুন</div></div></div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb">
+<div style="background:#eef2ff;padding:10px;border-radius:8px;text-align:center;margin-bottom:10px">
+<p style="font-size:14px;font-weight:700;color:#2563eb">✅ আপনার নতুন ব্ল্যাঙ্ক খাতা</p>
+<p style="font-size:11px;color:#666">নতুন শীট থেকে লোড হচ্ছে</p>
+</div>
 <iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe>
 </div>  
 <div class="pill pi" onclick="show('p5')"><div class="ic">🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div><div id="p5" class="poem">প্রাচীন আর বর্তমানে এক হয়ে যে আছে মিশে</div>
 <div class="pill te" onclick="show('p6')"><div class="ic">💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem">অবেলায় আজি, চেতনায় সাজি</div>
 <div class="pill re" onclick="show('p7')"><div class="ic">❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem">আছো তুমি গাছে গাছে, পাতায় পাতায়</div>
-<div class="pill in" onclick="show('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">
-জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে
-আদর ভরা ভিতের গড়ন পিতার আশ্রয়ে।
-
-বেড়ে ওঠার হাতছানি দেয় হামাগুড়ি পা
-পরতে-পরতে হাঁটতে শেখা ধুলায় ভরে গা।
-
-গায়ে পায়ে ব্যথা নিয়ে খুঁজতে থাকা কোল
-কোল দিতে ঐ মাসি পিসি বাধায় গন্ডগোল।
-
-রাত শেষে হয় দিনের আলো নয়ন খোঁজে মাঠ
-এক ছুটেতে মন ছুঁতে চায় আগামীর চৌকাঠ।
-
-হাঁটতে শিখেই স্বাধীন চলায় মায়ের শাসন জারি
-টলমলে পা, চোখ রাঙানি, স্বাধীন ছুটে আড়ি।
-
-শুনব যেটা শিখব সেটা অবুঝ মনের জানা
-গুরুজনে পাঠ যে শেখায় স্বাধীন বলায় মানা।
-
-শরীর যে চায় শক্তি জোগান করতে উদর পূর্তি
-গড়তে স্বাস্থ্য না চাওয়ায় ও থাকতে হবে স্ফূর্তি।
-
-জগৎ দেখি ঋতুর অধীন মেঘ থেকে হয় বৃষ্টি
-ঘাম ঝরা দিন, বৃষ্টি সকাল, সূর্য দ্বারাই সৃষ্টি।
-
-চলার পথে নজরপাতে শরীর মনে ক্লান্তি
-স্ববশ মনের অস্থি জুড়ে ধুলোর স্বাধীন ভ্রান্তি!
-
-তবুও জমাই আয়ের টাকা স্বাধীনতা কিনতে
-খাতা ভরে শব্দ সাজাই দোষ কি 'কবি' মানতে !
-
-স্বাধীন সমাজ স্বাধীন ঘরে স্বাধীন বসবাস
-স্বাধীন হাওয়ার ঝোঁকা এলে হারাই স্বাধীন আশ।
-
-স্বাধীন জোরে ফুলিয়ে পেশি উড়াই স্বাধীনতা
-অহম জালে পতন জীবন এ যে গল্প গাঁথা।
-
-স্বাধীন সত্তার মিথ্যে মোহে বসত করে মন
-স্বাধীন কেবল প্রকৃতি মা হয়েছি বিস্মরণ।
-
-'স্বাধীন' এই শব্দটাতেই পরাধীনতার ধোঁয়া
-কখন আবার আকাদেমির লাগে স্বাধীন ছোঁয়া!
-</div>
-<div class="pill g" onclick="show('p9')"><div class="ic">🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">
-অজানা অচেনা কত আনাগোনা 
-বৃথা কি জানিনা কথার জাল বোনা
-তবু মন চলে ছুটে চেতনার টানে
-ঝংকারে যাই ভেসে শব্দের বানে। 
-
-কেউ বলে ধুত্তোর সময়ের অপচয়
-কেউ বলে কাব্য! সবার কম্ম নয়।
-অস্ফুটে কানে আসে শব্দের মন্ত্রণা
-উদ্ধার করো কবি অক্ষর যন্ত্রণা। 
-
-কবি ভাবে একমনে সৃষ্টির ছন্দ
-শব্দ সাজালে মনে হয় না যে মন্দ।
-আগামীর একদিন দেশ কাল খুঁজবে
-উত্তরসূরি ঠিক মনোভাব বুঝবে। 
-
-অক্ষর বাণীতে জপিনু যে জল্পনা
-জাগরূক চেতনার অপরূপ আলপনা।
-সেই বোধে কচিকাঁচা আঁটে যদি ফন্দি।
-জ্ঞানের আলোতে মন করবেই বন্দি।
-</div>
+<div class="pill in" onclick="show('p8')"><div class="ic">🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে</div>
+<div class="pill g" onclick="show('p9')"><div class="ic">🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">অজানা অচেনা কত আনাগোনা
+বৃথা কি জানিনা কথার জাল বোনা 
+তবু মন ছুটে চলে চেতনার টানে
+ঝংকারে ভেসে যাই শব্দের বানে।</div>
 </div>
 </div> <!-- app এখানে বন্ধ হলো বস - এটাই মেইন ফিক্স -->
 <div class="addBtn" onclick="openModal()">+</div>
@@ -179,14 +106,7 @@ function loadPoems(){
     document.getElementById('count').innerText='(নেট নেই)';
   });
 }
-function openModal(){
-  let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
-  if(p==='Biboswan @22'){
-    document.getElementById('modal').style.display='flex';
-  }else if(p!==null){
-    alert('❌ ভুল পাসওয়ার্ড বস!');
-  }
-}
+function openModal(){document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){
   let title=document.getElementById('t').value.trim();
@@ -224,16 +144,3 @@ function openSheetDoor(){
 }
 </script>
 </body></html>
-
-
-
- 
-
-
-
-
-
- 
-
-
- 
