@@ -79,9 +79,7 @@ function loadPoems(){
     list.slice().reverse().forEach(po=>{
       let title=po.title||po.t||'নামহীন'; let text=po.text||po.c||'';
       let col=colors[po.id % colors.length]||'b';
-      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block'" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p><button onclick="event.stopPropagation();var t=this.parentElement.querySelector('p').innerText;navigator.clipboard.writeText(t);this.innerText='✅ কপি হলো';setTimeout(()=>this.innerText='📋 কপি',1500)" style="margin-top:8px;border:none;padding:6px 12px;border-radius:20px;background:#fff">📋 কপি</button></div>`;
-    });
-  }
+box.innerHTML+=`<div class="my-card ${col}" style="user-select:none" oncontextmenu="return false"><h3>❤️ ${title} ❤️</h3><p style="white-space:pre-line">${text}</p></div>`;
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
   renderList(localList);
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{ allData=data; renderList(data.concat(localList)); }).catch(e=>{});
