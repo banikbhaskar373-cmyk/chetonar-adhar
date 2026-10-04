@@ -20,9 +20,8 @@
 .modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
 .modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
-.my-card{border-radius:18px;padding:14px 16px;margin:10px;color:#fff;user-select:none;-webkit-user-select:none}
-.my-card h3{font-size:16px;margin-bottom:4px}.my-card p{font-size:13px;white-space:pre-line;line-height:1.6;margin-top:8px}
-.btn-row{display:flex;gap:8px;margin-top:12px}.btn-row button{flex:1;border:none;padding:7px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer}
+.my-card{border-radius:18px;padding:14px 16px;margin:10px;color:#fff;user-select:none;-webkit-user-select:none;cursor:pointer}
+.my-card h3{font-size:16px;margin-bottom:2px}.my-card p{font-size:13px;white-space:pre-line;line-height:1.7;margin-top:8px;display:none}
 </style></head><body>
 <div class="app">
 <div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
@@ -54,35 +53,35 @@ function loadPoems(){
       let title=po.title||po.t||'নামহীন'; let text=po.text||po.c||'';
       let col=colors[Number(po.id||0) % 8]||'b';
       let originalIdx = list.length - 1 - revIdx;
-      box.innerHTML+=`<div class="my-card ${col}" oncontextmenu="return false"><h3>❤️ ${title} ❤️</h3><p>${text}</p><div class="btn-row"><button onclick="editPoem(${originalIdx})" style="background:#fff;color:#4a00e0">✏️ এডিট 🔒</button><button onclick="deletePoem(${originalIdx})" style="background:#ff3a2e;color:#fff">🗑️ ডিলিট 🔒</button></div></div>`;
+      box.innerHTML+=`<div class="my-card ${col}" oncontextmenu="return false" onclick="togglePoem(this, ${originalIdx})"><h3>❤️ ${title} ❤️</h3><p>${text}</p></div>`;
     });
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   renderList(localList);
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{ window._combined = data.concat(localList); renderList(window._combined); }).catch(e=>{ window._combined = localList; });
 }
+function togglePoem(el, idx){
+  let p = el.querySelector('p');
+  if(p.style.display==='block'){
+    let pass = prompt('🔒 এডিট করতে পাসওয়ার্ড দিন বস:');
+    if(pass!=='Biboswan @22'){ if(pass!==null) alert('❌ ভুল পাসওয়ার্ড বস!'); return; }
+    editPoem(idx);
+  } else {
+    document.querySelectorAll('.my-card p').forEach(x=>x.style.display='none');
+    p.style.display='block';
+  }
+}
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড দিন বস:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){let p=prompt('🔓 সেভ করার পাসওয়ার্ড দিন বস:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন বস!');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে বস! ❤️');}
 function editPoem(idx){
-  let p=prompt('🔒 এডিটের পাসওয়ার্ড দিন বস:'); if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}
-  let data = window._combined || []; let po = data[idx]; if(!po){alert('কবিতা পাওয়া যায়নি বস');return;}
+  let data = window._combined || []; let po = data[idx]; if(!po){alert('কবিতা পাওয়া যায়নি');return;}
   let newTitle = prompt('নতুন নাম দিন বস:', po.title||po.t); if(newTitle===null) return;
   let newText = prompt('নতুন কবিতা দিন বস:', po.text||po.c); if(newText===null) return;
   let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}
-  // local এ খুঁজে এডিট
   let found=false; for(let i=0;i<myPoems.length;i++){ if(myPoems[i].id==po.id || (myPoems[i].title==po.title && myPoems[i].text==po.text)){ myPoems[i].title=newTitle.trim(); myPoems[i].t=newTitle.trim(); myPoems[i].text=newText.trim(); myPoems[i].c=newText.trim(); found=true; break; } }
-  if(!found){ alert('এটা শীটের কবিতা বস, শীটের দরজা থেকে এডিট করুন 🔒'); return; }
+  if(!found){ alert('এটা শীটের কবিতা বস, শীটের দরজা 🔒 থেকে এডিট করুন'); return; }
   localStorage.setItem('myPoems',JSON.stringify(myPoems)); loadPoems(); alert('✅ এডিট হয়েছে বস!');
-}
-function deletePoem(idx){
-  let p=prompt('🔒 ডিলিটের পাসওয়ার্ড দিন বস:'); if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল পাসওয়ার্ড বস!');return;}
-  if(!confirm('পাক্কা ডিলিট করবেন বস?')) return;
-  let data = window._combined || []; let po = data[idx]; if(!po){alert('কবিতা পাওয়া যায়নি');return;}
-  let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}
-  let newList = myPoems.filter(m=>!(m.id==po.id || (m.title==po.title && m.text==po.text)) );
-  if(newList.length==myPoems.length){ alert('এটা শীটের কবিতা বস, শুধু ফোনের গুলো ডিলিট হবে, শীটেরটা শীট থেকে ডিলিট করুন'); return; }
-  localStorage.setItem('myPoems',JSON.stringify(newList)); loadPoems(); alert('🗑️ ডিলিট হয়েছে বস!');
 }
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?(pill.classList.contains('my-card')?'block':'flex'):'none';});});
 loadPoems();
