@@ -197,20 +197,22 @@ function copyPoem(btn){
 function openModal(){
 function savePoem(){
   let p=prompt('🔓 পাসওয়ার্ড দিন বস:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('ভুল পাসওয়ার্ড বস!'); return; }
-  let titleEl=document.getElementById('t');
-  let textEl=document.getElementById('c');
-  let title=titleEl.value.trim();
-  let text=textEl.value.trim();
+  if(p!=='Biboswan @22'){
+    if(p!==null) alert('ভুল পাসওয়ার্ড বস!');
+    return;
+  }
+  let title=document.getElementById('t').value.trim();
+  let text=document.getElementById('c').value.trim();
   if(!title||!text){alert('নাম ও কবিতা লিখুন বস!');return;}
   let myPoems=[];
-  try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+  try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}
   myPoems.push({id:Date.now(), title:title, t:title, text:text, c:text});
   localStorage.setItem('myPoems', JSON.stringify(myPoems));
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});
-  titleEl.value=''; textEl.value='';
+  document.getElementById('t').value='';
+  document.getElementById('c').value='';
   closeModal();
   loadPoems();
+  alert('সেভ হয়েছে বস! ❤️');
 }
 function editPoem(id){
   let pass = prompt('এডিট পাসওয়ার্ড দিন গুরুদেব:');
