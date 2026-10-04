@@ -166,7 +166,14 @@ function loadPoems(){
     document.getElementById('count').innerText='(নেট নেই)';
   });
 }
-function openModal(){document.getElementById('modal').style.display='flex';}
+function openModal(){
+  let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
+  if(p==='Biboswan @22'){
+    document.getElementById('modal').style.display='flex';
+  }else if(p!==null){
+    alert('❌ ভুল পাসওয়ার্ড বস!');
+  }
+}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){
   let title=document.getElementById('t').value.trim();
