@@ -175,17 +175,20 @@ function loadPoems(){
     let filtered=data;
     let box=document.getElementById('myPoemList');
     if(!box) box=document.getElementById('poemList');
+    if(!box) return;
     box.innerHTML='';
-    document.getElementById('count').innerText=filtered.length+' টি কবিতা';
-    filtered.slice().reverse().forEach((po)=>{
+    let c=document.getElementById('count');
+    if(c) c.innerText=filtered.length+' টি কবিতা';
+    filtered.slice().reverse().forEach(po=>{
       let col=colors[po.id % colors.length];
       let title=po.title || po.t || 'নামহীন কবিতা';
       let text=po.text || po.c || '';
-      box.innerHTML+=`<div class="my-card ${col}" onclick="this.querySelector('p').style.display=this.querySelector('p').style.display=='block'?'none':'block'" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p></div>`;
+      box.innerHTML+=`<div class="my-card ${col}" onclick="var p=this.querySelector('p');p.style.display=p.style.display==='block'?'none':'block';" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p></div>`;
     });
   }).catch(e=>{
-  console.log('sheet error', e);
-});
+    console.log('sheet error', e);
+  });
+}
 function openModal(){
   let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
   if(p==='Biboswan @22'){
