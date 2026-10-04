@@ -168,36 +168,24 @@ function show(id){var el=document.getElementById(id);if(!el)return;if(el.style.d
 let colors=['g','o','b','pu','pi','te','re','in'];
 let allData=[];
 function loadPoems(){
-  var box=document.getElementById('myPoemList');
-  if(!box) return;
-  box.innerHTML='';
-  var list=myPoems.slice().reverse();
-  for(var i=0;i<list.length;i++){
-    var po=list[i];
-    var col=colors[po.id % colors.length];
-    var card=document.createElement('div');
-    card.className='my-card '+col;
-    card.style.cursor='pointer';
-    var h3=document.createElement('h3');
-    h3.innerText='❤️ '+po.title+' ❤️';
-    var p=document.createElement('p');
-    p.innerText=po.text;
-    p.style.display='none';
-    p.style.marginTop='8px';
-    p.style.whiteSpace='pre-line';
-    var act=document.createElement('div');
-    act.style.display='none';
-    act.style.marginTop='10px';
-    var btn=document.createElement('button');
-    btn.innerText='✏️ এডিট করুন';
-    btn.onclick=function(e){ e.stopPropagation(); editPoem(po.id); };
-    act.appendChild(btn);
-    card.appendChild(h3);
-    card.appendChild(p);
-    card.appendChild(act);
-    card.onclick=(function(pp,aa){ return function(){ pp.style.display = pp.style.display==='block'?'none':'block'; aa.style.display = aa.style.display==='flex'?'none':'flex'; }; })(p,act);
-    box.appendChild(card);
-  }
+  fetch(SHEET_URL)
+  .then(r=>r.json())
+  .then(data=>{
+    allData=data;
+    let filtered=data;
+    let box=document.getElementById('myPoemList');
+    if(!box) box=document.getElementById('poemList');
+    box.innerHTML='';
+    document.getElementById('count').innerText=filtered.length+' টি কবিতা';
+    filtered.slice().reverse().forEach((po)=>{
+      let col=colors[po.id % colors.length];
+      let title=po.title || po.t || 'নামহীন কবিতা';
+      let text=po.text || po.c || '';
+      box.innerHTML+=`<div class="my-card ${col}" onclick="this.querySelector('p').style.display=this.querySelector('p').style.display=='block'?'none':'block'" style="cursor:pointer"><h3>❤️ ${title} ❤️</h3><p style="display:none;margin-top:8px;white-space:pre-line">${text}</p></div>`;
+    });
+  }).catch(e=>{
+    document.getElementById('count').innerText='লোড করতে সমস্যা';
+  });
 }
 function openModal(){
   let p=prompt('🔒 পাসওয়ার্ড দিন বস:');
