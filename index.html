@@ -47,22 +47,35 @@
 
 <div class="modal" id="editModal"><div class="modalBox">
 <h3 style="text-align:center">✏️ ছবি সহ এডিট</h3>
-<img id="editImgPrev" style="display:none;width:100%;height:160px;object-fit:cover;border-radius:12px;margin-top:10px;border:2px solid #ffcc33">
+<img id="editImgPrev" style="display:none;width:100%;height:180px;object-fit:cover;border-radius:12px;margin-top:10px;border:2px solid #ffcc33">
 <input type="file" id="editImg" accept="image/*" onchange="previewEditImg(this)" style="background:#fffbe0">
-<input id="editT" placeholder="কবিতার নাম">
-<textarea id="editC" rows="6" placeholder="কবিতা..."></textarea>
+<input id="editT" placeholder="কবিতার নাম"><textarea id="editC" rows="6" placeholder="কবিতা..."></textarea>
 <button onclick="doEditSave()">💾 ছবি সহ আপডেট</button>
 <button onclick="document.getElementById('editModal').style.display='none'" style="background:#eee;color:#333">বাতিল</button>
 </div></div>
 
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
-function show(id){var el=document.getElementById(id); if(!el) return; el.style.display=(el.style.display==='block'?'none':'block');}
+function show(id){var el=document.getElementById(id); if(el) el.style.display=el.style.display==='block'?'none':'block';}
 let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[]; let editImgData="";
 function previewEditImg(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ editImgData=e.target.result; let img=document.getElementById('editImgPrev'); img.src=editImgData; img.style.display='block'; }; reader.readAsDataURL(input.files[0]); } }
 function loadPoems(){
   let box=document.getElementById('myPoems');
-  function renderList(list){ _allData=list; box.innerHTML=''; let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)'; list.slice().reverse().forEach((po, revIdx)=>{ let rawTitle=(po.title||po.t||'').toString().trim(); if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return; if(/^\d{10,}$/.test(rawTitle)) return; if(!rawTitle) return; let col=colors[Number(po.id||revIdx) % 8]||'b'; let originalIdx = list.length - 1 - revIdx; box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`; }); if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>'; }
+  function renderList(list){
+    _allData=list; box.innerHTML='';
+    let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)';
+    list.slice().reverse().forEach((po, revIdx)=>{
+      let rawTitle=(po.title||po.t||'').toString().trim();
+      if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return;
+      if(/^\d{10,}$/.test(rawTitle)) return;
+      if(!rawTitle) return;
+      let col=colors[Number(po.id||revIdx) % 8]||'b';
+      let originalIdx = list.length - 1 - revIdx;
+      let imgHtml = po.img? `<img src="${po.img}" style="width:42px;height:42px;border-radius:10px;object-fit:cover;margin-right:6px;border:2px solid #fff">` : "";
+      box.innerHTML+=`<div class="my-card ${col}">${imgHtml}<h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
+    });
+    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>';
+  }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{ let arr=Array.isArray(data)?data:[]; if(arr.length>0) renderList(arr.concat(localList)); else renderList(localList); }).catch(e=>{ renderList(localList); });
 }
@@ -95,8 +108,7 @@ function openDirectAppDoor(){
   let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');
   if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
   let sheetId='1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ';
-  let appLink='https://docs.google.com/spreadsheets/d/'+sheetId+'/edit';
-  let intentLink='intent://docs.google.com/spreadsheets/d/'+sheetId+'/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;S.browser_fallback_url='+encodeURIComponent(appLink)+';end';
-  try{ window.location.href=intentLink; setTimeout(function(){ window.open(appLink,'_blank'); },1500); }catch(e){ window.open(appLink,'_blank'); }
+  let intentLink='intent://docs.google.com/spreadsheets/d/'+sheetId+'/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';
+  window.location.href=intentLink;
 }
 </script></body></html>
