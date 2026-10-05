@@ -28,18 +28,10 @@
 <div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 <div class="sec"><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2><div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3></div><div style="font-size:26px">🌸</div></div><div id="a1" class="poem">শরৎ কালে ছাতিম ফুলের...</div><h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2><div id="myPoems"></div>
-
-<!-- প্রধান দরজা 1 - পাসওয়ার্ড দিয়ে শীট -->
 <div class="pill b" onclick="openSheetDoor()" style="background: linear-gradient(90deg,#2d7bff,#5a9bff);"><div>🔒</div><div><b>গুগুল শীটের প্রধান দরজা</b><small>🎈কবিতা "বিবস্বান" (নিজস্ব)🎈</small></div></div>
-
-<!-- প্রধান দরজা 2 - ডাইরেক্ট অ্যাপ -->
-<div class="pill" onclick="window.location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'" style="background: linear-gradient(90deg,#0f9d58,#00c853);">🔑 গুগল শীটের প্রধান দরজা - ডাইরেক্ট অ্যাপ</div>
-
-<!-- প্রধান দরজা 3 - সাইটের ভিতর সাইট -->
-<div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:12px 10px;cursor:pointer;"><div style="background:white;min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">👁️</div><div><div style="color:white;font-size:18px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">"বিবস্বান"-র সম্পূর্ণ কবিতার খাতা ♥️</div></div></div>
-
+<div class="pill" onclick="window.location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'" style="background: linear-gradient(90deg,#0f9d58,#00c853);"><div>🔑</div><div><b>ডাইরেক্ট অ্যাপে খুলুন</b><small>Google Sheets App</small></div></div>
+<div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:12px 10px;cursor:pointer;"><div style="background:white;min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">👁️</div><div><div style="color:white;font-size:18px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">"বিবস্বান"-র সম্পূর্ণ খাতা ♥️</div></div></div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
-
 </div>
 <div class="pill g" onclick="show('p1')"><div>🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি...</div>
 <div class="pill o" onclick="show('p2')"><div>☀️</div><div><b>সোনার ধান</b><small>গ্রামবাংলা • ৯টি</small></div></div><div id="p2" class="poem">রক্তাক্ত জঠর...</div>
@@ -54,7 +46,7 @@
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrf0LOVVt6YWl2oKDtxmumr62GDmrAsUJOFEXQ4s93DGBd7RAbBIolG3UNP15Bc17BOA/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
 function show(id){var el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='block'?'none':'block';}
 let colors=['g','o','b','pu','pi','te','re','in'];
 let _allData=[];
@@ -68,18 +60,18 @@ function loadPoems(){
       if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return;
       if(/^\d{10,}$/.test(rawTitle)) return;
       if(!rawTitle) return;
-      let title=rawTitle;
       let col=colors[Number(po.id||revIdx) % 8]||'b';
       let originalIdx = list.length - 1 - revIdx;
-      box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
+      box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
     });
+    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">লোড হচ্ছে... Deploy New Version করুন গুরুদেব</p>';
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
-  renderList(localList);
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{
     let arr=Array.isArray(data)?data:[];
     if(arr.length>0) renderList(arr.concat(localList));
-  }).catch(e=>{});
+    else renderList(localList);
+  }).catch(e=>{ renderList(localList); });
 }
 function openMyLock(idx){
   let p=prompt('🔒 গুরুদেব পাসওয়ার্ড দিন তালা খুলতে:');
