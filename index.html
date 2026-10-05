@@ -108,4 +108,4 @@ function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?'flex':'none';});});
 loadPoems();
 function openSheetDoor(){let p=prompt('🔒 শীটের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';}else if(p!==null){alert('❌ ভুল');}}
-</script><body/><html/>
+</script></body></html>
