@@ -50,43 +50,35 @@ let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[];
 function loadPoems(){
   let box=document.getElementById('myPoems');
   if(!box) return;
-  function getPoemData(po){
-    let title=(po.title||po.t||po.Title||'').toString().trim();
-    let text=(po.text||po.c||po.Text||'').toString().trim();
-    if(/^\d{10,}$/.test(title)){
-      let vals=Object.values(po);
-      for(let v of vals){
-        let s=(v||'').toString().trim();
-        if(!s) continue;
-        if(/^\d{10,}$/.test(s)) continue;
-        if(s.length>2 && s.length<120 && /[\u0980-\u09FF]/.test(s)){ title=s; break; }
-      }
-      for(let v of vals){
-        let s=(v||'').toString().trim();
-        if(s.length>50){ text=s; break; }
-      }
-    }
-    return {title:title||'নামহীন কবিতা', text:text};
-  }
   function renderList(list){
     _allData=list;
     box.innerHTML='';
     let cnt=document.getElementById('count');
-    if(cnt) cnt.innerText=list.length+' টি';
-    list.slice().reverse().forEach((po)=>{
-      let d=getPoemData(po);
-      if(d.title.toLowerCase().includes('প্রধান দরজা')) return;
-      if(!d.title) return;
-      let colClass=colors[Math.floor(Math.random()*colors.length)];
-      box.innerHTML+=`<div class="my-card ${colClass}"><h3>❤️ ${d.title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${_allData.indexOf(po)})">🔒 পড়ুন</div></div>`;
+    if(cnt) cnt.innerText=list.length+' টি কবিতা';
+    if(list.length==0){
+      box.innerHTML='<p style="text-align:center;padding:20px">একটু পরে আসুন গুরুদেব, লোড হচ্ছে...</p>';
+      return;
+    }
+    list.slice().reverse().forEach((po,idx)=>{
+      let title=(po.title||po.t||po.Title||po.name||Object.values(po)[1]||'নামহীন কবিতা').toString();
+      if(title.toLowerCase().includes('প্রধান দরজা')) return;
+      title=title.replace(/^\d+$/,'').trim() || 'নামহীন কবিতা';
+      // যদি শীটে ID ঢুকে থাকে, তাহলে দ্বিতীয় কলাম থেকে নাম নাও
+      if(title=='নামহীন কবিতা'){
+        let vals=Object.values(po);
+        for(let v of vals){ let s=(v||'').toString().trim(); if(s.length>2 && s.length<100 && isNaN(s)){ title=s; break; } }
+      }
+      let colClass=colors[idx%colors.length];
+      box.innerHTML+=`<div class="my-card ${colClass}"><h3>❤️ ${title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${idx})">🔒 পড়ুন</div></div>`;
     });
   }
   let local=[]; try{local=JSON.parse(localStorage.getItem('myPoems')||'[]')}catch(e){}
   renderList(local);
   fetch(SHEET_URL).then(r=>r.json()).then(d=>{
-    let arr=Array.isArray(d)?d:(d.data||[]);
-    renderList(arr.concat(local));
-  }).catch(()=>{});
+    console.log('SHEET DATA:',d);
+    let arr=Array.isArray(d)?d:[];
+    if(arr.length>0) renderList(arr.concat(local));
+  }).catch(e=>{ console.log('fetch fail',e); });
 }
 function openMyLock(idx){
   let p=prompt('🔒 গুরুদেব পাসওয়ার্ড দিন:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
