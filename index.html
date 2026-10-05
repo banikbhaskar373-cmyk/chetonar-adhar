@@ -133,18 +133,24 @@ let _allData=[];
 function loadPoems(){
   let box=document.getElementById('myPoems');
   function renderList(list){
-    _allData=list; box.innerHTML='';
-    let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)';
-    list.slice().reverse().forEach((po, revIdx)=>{
-      let rawTitle=(po.title||po.t||'').toString().trim();
-      if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return;
-      if(/^\d{10,}$/.test(rawTitle)) return;
-      if(!rawTitle) return;
-      let col=colors[Number(po.id||revIdx) % 8]||'b';
-      let originalIdx = list.length - 1 - revIdx;
-      box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
-    });
-    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>';
+  _allData=list; box.innerHTML='';
+  let seen={}; let filtered=[];
+  list.forEach(po=>{
+    let rt=(po.title||po.t||'').toString().trim();
+    if(!rt) return;
+    if(rt.toLowerCase().includes('চালিয়ে যান')) return;
+    if(seen[rt]) return;
+    seen[rt]=1; filtered.push(po);
+  });
+  let c=document.getElementById('count');
+  c.innerText=filtered.length+' টি কবিতা (🔒 লক)';
+  filtered.slice().reverse().forEach((po, revIdx)=>{
+    let rawTitle=(po.title||po.t||'').toString().trim();
+    let col=colors[revIdx%8];
+    let originalIdx = list.findIndex(x=>(x.title||x.t||'').toString().trim()===rawTitle);
+    box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div style="display:flex;align-items:center"><div class="edit-icon" onclick="openMyLock(${originalIdx})">✏️</div><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div></div>`;
+  });
+  if(!box.innerHTML) box.innerHTML='<p style="text-align:center;color:#888">কোনো কবিতা নেই</p>';
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{
