@@ -46,13 +46,15 @@
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
-function show(id){var el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='block'?'none':'block';}
+function show(id){var el=document.getElementById(id); if(el) el.style.display=el.style.display==='block'?'none':'block';}
 let colors=['g','o','b','pu','pi','te','re','in'];
 let _allData=[];
+
 function loadPoems(){
-  let box=document.getElementById('myPoems'); if(!box) return;
+  let box=document.getElementById('myPoems');
   function renderList(list){
-    _allData=list; box.innerHTML='';
+    _allData=list;
+    box.innerHTML='';
     let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)';
     list.slice().reverse().forEach((po, revIdx)=>{
       let rawTitle=(po.title||po.t||'').toString().trim();
@@ -63,7 +65,7 @@ function loadPoems(){
       let originalIdx = list.length - 1 - revIdx;
       box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
     });
-    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">লোড হচ্ছে... Deploy New Version করুন গুরুদেব</p>';
+    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>';
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{
@@ -72,17 +74,38 @@ function loadPoems(){
     else renderList(localList);
   }).catch(e=>{ renderList(localList); });
 }
+
 function openMyLock(idx){
-  let p=prompt('🔒 গুরুদেব পাসওয়ার্ড দিন তালা খুলতে:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড বস!'); return; }
-  let po=_allData[idx]; if(!po){alert('পাওয়া যায়নি');return;}
-  let t=po.title||po.t||''; let c=po.text||po.c||'';
-  alert('🔓 তালা খুলেছে গুরুদেব ❤️\n\n'+t+'\n\n'+c);
+  let p=prompt('🔒 পাসওয়ার্ড:');
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  let po=_allData[idx]; if(!po) return;
+  let t=po.title||po.t||''; let cc=po.text||po.c||'';
+  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,200)+'\n\n1=এডিট করুন\n2=ডিলিট করুন\n\n1 বা 2 লিখুন, খালি রাখলে শুধু দেখবেন');
+  if(act=='1'){
+    let newT=prompt('নতুন নাম:',t);
+    if(newT===null) return;
+    let newC=prompt('নতুন কবিতা:',cc);
+    if(newC===null) return;
+    let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+    localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
+    localStorage.setItem('myPoems',JSON.stringify(localList));
+    alert('✅ এডিট সেভ হয়েছে গুরুদেব!');
+    location.reload();
+  }
+  if(act=='2'){
+    if(confirm('🗑️ ডিলিট করবেন গুরুদেব?')){
+      let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+      localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t));
+      localStorage.setItem('myPoems',JSON.stringify(localList));
+      alert('✅ ডিলিট হয়েছে');
+      location.reload();
+    }
+  }
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
-function savePoem(){let p=prompt('🔓 সেভ করার পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে, লক থাকবে 🔒');}
+function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে');}
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?'flex':'none';});});
 loadPoems();
 function openSheetDoor(){let p=prompt('🔒 শীটের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';}else if(p!==null){alert('❌ ভুল');}}
-</script></body></html>
+</script><body/><html/>
