@@ -48,41 +48,45 @@ const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1
 function show(id){var el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='block'?'none':'block';}
 let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[];
 function loadPoems(){
-  let box=document.getElementById('myPoems') || document.getElementById('poems');
+  let box=document.getElementById('myPoems');
   if(!box) return;
+  function getPoemData(po){
+    let title=(po.title||po.t||po.Title||'').toString().trim();
+    let text=(po.text||po.c||po.Text||'').toString().trim();
+    if(/^\d{10,}$/.test(title)){
+      let vals=Object.values(po);
+      for(let v of vals){
+        let s=(v||'').toString().trim();
+        if(!s) continue;
+        if(/^\d{10,}$/.test(s)) continue;
+        if(s.length>2 && s.length<120 && /[\u0980-\u09FF]/.test(s)){ title=s; break; }
+      }
+      for(let v of vals){
+        let s=(v||'').toString().trim();
+        if(s.length>50){ text=s; break; }
+      }
+    }
+    return {title:title||'নামহীন কবিতা', text:text};
+  }
   function renderList(list){
     _allData=list;
     box.innerHTML='';
     let cnt=document.getElementById('count');
-    if(cnt) cnt.innerText = list.length+' টি';
-    let filtered = list.filter(po=>{
-      let t=(po.title||po.t||'').toString();
-      if(!t) return false;
-      if(t.toLowerCase().includes('প্রধান দরজা')) return false;
-      if(/^\d{10,}$/.test(t.trim())) return false;
-      return true;
+    if(cnt) cnt.innerText=list.length+' টি';
+    list.slice().reverse().forEach((po)=>{
+      let d=getPoemData(po);
+      if(d.title.toLowerCase().includes('প্রধান দরজা')) return;
+      if(!d.title) return;
+      let colClass=colors[Math.floor(Math.random()*colors.length)];
+      box.innerHTML+=`<div class="my-card ${colClass}"><h3>❤️ ${d.title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${_allData.indexOf(po)})">🔒 পড়ুন</div></div>`;
     });
-    if(filtered.length==0 && list.length>0){
-      // যদি সব ফিল্টার হয়ে যায়, তবুও আইডি বাদে নাম দেখাও
-      filtered = list;
-    }
-    filtered.slice().reverse().forEach((po,idx)=>{
-      let title=(po.title||po.t||po.Title||'নামহীন কবিতা').toString().trim();
-      if(/^\d{10,}$/.test(title)) title='নামহীন কবিতা';
-      let text=(po.text||po.c||po.Text||'').toString();
-      let colClass=colors[Number(po.id||idx)%colors.length];
-      box.innerHTML+=`<div class="my-card ${colClass}"><h3>❤️ ${title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${_allData.indexOf(po)})">🔒 পড়ুন</div></div>`;
-    });
-    if(box.innerHTML==''){
-      box.innerHTML='<p style="text-align:center;padding:15px;color:#888">এখনো কোনো কবিতা যোগ হয়নি। + বাটনে চাপুন।</p>';
-    }
   }
   let local=[]; try{local=JSON.parse(localStorage.getItem('myPoems')||'[]')}catch(e){}
   renderList(local);
   fetch(SHEET_URL).then(r=>r.json()).then(d=>{
-    let arr = Array.isArray(d) ? d : [];
+    let arr=Array.isArray(d)?d:(d.data||[]);
     renderList(arr.concat(local));
-  }).catch(err=>{ console.log('sheet fail',err); });
+  }).catch(()=>{});
 }
 function openMyLock(idx){
   let p=prompt('🔒 গুরুদেব পাসওয়ার্ড দিন:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
