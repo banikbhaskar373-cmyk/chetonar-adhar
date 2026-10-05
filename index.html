@@ -28,7 +28,7 @@
 <div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 <div class="sec"><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2><div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3></div><div style="font-size:26px">🌸</div></div><div id="a1" class="poem">শরৎ কালে ছাতিম ফুলের...</div><h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2><div id="myPoems"></div>
-<div class="pill" onclick="openDirectAppDoor()" style="background: linear-gradient(90deg,#0f9d58,#00c853);"><div>🔒</div><div><b>ডাইরেক্ট অ্যাপে খুলুন</b><small>Google Sheets App - তালা দেওয়া</small></div></div>
+<div class="pill" onclick="openDirectAppDoor()" style="background: linear-gradient(90deg,#0f9d58,#00c853);"><div>🔒</div><div><b>গুগুল শীটের প্রধান দরজা</b><small>🎈বিবস্বানের কবিতার পাতা🎈(নিজস্ব)- তালা দেওয়া</small></div></div>
 <div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:12px 10px;cursor:pointer;"><div style="background:white;min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">👁️</div><div><div style="color:white;font-size:18px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">"বিবস্বান"-র সম্পূর্ণ খাতা ♥️</div></div></div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
 </div>
@@ -44,13 +44,11 @@
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
-
-<div class="modal" id="editModal"><div class="modalBox"><h3>✏️ ছবি সহ এডিট</h3><div style="width:100%;height:100px;background:linear-gradient(135deg,#ffcc33,#ff6a2a);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:48px;margin-top:10px">🖼️</div><input id="editT" placeholder="কবিতার নাম"><textarea id="editC" rows="7" placeholder="কবিতা..."></textarea><button onclick="doEditSave()">💾 আপডেট করুন</button><button onclick="document.getElementById('editModal').style.display='none'" style="background:#eee;color:#333">বাতিল</button></div></div>
-
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
 function show(id){var el=document.getElementById(id); if(el) el.style.display=el.style.display==='block'?'none':'block';}
-let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[];
+let colors=['g','o','b','pu','pi','te','re','in'];
+let _allData=[];
 function loadPoems(){
   let box=document.getElementById('myPoems');
   function renderList(list){
@@ -78,11 +76,14 @@ function openMyLock(idx){
   let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
   let po=_allData[idx]; if(!po) return;
   let t=po.title||po.t||''; let cc=po.text||po.c||'';
-  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n1=এডিট (ছবি সহ) 2=ডিলিট\n1 বা 2 লিখুন');
+  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n1=এডিট 2=ডিলিট\n1 বা 2 লিখুন');
   if(act=='1'){
-    document.getElementById('editT').value=t;
-    document.getElementById('editC').value=cc;
-    document.getElementById('editModal').style.display='flex';
+    let newT=prompt('নতুন নাম:',t); if(newT===null) return;
+    let newC=prompt('নতুন কবিতা:',cc); if(newC===null) return;
+    let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+    localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
+    localStorage.setItem('myPoems',JSON.stringify(localList));
+    alert('✅ এডিট সেভ হয়েছে'); location.reload();
   }
   if(act=='2'){
     if(confirm('🗑️ ডিলিট করবেন?')){
@@ -93,17 +94,6 @@ function openMyLock(idx){
     }
   }
 }
-function doEditSave(){
-  let newT=document.getElementById('editT').value.trim();
-  let newC=document.getElementById('editC').value.trim();
-  if(!newT||!newC){alert('নাম ও কবিতা লিখুন');return;}
-  let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
-  localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
-  localStorage.setItem('myPoems',JSON.stringify(localList));
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:newT,c:newC})});
-  document.getElementById('editModal').style.display='none';
-  alert('✅ ছবি সহ এডিট সেভ হয়েছে'); location.reload();
-}
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে');}
@@ -111,3 +101,4 @@ document.getElementById('searchBox').addEventListener('input',function(){var val
 loadPoems();
 function openDirectAppDoor(){let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';}else if(p!==null){alert('❌ ভুল');}}
 </script></body></html>
+
