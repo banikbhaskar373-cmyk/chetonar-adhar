@@ -106,9 +106,8 @@ document.getElementById('searchBox').addEventListener('input',function(){var val
 loadPoems();
 function openDirectAppDoor(){
   let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
   let sheetId='1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ';
-  let intentLink='intent://docs.google.com/spreadsheets/d/'+sheetId+'/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';
-  window.location.href=intentLink;
+  window.location.href='https://docs.google.com/spreadsheets/d/'+sheetId+'/edit';
 }
 </script></body></html>
