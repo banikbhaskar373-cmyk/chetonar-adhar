@@ -81,15 +81,28 @@ function loadPoems(){
 }
 function openMyLock(idx){
   let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
-  let po=_allData[idx]; if(!po) return; let t=po.title||po.t||''; let cc=po.text||po.c||'';
-  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n1=এডিট (ছবি সহ) 2=ডিলিট\n1 বা 2 লিখুন');
+  let po=_allData[idx]; if(!po) return;
+  let t=po.title||po.t||''; let cc=po.text||po.c||'';
+  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,200)+'\n\n1=এডিট (ছবি সহ) 2=ডিলিট\n1 বা 2 লিখুন');
   if(act=='1'){
-    editImgData=po.img||""; document.getElementById('editT').value=t; document.getElementById('editC').value=cc;
-    let img=document.getElementById('editImgPrev'); if(editImgData){ img.src=editImgData; img.style.display='block'; } else { img.style.display='none'; }
+    editImgData=po.img||"";
+    document.getElementById('editT').value=t;
+    document.getElementById('editC').value=cc;
+    let img=document.getElementById('editImgPrev');
+    if(editImgData){ img.src=editImgData; img.style.display='block'; } else { img.style.display='none'; }
     document.getElementById('editModal').style.display='flex';
   }
-  if(act=='2'){ if(confirm('🗑️ ডিলিট করবেন?')){ let localList=JSON.parse(localStorage.getItem('myPoems')||'[]'); localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t)); localStorage.setItem('myPoems',JSON.stringify(localList)); alert('✅ ডিলিট হয়েছে'); location.reload(); } }
+  if(act=='2'){
+    if(confirm('🗑️ ডিলিট করবেন?')){
+      let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+      localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t));
+      localStorage.setItem('myPoems',JSON.stringify(localList));
+      alert('✅ ডিলিট হয়েছে'); location.reload();
+    }
+  }
 }
+let editImgData="";
+function previewEditImg(input){ if(input.files && input.files[0]){ let r=new FileReader(); r.onload=function(e){ editImgData=e.target.result; let im=document.getElementById('editImgPrev'); im.src=editImgData; im.style.display='block'; }; r.readAsDataURL(input.files[0]); } }
 function doEditSave(){
   let newT=document.getElementById('editT').value.trim(); let newC=document.getElementById('editC').value.trim();
   if(!newT||!newC){alert('নাম ও কবিতা লিখুন');return;}
@@ -97,7 +110,7 @@ function doEditSave(){
   localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC,img:editImgData});
   localStorage.setItem('myPoems',JSON.stringify(localList));
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:newT,c:newC})});
-  document.getElementById('editModal').style.display='none'; alert('✅ ছবি সহ এডিট সেভ হয়েছে!'); location.reload();
+  document.getElementById('editModal').style.display='none'; alert('✅ ছবি সহ সেভ হয়েছে!'); location.reload();
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
@@ -106,8 +119,20 @@ document.getElementById('searchBox').addEventListener('input',function(){var val
 loadPoems();
 function openDirectAppDoor(){
   let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');
-  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
-  let sheetId='1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ';
-  window.location.href='https://docs.google.com/spreadsheets/d/'+sheetId+'/edit';
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  let id='1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ';
+  // এই লিঙ্কটা সরাসরি Sheets App খুলবে - ব্রাউজার নয়, চালিয়ে যানও নয়
+  window.location.href='intent://docs.google.com/spreadsheets/d/'+id+'/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';
 }
-</script></body></html>
+</script>
+
+<div class="modal" id="editModal"><div class="modalBox" style="width:92%;max-width:400px;border-radius:16px;padding:16px;max-height:90vh;overflow:auto">
+<h3 style="text-align:center">✏️ ছবি সহ এডিট</h3>
+<img id="editImgPrev" style="display:none;width:100%;height:180px;object-fit:cover;border-radius:12px;margin-top:10px;border:2px solid #ffcc33">
+<input type="file" id="editImg" accept="image/*" onchange="previewEditImg(this)" style="background:#fffbe0;border:1.5px solid #ddd;border-radius:10px;padding:12px;margin-top:10px;width:100%">
+<input id="editT" placeholder="কবিতার নাম" style="width:100%;border:1.5px solid #ddd;border-radius:10px;padding:12px;margin-top:10px"><textarea id="editC" rows="6" placeholder="কবিতা..." style="width:100%;border:1.5px solid #ddd;border-radius:10px;padding:12px;margin-top:10px"></textarea>
+<button onclick="doEditSave()" style="width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:700">💾 ছবি সহ আপডেট</button>
+<button onclick="document.getElementById('editModal').style.display='none'" style="width:100%;margin-top:10px;background:#eee;color:#333;border:none;padding:13px;border-radius:12px">বাতিল</button>
+</div></div>
+
+</body></html>
