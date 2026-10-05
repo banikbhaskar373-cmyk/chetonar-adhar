@@ -5,13 +5,13 @@
 .header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:18px 10px 12px 10px;display:flex;flex-direction:column;align-items:center;text-align:center}
 .header h1{font-size:24px;color:#00FF7F;line-height:1.25;font-weight:700;margin-top:8px}
 .highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:8px 5px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33}
-.search{margin:12px 10px 0 10px;background:#fff;border-radius:14px;height:46px;display:flex;align-items:center;padding:0 12px;box-shadow:0 6px 16px #0002}
+.search{margin:12px 18px 0 18px;background:#fff;border-radius:14px;height:46px;display:flex;align-items:center;padding:0 12px;box-shadow:0 6px 16px #0002}
 .search input{flex:1;border:none;outline:none;font-size:14px;margin-left:6px}
-.sec{padding:14px 10px 6px 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px}.sec h2 span{font-size:11px;color:#ff6a2a}
-.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer;margin-bottom:6px}
-.pill{height:48px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px!important;margin:6px 10px;color:#fff;cursor:pointer}
+.sec{padding:14px 10px 6px 10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin-bottom:10px;padding:0 8px}.sec h2 span{font-size:11px;color:#ff6a2a}
+.feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer;margin:6px 18px}
+.pill{height:48px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px!important;margin:6px 18px;color:#fff;cursor:pointer}
 .pill b{display:block;font-size:15px;color:#fff}.pill small{display:block;font-size:11px;color:rgba(255,255,255,0.9)}
-.poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 10px 10px 10px;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
+.poem{display:none;background:#fffbe0;border:2px solid #ffd36a;border-radius:10px;padding:12px;margin:5px 18px 10px 18px;white-space:pre-line;font-size:13px;line-height:1.9;color:#222}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
@@ -20,36 +20,18 @@
 .modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
 .modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
-.my-card{border-radius:18px;padding:14px 16px;margin:8px 20px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.my-card h3{font-size:15px;flex:1}
+.my-card{border-radius:18px;padding:14px 16px;margin:6px 18px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.my-card h3{font-size:14px;flex:1}
 .lock-tag{background:#fff;color:#4a00e0;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px;cursor:pointer}
 .edit-icon{background:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:8px;font-size:14px}
 </style></head><body>
 <div class="app">
 <div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
-<div class="sec"><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2><div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3></div><div style="font-size:26px">🌸</div></div><div id="a1" class="poem">
-শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া
-বাতাসে তার মাতাল করা গন্ধ ভাসে,
-সুদূর নীলে মেঘের বরণ পেঁজা তুলো
-দূগ্গা মায়ের আগমনী কর্ণে আসে।
-শিউলি কিন্তু এই শরতে ফুলের রাণী
-জুঁই, মালতী শরৎ শশীর সাথে হাসে
-এমন সময় খুশির জোয়ার
-কাশের বনে
-ঢাকের তালে মন দোলে এই আশ্বিন মাসে।
-কামিনী দেয় থোকা ফুলের মিষ্টি সুবাস
-ঘাসের ডগায় শিশির কণা দেয় যে ধরা
-মায়ের আসার খবর এলে পাল পাড়াতে
-ব্যস্ত কুমোর সেরার সেরা ঠাকুর গড়া
-(পদ্ম বলে)
-মায়ের পূজায় আমার দাবী সবার আগে
-একশো সাতে গুণতি আমার থমকে গেলে
-করতে পূরণ সত্য রামের
-চোখ যে লাগে।
-</div><h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2><div id="myPoems"></div>
+<div class="sec"><h2>আজকের কবিতা <span>সব দেখুন ›</span></h2><div class="feat" onclick="show('a1')"><div><h3>শরতের আলোয় কবিতা</h3></div><div style="font-size:26px">🌸</div></div><div id="a1" class="poem">শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া...</div>
+<h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2><div id="myPoems"></div>
 <div class="pill" onclick="openDirectAppDoor()" style="background: linear-gradient(90deg,#0f9d58,#00c853);"><div>🔒</div><div><b>গুগুল শীটের প্রধান দরজা</b><small>🎈বিবস্বানের কবিতার পাতা🎈(নিজস্ব)</small></div></div>
-<div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:12px 20px;cursor:pointer;"><div style="background:white;min-width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;">👁️</div><div><div style="color:white;font-size:18px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">♥️"বিবস্বান"-র সম্পূর্ণ খাতা ♥️ এক ক্লিকেই পড়তে‌ পারেন</div></div></div>
+<div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none';" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:6px 18px;cursor:pointer;"><div style="background:white;min-width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;">👁️</div><div><div style="color:white;font-size:16px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">♥️"বিবস্বান"-র সম্পূর্ণ খাতা ♥️</div></div></div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
 </div>
 <div class="pill g" onclick="show('p1')"><div>🌿</div><div><b>নদীর গান</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem">আমরা বাঙালি...</div>
@@ -59,8 +41,7 @@
 <div class="pill pi" onclick="show('p5')"><div>🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div><div id="p5" class="poem">প্রাচীন আর বর্তমানে...</div>
 <div class="pill te" onclick="show('p6')"><div>💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem">অবেলায় আজি...</div>
 <div class="pill re" onclick="show('p7')"><div>❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem">আছো তুমি গাছে গাছে...</div>
-
-  <div class="pill in" onclick="show('p8')"><div>🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">এ কেমন স্বাধীনতা কবিতা...</div>
+<div class="pill in" onclick="show('p8')"><div>🕊️</div><div><b>এ কেমন স্বাধীনতা</b><small>স্বাধীনতা • ১টি</small></div></div><div id="p8" class="poem">আপনার স্বাধীনতা কবিতা পুরোটা এখানে থাকবে...</div>
 <div class="pill g" onclick="show('p9')"><div>🕊️</div><div><b>চলুক সৃষ্টি</b><small>সৃষ্টি • ১টি</small></div></div><div id="p9" class="poem">অজানা অচেনা...</div>
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
@@ -73,18 +54,24 @@ let _allData=[];
 function loadPoems(){
   let box=document.getElementById('myPoems');
   function renderList(list){
-    _allData=list; box.innerHTML='';
-    let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)';
-    list.slice().reverse().forEach((po, revIdx)=>{
+    _allData=list; box.innerHTML=''; let seen={};
+    let c=document.getElementById('count');
+    let filtered=[];
+    list.forEach(po=>{
+      let rt=(po.title||po.t||'').toString().trim();
+      if(!rt) return;
+      if(rt.toLowerCase().includes('প্রধান দরজা')) return;
+      if(/^\d{10,}$/.test(rt)) return;
+      if(seen[rt]) return;
+      seen[rt]=1; filtered.push(po);
+    });
+    if(c) c.innerText=filtered.length+' টি কবিতা (🔒 লক)';
+    filtered.slice().reverse().forEach((po, revIdx)=>{
       let rawTitle=(po.title||po.t||'').toString().trim();
-      if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return;
-      if(/^\d{10,}$/.test(rawTitle)) return;
-      if(!rawTitle) return;
       let col=colors[Number(po.id||revIdx) % 8]||'b';
       let originalIdx = list.length - 1 - revIdx;
       box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div style="display:flex;align-items:center"><div class="edit-icon" onclick="openMyLock(${originalIdx})">✏️</div><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div></div>`;
     });
-    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>';
   }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
   fetch(SHEET_URL).then(r=>r.json()).then(data=>{
@@ -97,16 +84,12 @@ function openMyLock(idx){
   let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
   let po=_allData[idx]; if(!po) return;
   let t=po.title||po.t||''; let cc=po.text||po.c||'';
-  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n✏️ এডিট করতে 1 লিখুন\n🗑️ ডিলিট করতে 2 লিখুন');
+  let act=prompt('🔓 '+t+'\n\n1=এডিট (ফাস্ট বক্স খুলবে) 2=ডিলিট\n1 বা 2 লিখুন');
   if(act=='1'){
-    let newT=prompt('নতুন নাম:',t); if(newT===null) return;
-    let newC=prompt('নতুন কবিতা:',cc); if(newC===null) return;
-    let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
-    localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
-    localStorage.setItem('myPoems',JSON.stringify(localList));
-    alert('✅ এডিট সেভ হয়েছে'); location.reload();
-  }
-  if(act=='2'){
+    document.getElementById('t').value=t;
+    document.getElementById('c').value=cc;
+    document.getElementById('modal').style.display='flex';
+  } else if(act=='2'){
     if(confirm('🗑️ ডিলিট করবেন?')){
       let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
       localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t));
@@ -122,4 +105,3 @@ document.getElementById('searchBox').addEventListener('input',function(){var val
 loadPoems();
 function openDirectAppDoor(){let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';}else if(p!==null){alert('❌ ভুল');}}
 </script></body></html>
-  
