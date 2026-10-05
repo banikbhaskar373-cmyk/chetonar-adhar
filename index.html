@@ -32,7 +32,6 @@
 <div class="pill b" onclick="openSheetDoor()"><div>🔒</div><div><b>গুগুল শীটের প্রধান দরজা</b><small>🎈কবিতা "বিবস্বান" (নিজস্ব)🎈</small></div></div>
 
 <div class="pill" onclick="openDirectAppDoor()" style="background: linear-gradient(90deg,#0f9d58,#00c853);"><div>🔒</div><div><b>ডাইরেক্ট অ্যাপে খুলুন</b><small>Google Sheets App - তালা দেওয়া</small></div></div>
-
 <div onclick="var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin:12px 10px;cursor:pointer;"><div style="background:white;min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">👁️</div><div><div style="color:white;font-size:18px;font-weight:800;">সাইটের ভিতর সাইট দেখুন</div><div style="color:#dbeafe;font-size:13px;">"বিবস্বান"-র সম্পূর্ণ খাতা ♥️</div></div></div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
 </div>
@@ -104,5 +103,5 @@ function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?'flex':'none';});});
 loadPoems();
 function openSheetDoor(){let p=prompt('🔒 প্রধান দরজার পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';}else if(p!==null){alert('❌ ভুল');}}
-function openDirectAppDoor(){let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';}else if(p!==null){alert('❌ ভুল');}}
+function openDirectAppDoor(){let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';}else if(p!==null){alert('❌ ভুল')k}}
 </script></body></html>
