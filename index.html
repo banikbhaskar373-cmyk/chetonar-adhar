@@ -17,9 +17,9 @@
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 .addBtn{position:fixed;right:18px;bottom:70px;width:56px;height:56px;background:#4a00e0;color:#fff;border-radius:50%;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #0004;cursor:pointer;z-index:1000}
 .modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:#0008;z-index:2000;align-items:center;justify-content:center}
-.modalBox{background:#fff;width:90%;max-width:360px;border-radius:14px;padding:14px}
-.modalBox input,.modalBox textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:10px;margin-top:8px;font-size:14px;outline:none}
-.modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
+.modalBox{background:#fff;width:92%;max-width:400px;border-radius:16px;padding:16px;max-height:90vh;overflow:auto}
+.modalBox input,.modalBox textarea{width:100%;border:1.5px solid #ddd;border-radius:10px;padding:12px;margin-top:10px;font-size:14px;outline:none}
+.modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:700}
 .my-card{border-radius:18px;padding:14px 16px;margin:8px 10px;color:#fff;display:flex;justify-content:space-between;align-items:center}
 .my-card h3{font-size:15px;flex:1}
 .lock-tag{background:#fff;color:#4a00e0;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px;cursor:pointer}
@@ -44,61 +44,59 @@
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
+
+<div class="modal" id="editModal"><div class="modalBox">
+<h3 style="text-align:center">✏️ ছবি সহ এডিট</h3>
+<img id="editImgPrev" style="display:none;width:100%;height:160px;object-fit:cover;border-radius:12px;margin-top:10px;border:2px solid #ffcc33">
+<input type="file" id="editImg" accept="image/*" onchange="previewEditImg(this)" style="background:#fffbe0">
+<input id="editT" placeholder="কবিতার নাম">
+<textarea id="editC" rows="6" placeholder="কবিতা..."></textarea>
+<button onclick="doEditSave()">💾 ছবি সহ আপডেট</button>
+<button onclick="document.getElementById('editModal').style.display='none'" style="background:#eee;color:#333">বাতিল</button>
+</div></div>
+
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
-function show(id){var el=document.getElementById(id); if(el) el.style.display=el.style.display==='block'?'none':'block';}
-let colors=['g','o','b','pu','pi','te','re','in'];
-let _allData=[];
+function show(id){var el=document.getElementById(id); if(!el) return; el.style.display=(el.style.display==='block'?'none':'block');}
+let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[]; let editImgData="";
+function previewEditImg(input){ if(input.files && input.files[0]){ let reader=new FileReader(); reader.onload=function(e){ editImgData=e.target.result; let img=document.getElementById('editImgPrev'); img.src=editImgData; img.style.display='block'; }; reader.readAsDataURL(input.files[0]); } }
 function loadPoems(){
   let box=document.getElementById('myPoems');
-  function renderList(list){
-    _allData=list; box.innerHTML='';
-    let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)';
-    list.slice().reverse().forEach((po, revIdx)=>{
-      let rawTitle=(po.title||po.t||'').toString().trim();
-      if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return;
-      if(/^\d{10,}$/.test(rawTitle)) return;
-      if(!rawTitle) return;
-      let col=colors[Number(po.id||revIdx) % 8]||'b';
-      let originalIdx = list.length - 1 - revIdx;
-      box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`;
-    });
-    if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>';
-  }
+  function renderList(list){ _allData=list; box.innerHTML=''; let c=document.getElementById('count'); if(c) c.innerText=list.length+' টি কবিতা (🔒 লক)'; list.slice().reverse().forEach((po, revIdx)=>{ let rawTitle=(po.title||po.t||'').toString().trim(); if(rawTitle.toLowerCase().includes('প্রধান দরজা')) return; if(/^\d{10,}$/.test(rawTitle)) return; if(!rawTitle) return; let col=colors[Number(po.id||revIdx) % 8]||'b'; let originalIdx = list.length - 1 - revIdx; box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${rawTitle} ❤️</h3><div class="lock-tag" onclick="openMyLock(${originalIdx})">🔒 লক</div></div>`; }); if(!box.innerHTML) box.innerHTML='<p style="text-align:center;padding:12px;color:#888">কবিতা লোড হচ্ছে...</p>'; }
   let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){localList=[];}
-  fetch(SHEET_URL).then(r=>r.json()).then(data=>{
-    let arr=Array.isArray(data)?data:[];
-    if(arr.length>0) renderList(arr.concat(localList));
-    else renderList(localList);
-  }).catch(e=>{ renderList(localList); });
+  fetch(SHEET_URL).then(r=>r.json()).then(data=>{ let arr=Array.isArray(data)?data:[]; if(arr.length>0) renderList(arr.concat(localList)); else renderList(localList); }).catch(e=>{ renderList(localList); });
 }
 function openMyLock(idx){
   let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
-  let po=_allData[idx]; if(!po) return;
-  let t=po.title||po.t||''; let cc=po.text||po.c||'';
-  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n1=এডিট 2=ডিলিট\n1 বা 2 লিখুন');
+  let po=_allData[idx]; if(!po) return; let t=po.title||po.t||''; let cc=po.text||po.c||'';
+  let act=prompt('🔓 '+t+'\n\n'+cc.substring(0,300)+'\n\n1=এডিট (ছবি সহ) 2=ডিলিট\n1 বা 2 লিখুন');
   if(act=='1'){
-    let newT=prompt('নতুন নাম:',t); if(newT===null) return;
-    let newC=prompt('নতুন কবিতা:',cc); if(newC===null) return;
-    let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
-    localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
-    localStorage.setItem('myPoems',JSON.stringify(localList));
-    alert('✅ এডিট সেভ হয়েছে'); location.reload();
+    editImgData=po.img||""; document.getElementById('editT').value=t; document.getElementById('editC').value=cc;
+    let img=document.getElementById('editImgPrev'); if(editImgData){ img.src=editImgData; img.style.display='block'; } else { img.style.display='none'; }
+    document.getElementById('editModal').style.display='flex';
   }
-  if(act=='2'){
-    if(confirm('🗑️ ডিলিট করবেন?')){
-      let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
-      localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t));
-      localStorage.setItem('myPoems',JSON.stringify(localList));
-      alert('✅ ডিলিট হয়েছে'); location.reload();
-    }
-  }
+  if(act=='2'){ if(confirm('🗑️ ডিলিট করবেন?')){ let localList=JSON.parse(localStorage.getItem('myPoems')||'[]'); localList = localList.filter(x => (x.id||x.t)!= (po.id||po.t)); localStorage.setItem('myPoems',JSON.stringify(localList)); alert('✅ ডিলিট হয়েছে'); location.reload(); } }
+}
+function doEditSave(){
+  let newT=document.getElementById('editT').value.trim(); let newC=document.getElementById('editC').value.trim();
+  if(!newT||!newC){alert('নাম ও কবিতা লিখুন');return;}
+  let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+  localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC,img:editImgData});
+  localStorage.setItem('myPoems',JSON.stringify(localList));
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:newT,c:newC})});
+  document.getElementById('editModal').style.display='none'; alert('✅ ছবি সহ এডিট সেভ হয়েছে!'); location.reload();
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';}
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:');if(p!=='Biboswan @22'){if(p!==null)alert('❌ ভুল');return;}let title=document.getElementById('t').value.trim();let text=document.getElementById('c').value.trim();if(!title||!text){alert('নাম ও কবিতা লিখুন');return;}let myPoems=[];try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){myPoems=[];}myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text});localStorage.setItem('myPoems',JSON.stringify(myPoems));fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})});document.getElementById('t').value='';document.getElementById('c').value='';closeModal();loadPoems();alert('✅ সেভ হয়েছে');}
 document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim();document.querySelectorAll('.pill,.my-card').forEach(function(pill){var titleEl=pill.querySelector('b')||pill.querySelector('h3');if(!titleEl)return;var title=titleEl.innerText.toLowerCase();pill.style.display=(val===''||title.indexOf(val)>-1)?'flex':'none';});});
 loadPoems();
-function openDirectAppDoor(){let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');if(p==='Biboswan @22'){location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end';}else if(p!==null){alert('❌ ভুল');}}
+function openDirectAppDoor(){
+  let p=prompt('🔒 ডাইরেক্ট অ্যাপের পাসওয়ার্ড:');
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  let sheetId='1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ';
+  let appLink='https://docs.google.com/spreadsheets/d/'+sheetId+'/edit';
+  let intentLink='intent://docs.google.com/spreadsheets/d/'+sheetId+'/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;S.browser_fallback_url='+encodeURIComponent(appLink)+';end';
+  try{ window.location.href=intentLink; setTimeout(function(){ window.open(appLink,'_blank'); },1500); }catch(e){ window.open(appLink,'_blank'); }
+}
 </script></body></html>
-
