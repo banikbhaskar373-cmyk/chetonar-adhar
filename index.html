@@ -48,15 +48,23 @@ const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1
 function show(id){var el=document.getElementById(id);if(!el)return;el.style.display=el.style.display==='block'?'none':'block';}
 let colors=['g','o','b','pu','pi','te','re','in']; let _allData=[];
 function loadPoems(){
-  let box=document.getElementById('myPoems');
+  let box=document.getElementById('poems');
   function renderList(list){
-    _allData=list; box.innerHTML=''; document.getElementById('count').innerText=list.length+' টি (🔒 লক)';
-    list.slice().reverse().forEach((po,ri)=>{
-      let title=po.title||po.t||'নামহীন'; let col=colors[Number(po.id||0)%8]||'b'; let oi=list.length-1-ri;
-      box.innerHTML+=`<div class="my-card ${col}"><h3>❤️ ${title} ❤️</h3><div class="lock-tag" onclick="openMyLock(${oi})">🔒 এডিট</div></div>`;
+    _allData=list;
+    box.innerHTML='';
+    list.slice().reverse().forEach((po,idx)=>{
+      // প্রধান দরজা হলে দেখাবে না
+      let rawT = po.title||po.t||'';
+      if(rawT.toLowerCase().includes('প্রধান দরজা')) return;
+      // আইডি-র মতো লম্বা নম্বর হলে নামহীন দেখাবে না
+      if(/^[0-9]{10,}$/.test(rawT)) return;
+      
+      let title=po.title||po.t||'নামহীন কবিতা';
+      let col=colors[Number(po.id||idx)%8];
+      box.innerHTML+=`<div class="my-card" style="border-left:5px solid ${col}"><h3>❤️ ${title} ❤️</h3><div>${(po.text||'').substring(0,120)}...</div><button onclick="openMyLock(${idx})">পড়ুন</button></div>`;
     });
   }
-  let local=[]; try{local=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+  let local=[]; try{local=JSON.parse(localStorage.getItem('myPoems')||'[]')}catch(e){}
   renderList(local);
   fetch(SHEET_URL).then(r=>r.json()).then(d=>renderList(d.concat(local))).catch(()=>{});
 }
