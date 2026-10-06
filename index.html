@@ -1,12 +1,18 @@
 <!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল স্টুডিও - ১০ দরজা</title>
+<link rel="icon" type="image/png" href="1791273060137.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#fff6e8;font-family:system-ui}
 .app{width:100%;min-height:100vh;background:#fffaf3;padding-bottom:90px}
 .header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:18px 10px 12px;display:flex;flex-direction:column;align-items:center;text-align:center}
-.header h1{font-size:24px;color:#00FF7F;line-height:1.25;font-weight:700;margin-top:8px}
-.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:8px 5px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33}
+.header h1{font-size:24px;color:#00FF7F;line-height:1.25;font-weight:700;margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.highlight-box{width:100%;background:linear-gradient(90deg,#fff8c0,#ffffff);color:#4a00e0;padding:8px 5px;border-radius:14px;font-size:21px;font-weight:900;text-align:center;margin-top:12px;border:2.5px solid #ffcc33;display:flex;align-items:center;justify-content:center;gap:6px}
+.emoji-logo{width:1.3em;height:1.3em;vertical-align:middle;display:inline-block;border-radius:50%;object-fit:cover;box-shadow:0 0 3px gold}
+.emoji-logo-big{width:1.5em;height:1.5em;vertical-align:middle;display:inline-block;border-radius:50%}
+.logo-top{width:96px;height:96px;background:#fff;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;overflow:hidden;padding:3px;box-shadow:0 0 20px gold}
+.logo-top img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 .sun-wrap{display:flex;flex-direction:column;align-items:center;margin:12px auto 4px}
-.sun{width:84px;height:84px;background:radial-gradient(circle,#FFEB3B,#FF9800);border-radius:50%;box-shadow:0 0 0 7px rgba(255,193,7,0.25),0 0 24px rgba(255,152,0,0.6);display:flex;align-items:center;justify-content:center;font-size:30px;animation:pulse 2.5s infinite}
+.sun{width:90px;height:90px;background:#fff;border-radius:50%;box-shadow:0 0 0 7px rgba(255,193,7,0.25),0 0 24px rgba(255,152,0,0.6);display:flex;align-items:center;justify-content:center;overflow:hidden;border:4px solid #FFD700;padding:3px;animation:pulse 2.5s infinite}
+.sun img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .sun-label{background:#4A148C;color:#FFEB3B;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px}
 .search{margin:10px;background:#fff;border-radius:14px;height:46px;display:flex;align-items:center;padding:0 12px;box-shadow:0 6px 16px #0002}
@@ -20,12 +26,10 @@
 .latest-box{background:white;border:2px solid #FFC107;border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 4px 12px rgba(255,193,7,0.2)}
 .latest-box h3{font-size:14px;color:#4A148C;display:flex;justify-content:space-between;align-items:center}
 .poem-text{white-space:pre-line;font-size:14.5px;line-height:1.9;margin-top:8px}
-.edit-btn{width:38px;height:38px;border-radius:50%;border:0;background:linear-gradient(135deg,#FFEB3B,#FF9800);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 8px rgba(0,0,0,0.2);cursor:pointer}
 .grid10{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
 .door{background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px #0001;border:1.5px solid #e9e9ff;cursor:pointer}
-.door.ico{font-size:26px}.door.tit{font-size:12px;font-weight:800;margin-top:2px}.door.sub{font-size:9px;color:#777}
 .door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border-color:#7C4DFF}
-.door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}.door.site10.sub,.door.site10.tit{color:white}
+.door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 .addBtn{position:fixed;right:18px;bottom:70px;width:56px;height:56px;background:#4a00e0;color:#fff;border-radius:50%;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #0004;cursor:pointer;z-index:1000}
@@ -37,8 +41,12 @@
 .badge-full{font-size:10px;background:#EDE7F6;color:#4A148C;padding:3px 8px;border-radius:10px;margin-top:8px;display:inline-block}
 </style></head><body>
 <div class="app">
-<div class="header"><div style="width:96px;height:96px;background:#000;border:3.5px solid #ffcc33;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><div style="font-size:54px;">🪔</div></div><h1>🖥️ভাস্কর ডিজিটাল🖥️<br>স্টুডিওর প্রথম নিবেদন</h1><div class="highlight-box">❤️ বিবেকের আলোক দর্শন ❤️</div></div>
-<div class="sun-wrap"><div class="sun">☀️</div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
+<div class="header">
+<div class="logo-top"><img src="1791273060137.png" alt="ভাস্কর ডিজিটাল স্টুডিও"></div>
+<h1><img src="1791273060137.png" class="emoji-logo-big"> ভাস্কর ডিজিটাল <img src="1791273060137.png" class="emoji-logo-big"><br>স্টুডিওর প্রথম নিবেদন</h1>
+<div class="highlight-box"><img src="1791273060137.png" class="emoji-logo"> বিবেকের আলোক দর্শন <img src="1791273060137.png" class="emoji-logo"></div>
+</div>
+<div class="sun-wrap"><div class="sun"><img src="1791273060137.png" alt="logo"></div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 <div class="sec">
 <h2>আজকের কবিতা <span onclick="document.getElementById('a1').style.display=document.getElementById('a1').style.display=='block'?'none':'block'">সব দেখুন ›</span></h2>
@@ -57,16 +65,16 @@
 </div>
 <div id="myPoems" style="display:none"></div>
 <div class="grid10">
-<div class="door" data-cat="বেদের কথন"><div class="ico">🌿</div><div class="tit">বেদের কথন</div><div class="sub">বিভাগ ১</div></div>
-<div class="door" data-cat="মাতৃ সঙ্গীত"><div class="ico">☀️</div><div class="tit">মাতৃ সঙ্গীত</div><div class="sub">বিভাগ ২</div></div>
-<div class="door" data-cat="মেঘের আলাপ"><div class="ico">☁️</div><div class="tit">মেঘের আলাপ</div><div class="sub">বিভাগ ৩</div></div>
-<div class="door" data-cat="জ্যোৎস্না রাত"><div class="ico">🌙</div><div class="tit">জ্যোৎস্না রাত</div><div class="sub">বিভাগ ৪</div></div>
-<div class="door" data-cat="ফুলের বার্তা"><div class="ico">🪷</div><div class="tit">ফুলের বার্তা</div><div class="sub">বিভাগ ৫</div></div>
-<div class="door" data-cat="ভাবনার ভাঙা গড়া"><div class="ico">💭</div><div class="tit">ভাবনার ভাঙা গড়া</div><div class="sub">বিভাগ ৬</div></div>
-<div class="door" data-cat="প্রিয় কবিতা"><div class="ico">❤️</div><div class="tit">প্রিয় কবিতা</div><div class="sub">বিভাগ ৭</div></div>
-<div class="door" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-color:#FFAB40;"><div class="ico">📖</div><div class="tit">শীটের দরজা</div><div class="sub">৮ - গোপন 🔒</div></div>
-<div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div class="ico">🌅</div><div class="tit">শেষ কবিতা</div><div class="sub">৯ - পেজে শুধু ১টি শো</div></div>
-<div class="door site10" onclick="toggleSheet()"><div class="ico">🌐</div><div class="tit">সাইট টু সাইট</div><div class="sub">১০ - সাইটের ভিতর সাইট 👁️</div></div>
+<div class="door" data-cat="বেদের কথন"><div style="font-size:26px">🌿</div><div style="font-size:12px;font-weight:800">বেদের কথন</div><div style="font-size:9px;color:#777">বিভাগ ১</div></div>
+<div class="door" data-cat="মাতৃ সঙ্গীত"><div style="font-size:26px">☀️</div><div style="font-size:12px;font-weight:800">মাতৃ সঙ্গীত</div><div style="font-size:9px;color:#777">বিভাগ ২</div></div>
+<div class="door" data-cat="মেঘের আলাপ"><div style="font-size:26px">☁️</div><div style="font-size:12px;font-weight:800">মেঘের আলাপ</div><div style="font-size:9px;color:#777">বিভাগ ৩</div></div>
+<div class="door" data-cat="জ্যোৎস্না রাত"><div style="font-size:26px">🌙</div><div style="font-size:12px;font-weight:800">জ্যোৎস্না রাত</div><div style="font-size:9px;color:#777">বিভাগ ৪</div></div>
+<div class="door" data-cat="ফুলের বার্তা"><div style="font-size:26px">🪷</div><div style="font-size:12px;font-weight:800">ফুলের বার্তা</div><div style="font-size:9px;color:#777">বিভাগ ৫</div></div>
+<div class="door" data-cat="ভাবনার ভাঙা গড়া"><div style="font-size:26px">💭</div><div style="font-size:12px;font-weight:800">ভাবনার ভাঙা গড়া</div><div style="font-size:9px;color:#777">বিভাগ ৬</div></div>
+<div class="door" data-cat="প্রিয় কবিতা"><div style="font-size:26px">❤️</div><div style="font-size:12px;font-weight:800">প্রিয় কবিতা</div><div style="font-size:9px;color:#777">বিভাগ ৭</div></div>
+<div class="door" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-color:#FFAB40;"><div style="font-size:26px">📖</div><div style="font-size:12px;font-weight:800">শীটের দরজা</div><div style="font-size:9px">৮ - গোপন 🔒</div></div>
+<div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">শেষ কবিতা</div><div style="font-size:9px">৯ - পেজে শুধু ১টি শো</div></div>
+<div class="door site10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800;color:white">সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - সাইটের ভিতর সাইট 👁️</div></div>
 </div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
 <div style="margin-top:10px">
@@ -148,4 +156,5 @@ document.getElementById('searchBox').addEventListener('input',function(){ var va
 loadPoems();
 function openDirectAppDoor(){let p=prompt('🔒 শীটের দরজা পাসওয়ার্ড:'); if(p==='Biboswan @22'){ location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'; } else if(p!==null){ alert('❌ ভুল'); }}
 </script></body></html>
-🎈🎈🙏🙏🙏🙏♥️♥️♥️♥️🙏🙏🙏🙏🎈🎈
+ 
+ 
