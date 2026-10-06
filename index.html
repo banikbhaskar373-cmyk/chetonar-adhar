@@ -20,16 +20,19 @@
 .search input{flex:1;border:none;outline:none;font-size:14px;margin-left:6px}
 .sec{padding:10px}.sec h2{font-size:16px;display:flex;justify-content:space-between;margin:10px 0 8px}.sec h2 span{font-size:11px;color:#ff6a2a}
 .feat{background:linear-gradient(100deg,#ffb52e,#e94e9c);border-radius:14px;padding:12px;display:flex;justify-content:space-between;color:#fff;cursor:pointer}
-.pill{height:52px;display:flex;align-items:center;gap:10px;padding:0 14px;border-radius:30px!important;margin:6px 0;color:#fff;cursor:pointer}
-.pill b{font-size:14px}.pill small{font-size:11px;opacity:0.9;display:block}
 .poem-full{white-space:pre-line;font-size:14px;line-height:1.9;color:#222;background:#fffbe0;border:2px solid #ffd36a;border-radius:12px;padding:14px;margin:8px 0}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.in{background:linear-gradient(90deg,#5a5aff,#8a5aff)}
 .latest-box{background:white;border:2px solid #FFC107;border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 4px 12px rgba(255,193,7,0.2)}
 .latest-box h3{font-size:14px;color:#4A148C;display:flex;justify-content:space-between;align-items:center}
 .poem-text{white-space:pre-line;font-size:14.5px;line-height:1.9;margin-top:8px}
 .grid10{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.door{background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px #0001;border:1.5px solid #e9e9ff;cursor:pointer}
-.door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border-color:#7C4DFF}
+.door{border-radius:14px;padding:12px;text-align:center;box-shadow:0 4px 12px #0002;border:none;cursor:pointer;color:#fff;transition:transform 0.2s}
+.door:active{transform:scale(0.96)}
+.door div{color:#fff!important}
+.door small{color:#fff!important;opacity:0.9}
+.door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1.5px solid #7C4DFF;color:#4A148C}
+.door.latest10 div{color:#4A148C!important}
+.door.latest10 small{color:#6A1B9A!important}
 .door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
@@ -45,9 +48,9 @@
 <div class="header">
 <div class="logo-top"><img src="1791273060137.png" alt="ভাস্কর ডিজিটাল স্টুডিও"></div>
 <h1><span class="title-line"><img src="1791273060137.png" class="emoji-logo-big"> ভাস্কর ডিজিটাল <img src="1791273060137.png" class="emoji-logo-big"></span> স্টুডিওর প্রথম নিবেদন</h1>
- <div class="highlight-box"><img src="1791273060137.png" class="emoji-logo"> বিবেকের আলোক দর্শন <img src="1791273060137.png" class="emoji-logo"></div>
+<div class="highlight-box"><img src="1791273060137.png" class="emoji-logo"> বিবেকের আলোক দর্শন <img src="1791273060137.png" class="emoji-logo"></div>
 </div>
-<div class="sun-wrap"><div class="sun"><img src="1791286009054.png" alt="লেখক - বিবস্বান - পারফেক্ট সেন্টার"></div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
+<div class="sun-wrap"><div class="sun"><img src="1791286009054.png" alt="লেখক - বিবস্বান"></div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 <div class="sec">
 <h2>আজকের কবিতা <span onclick="document.getElementById('a1').style.display=document.getElementById('a1').style.display=='block'?'none':'block'">সব দেখুন ›</span></h2>
@@ -65,36 +68,36 @@
 <span class="badge-full">📖 সম্পূর্ণ - চালিয়ে যান বন্ধ</span>
 </div>
 <div id="myPoems" style="display:none"></div>
-<div class="grid10">
-<div class="door" data-cat="বেদের কথন"><div style="font-size:26px">🌿</div><div style="font-size:12px;font-weight:800">বেদের কথন</div><div style="font-size:9px;color:#777">বিভাগ ১</div></div>
-<div class="door" data-cat="মাতৃ সঙ্গীত"><div style="font-size:26px">☀️</div><div style="font-size:12px;font-weight:800">মাতৃ সঙ্গীত</div><div style="font-size:9px;color:#777">বিভাগ ২</div></div>
-<div class="door" data-cat="মেঘের আলাপ"><div style="font-size:26px">☁️</div><div style="font-size:12px;font-weight:800">মেঘের আলাপ</div><div style="font-size:9px;color:#777">বিভাগ ৩</div></div>
-<div class="door" data-cat="জ্যোৎস্না রাত"><div style="font-size:26px">🌙</div><div style="font-size:12px;font-weight:800">জ্যোৎস্না রাত</div><div style="font-size:9px;color:#777">বিভাগ ৪</div></div>
-<div class="door" data-cat="ফুলের বার্তা"><div style="font-size:26px">🪷</div><div style="font-size:12px;font-weight:800">ফুলের বার্তা</div><div style="font-size:9px;color:#777">বিভাগ ৫</div></div>
-<div class="door" data-cat="ভাবনার ভাঙা গড়া"><div style="font-size:26px">💭</div><div style="font-size:12px;font-weight:800">ভাবনার ভাঙা গড়া</div><div style="font-size:9px;color:#777">বিভাগ ৬</div></div>
-<div class="door" data-cat="প্রিয় কবিতা"><div style="font-size:26px">❤️</div><div style="font-size:12px;font-weight:800">প্রিয় কবিতা</div><div style="font-size:9px;color:#777">বিভাগ ৭</div></div>
-<div class="door" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-color:#FFAB40;"><div style="font-size:26px">📖</div><div style="font-size:12px;font-weight:800">শীটের দরজা</div><div style="font-size:9px">৮ - গোপন 🔒</div></div>
+
+ <div class="grid10">
+<div class="door g" data-cat="বেদের কথন" onclick="togglePoem('p1')"><div style="font-size:26px">🌿</div><div style="font-size:13px;font-weight:900">বেদের কথন</div><div style="font-size:10px">বিভাগ ১ • প্রকৃতি • ১২টি</div></div>
+<div class="door o" data-cat="মাতৃ সঙ্গীত" onclick="togglePoem('p2')"><div style="font-size:26px">☀️</div><div style="font-size:13px;font-weight:900">মাতৃ সঙ্গীত</div><div style="font-size:10px">বিভাগ ২ • মা • মোক্ষদায়ি</div></div>
+<div class="door b" data-cat="মেঘের আলাপ" onclick="togglePoem('p3')"><div style="font-size:26px">☁️</div><div style="font-size:13px;font-weight:900">মেঘের আলাপ</div><div style="font-size:10px">বিভাগ ৩ • প্রকৃতি • ১৫টি</div></div>
+<div class="door pu" data-cat="জ্যোৎস্না রাত" onclick="togglePoem('p4')"><div style="font-size:26px">🌙</div><div style="font-size:13px;font-weight:900">জ্যোৎস্না রাত</div><div style="font-size:10px">বিভাগ ৪ • রোমান্টিক • ১০টি</div></div>
+<div class="door pi" data-cat="ফুলের বার্তা" onclick="togglePoem('p5')"><div style="font-size:26px">🪷</div><div style="font-size:13px;font-weight:900">ফুলের বার্তা</div><div style="font-size:10px">বিভাগ ৫ • প্রেম • ১৪টি</div></div>
+<div class="door te" data-cat="ভাবনার ভাঙা গড়া" onclick="togglePoem('p6')"><div style="font-size:26px">💭</div><div style="font-size:13px;font-weight:900">ভাবনার ভাঙা গড়া</div><div style="font-size:10px">বিভাগ ৬ • চিন্তা • ১টি</div></div>
+<div class="door re" data-cat="প্রিয় কবিতা" onclick="togglePoem('p7')"><div style="font-size:26px">❤️</div><div style="font-size:13px;font-weight:900">প্রিয় কবিতা</div><div style="font-size:10px">বিভাগ ৭ • ভালোবাসা • ১টি</div></div>
+<div class="door" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1.5px solid #FFAB40;"><div style="font-size:26px;color:#E65100!important">📖</div><div style="font-size:12px;font-weight:800;color:#5D4037!important">শীটের দরজা</div><div style="font-size:9px;color:#8D6E63!important">৮ - গোপন 🔒</div></div>
 <div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">শেষ কবিতা</div><div style="font-size:9px">৯ - পেজে শুধু ১টি শো</div></div>
 <div class="door site10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800;color:white">সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - সাইটের ভিতর সাইট 👁️</div></div>
 </div>
+<div id="p1" class="poem-full" style="display:none">আমরা বাঙালি...</div>
+<div id="p2" class="poem-full" style="display:none">ও মা হাতে আমার দে না অসি...</div>
+<div id="p3" class="poem-full" style="display:none">ওঁম হরি ওঁম...</div>
+<div id="p4" class="poem-full" style="display:none">সময়ের লাঠি হাতে...</div>
+<div id="p5" class="poem-full" style="display:none">প্রাচীন আর বর্তমানে...</div>
+<div id="p6" class="poem-full" style="display:none">অবেলায় আজি...</div>
+<div id="p7" class="poem-full" style="display:none">আছো তুমি গাছে গাছে...</div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
-<div style="margin-top:10px">
-<div class="pill g" onclick="togglePoem('p1')"><div>🌿</div><div><b>🙏বেদের কথন🙏</b><small>প্রকৃতি • ১২টি</small></div></div><div id="p1" class="poem-full" style="display:none">আমরা বাঙালি...</div>
-<div class="pill o" onclick="togglePoem('p2')"><div>☀️</div><div><b>🙏 মাতৃ সঙ্গীত 🙏</b><small>মা • মোক্ষদায়ি</small></div></div><div id="p2" class="poem-full" style="display:none">ও মা হাতে আমার দে না অসি...</div>
-<div class="pill b" onclick="togglePoem('p3')"><div>☁️</div><div><b>মেঘের আলাপ</b><small>প্রকৃতি • ১৫টি</small></div></div><div id="p3" class="poem-full" style="display:none">ওঁম হরি ওঁম...</div>
-<div class="pill pu" onclick="togglePoem('p4')"><div>🌙</div><div><b>জ্যোৎস্না রাত</b><small>রোমান্টিক • ১০টি</small></div></div><div id="p4" class="poem-full" style="display:none">সময়ের লাঠি হাতে...</div>
-<div class="pill pi" onclick="togglePoem('p5')"><div>🪷</div><div><b>ফুলের বার্তা</b><small>প্রেম • ১৪টি</small></div></div><div id="p5" class="poem-full" style="display:none">প্রাচীন আর বর্তমানে...</div>
-<div class="pill te" onclick="togglePoem('p6')"><div>💭</div><div><b>ভাবনার ভাঙা গড়া</b><small>চিন্তা • ১টি</small></div></div><div id="p6" class="poem-full" style="display:none">অবেলায় আজি...</div>
-<div class="pill re" onclick="togglePoem('p7')"><div>❤️</div><div><b>প্রিয় কবিতা</b><small>ভালোবাসা • ১টি</small></div></div><div id="p7" class="poem-full" style="display:none">আছো তুমি গাছে গাছে...</div>
-</div>
 </div>
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div class="bi on"><div>🏠</div>হোম</div><div class="bi"><div>🤍</div>পছন্দ</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
+
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন... (চালিয়ে যান ছাড়া পুরোটা)"></textarea><button onclick="savePoem()">💾 সেভ করুন - শুধু শেষ ১টা শো হবে</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <div class="modal" id="allModal"><div class="modalBox" style="max-width:95%"><h3 id="allTitle" style="color:#4A148C"></h3><div id="allList"></div><button onclick="document.getElementById('allModal').classList.remove('active')" style="background:#eee;color:#333;margin-top:10px">বন্ধ</button></div></div>
 <script>
 const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
-function togglePoem(id){var el=document.getElementById(id); el.style.display=el.style.display=='block'?'none':'block';}
+function togglePoem(id){var el=document.getElementById(id); el.style.display=el.style.display=='block'?'none':'block'; if(el.style.display=='block') el.scrollIntoView({behavior:'smooth',block:'center'});}
 function toggleSheet(){var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});}
 let _allData=[], poems=[];
 function loadPoems(){
@@ -153,7 +156,8 @@ function editPoem(idx){
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে! এখন পেজে শুধু শেষ ১টাই দেখাবে।');}
-document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.pill,.door').forEach(function(el){ var b=el.querySelector('b')||el.querySelector('.tit'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'flex':'none'; }); });
+document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('div:nth-child(2)'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
 loadPoems();
 function openDirectAppDoor(){let p=prompt('🔒 শীটের দরজা পাসওয়ার্ড:'); if(p==='Biboswan @22'){ location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'; } else if(p!==null){ alert('❌ ভুল'); }}
-</script></body></html> ফাইনাল সুন্দর ♥️
+</script></body></html>
+ 
