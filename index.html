@@ -412,14 +412,54 @@ function openAllModal(){
  document.getElementById('allModal').classList.add('active');
 }
 function openEditLatest(){ if(poems.length==0) return; editPoem(_allData.length-1); }
+let currentEditIdx = null;
+
 function editPoem(idx){
- let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
- let po=_allData[idx]; let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return;
- let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return;
- let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
- localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
+ let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):');
+ if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
+ currentEditIdx = idx;
+ let po = _allData[idx];
+ document.getElementById('editTitle').value = po.title || po.t || '';
+ document.getElementById('editContent').value = po.text || po.c || '';
+ document.getElementById('editModal').classList.add('active');
+}
+function closeEditModal(){ document.getElementById('editModal').classList.remove('active'); }
+
+function saveEdit(){
+ let newTitle = document.getElementById('editTitle').value.trim();
+ let newContent = document.getElementById('editContent').value.trim();
+ if(!newTitle ||!newContent){ alert('শিরোনাম ও কবিতা লিখুন'); return; }
+ let oldPo = _allData[currentEditIdx];
+
+ _allData[currentEditIdx].title = newTitle; _allData[currentEditIdx].t = newTitle;
+ _allData[currentEditIdx].text = newContent; _allData[currentEditIdx].c = newContent;
+
+ let localList = JSON.parse(localStorage.getItem('myPoems')||'[]');
+ let isLocal = currentEditIdx >= sheetDataLength;
+ if(isLocal && localList[currentEditIdx-sheetDataLength]){
+   localList[currentEditIdx-sheetDataLength].title = newTitle;
+   localList[currentEditIdx-sheetDataLength].text = newContent;
+ } else {
+   localList = localList.filter(x=> (x.title||x.t)!== (oldPo.title||oldPo.t));
+   localList.push({title:newTitle,t:newTitle,text:newContent,c:newContent});
+ }
  localStorage.setItem('myPoems',JSON.stringify(localList));
- alert('✅ এডিট সেভ হয়েছে গুরুদেব! ✏️✨'); location.reload();
+
+ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',oldTitle:oldPo.title||oldPo.t,t:newTitle,c:newContent})});
+
+ closeEditModal();
+ alert('✅ এডিট হলো গুরুদেব! শীট + স্ক্রিন দুটোই');
+ loadPoems();
+}
+
+function deletePoem(idx){
+ let p=prompt('🔒 ডিলিট পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ return; }
+ if(!confirm('ডিলিট করবেন?')) return;
+ let po=_allData[idx];
+ let localList=JSON.parse(localStorage.getItem('myPoems')||'[]').filter(x=> (x.title||x.t)!== (po.title||po.t));
+ localStorage.setItem('myPoems',JSON.stringify(localList));
+ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',oldTitle:po.title||po.t})});
+ alert('🗑️ ডিলিট হলো'); loadPoems();
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
