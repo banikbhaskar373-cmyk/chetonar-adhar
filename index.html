@@ -425,16 +425,25 @@ function editPoem(idx){
    let li=idx-sheetDataLength; 
    if(myPoems[li]){ myPoems[li].title=newT; myPoems[li].t=newT; myPoems[li].text=newC; myPoems[li].c=newC; }
    localStorage.setItem('myPoems',JSON.stringify(myPoems));
- } else {
+let isLocal=idx>=sheetDataLength;
+if(isLocal){
+  let myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');
+  let li=idx-sheetDataLength;
+  if(myPoems[li]){ myPoems[li].title=newT; ... }
+  localStorage.setItem('myPoems',JSON.stringify(myPoems));
+} else {
+   // লোকালে সেভ
    let em=JSON.parse(localStorage.getItem('editedSheet')||'{}');
-   let originalKey=currentRaw;
-   for(let k in em){ if(em[k].title===currentRaw || k===currentRaw){ originalKey=k; break; } }
-   em[originalKey]={title:newT,text:newC};
+   em[currentRaw]={title:newT,text:newC};
    localStorage.setItem('editedSheet',JSON.stringify(em));
-   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',oldTitle:currentRaw,t:newT,c:newC})});
- }
- alert('✅ এডিট সেভ হয়েছে গুরুদেব! শীটেও গেছে ✨');
- loadPoems();
+   // শীটে সেভ
+   let sid = po.id || String(idx+1);
+   fetch(SHEET_URL,{
+     method:'POST',
+     mode:'no-cors',
+     headers:{'Content-Type':'text/plain'},
+     body:JSON.stringify({id: String(sid), title: newT, poem: newC})
+   });
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
