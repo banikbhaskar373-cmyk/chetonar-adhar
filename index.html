@@ -413,13 +413,28 @@ function openAllModal(){
 }
 function openEditLatest(){ if(poems.length==0) return; editPoem(_allData.length-1); }
 function editPoem(idx){
- let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
- let po=_allData[idx]; let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return;
- let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return;
- let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
- localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
- localStorage.setItem('myPoems',JSON.stringify(localList));
- alert('✅ এডিট সেভ হয়েছে গুরুদেব! ✏️✨'); location.reload();
+ let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return; }
+ let po=_allData[idx];
+ let currentRaw=(po.title||po.t||'').toString().trim();
+ let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return; newT=newT.trim(); if(!newT) return;
+ let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return; newC=newC.trim(); if(!newC) return;
+
+ // 1. লোকাল সেভ (আপনার ফোনে সঙ্গে সঙ্গে দেখাবে)
+ let myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');
+ let isLocal=idx>=sheetDataLength;
+ if(isLocal){
+   let li=idx-sheetDataLength; if(myPoems[li]){myPoems[li].title=newT; myPoems[li].t=newT; myPoems[li].text=newC; myPoems[li].c=newC;}
+   localStorage.setItem('myPoems',JSON.stringify(myPoems));
+ } else {
+   let em=JSON.parse(localStorage.getItem('editedSheet')||'{}');
+   let originalKey=currentRaw; for(let k in em){ if(em[k].title===currentRaw){ originalKey=k; break; } }
+   em[originalKey]={title:newT,text:newC}; 
+   if(originalKey!==currentRaw) delete em[currentRaw];
+   localStorage.setItem('editedSheet',JSON.stringify(em));
+   // 2. শীটে আপডেট পাঠানো (এটাই মিসিং ছিল)
+   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'edit',oldTitle:currentRaw,t:newT,c:newC})});
+ }
+ alert('✅ এডিট সেভ হয়েছে গুরুদেব! শীটেও আপডেট যাচ্ছে ✨'); loadPoems(); document.getElementById('allModal').classList.remove('active');
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
