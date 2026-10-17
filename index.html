@@ -266,7 +266,6 @@
 অকাল বোধের অহম গেরোয়
 উষ্ণায়নের করাল ছায়া।
 </div>
-
 <div id="p5" class="poem-full" style="display:none">
 🕊️🤝 অপরাজেয় 🤝🕊️
 
@@ -364,85 +363,161 @@
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন... (চালিয়ে যান ছাড়া পুরোটা)"></textarea><button onclick="savePoem()">💾 সেভ করুন - শুধু শেষ ১টা শো হবে</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <div class="modal" id="allModal"><div class="modalBox" style="max-width:95%"><h3 id="allTitle" style="color:#4A148C"></h3><div id="allList"></div><button onclick="document.getElementById('allModal').classList.remove('active')" style="background:#eee;color:#333;margin-top:10px">বন্ধ</button></div></div>
 
-<div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ডের কবিতা বদলান</h3><p id="cardEditInfo" style="font-size:12px;color:#666;margin-top:6px"></p><input id="cardTitleInput" placeholder="কার্ডের নাম (যেমন বেদের কথন)"><textarea id="cardPoemInput" rows="14" placeholder="এখানে নতুন কবিতা পেস্ট করুন"></textarea><button onclick="saveCardPoem()">✅ সেভ করুন</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828;font-size:12px">↩️ আগের কবিতায় ফিরুন</button></div></div>
+<div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ডের কবিতা বদলান</h3><p id="cardEditInfo" style="font-size:12px;color:#666;margin-top:6px"></p><input id="cardTitleInput" placeholder="কার্ডের নাম (যেমন বেদের কথন)"><textarea id="cardPoemInput" rows="14" placeholder="এখানে নতুন কবিতা পেস্ট করুন - ৭ দিন পর এটাই দেখাবে, কার্ড হালকা থাকবে"></textarea><button onclick="saveCardPoem()">✅ সেভ করুন - ৭ দিন পর আবার বদলাবেন</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828;font-size:12px">↩️ আগের কবিতায় ফিরুন</button></div></div>
+
 <script>
 const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
 function togglePoem(id){var el=document.getElementById(id); el.style.display=el.style.display=='block'?'none':'block'; if(el.style.display=='block') el.scrollIntoView({behavior:'smooth',block:'center'});}
 function toggleSheet(){var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});}
-let _allData=[], poems=[], sheetDataLength=0;
-function getMyPoems(){try{return JSON.parse(localStorage.getItem('myPoems')||'[]')}catch(e){return []}}
-function getEditedSheet(){try{return JSON.parse(localStorage.getItem('editedSheet')||'{}')}catch(e){return {}}}
-function getHiddenSheet(){try{return JSON.parse(localStorage.getItem('hiddenSheet')||'[]')}catch(e){return []}}
+let _allData=[], poems=[];
 function loadPoems(){
  function render(list){
-  let editedMap=getEditedSheet(); let hidden=getHiddenSheet();
-  let withEdit=list.map(po=>{let raw=(po.title||po.t||'').toString().trim(); if(editedMap[raw]){return {title:editedMap[raw].title,t:editedMap[raw].title,text:editedMap[raw].text,c:editedMap[raw].text}} return po;});
-  _allData=withEdit; let seen={}; let filtered=[];
-  for(let po of withEdit){let raw=(po.title||po.t||'').toString().trim(); if(!raw) continue; if(hidden.includes(raw)) continue; let low=raw.toLowerCase(); if(low.includes('চালিয়ে যান')||low.includes('continue')||low.includes('প্রধান দরজা')) continue; if(/^\d{10,}$/.test(raw)) continue; if(seen[raw]) continue; seen[raw]=1; filtered.push(po);}
-  poems=filtered; sheetDataLength=withEdit.length-getMyPoems().length; if(sheetDataLength<0) sheetDataLength=0;
+  _allData=list; poems=list;
+  let seen={}; let filtered=[];
+  for(let po of list){
+   let raw=(po.title||po.t||'').toString().trim(); if(!raw) continue;
+   let low=raw.toLowerCase(); if(low.includes('চালিয়ে যান')||low.includes('continue')||low.includes('প্রধান দরজা')) continue;
+   if(/^\d{10,}$/.test(raw)) continue;
+   if(seen[raw]) continue; seen[raw]=1; filtered.push(po);
+  }
   document.getElementById('count').innerText=filtered.length+' টি কবিতা';
   document.getElementById('totalBadge').innerText='মোট '+filtered.length+' টি';
-  if(filtered.length>0){let last=filtered[filtered.length-1]; document.getElementById('latestPoem').innerHTML='<b>❤️ '+ (last.title||last.t) +' ❤️</b><br><br>'+ (last.text||last.c||'');}else{document.getElementById('latestPoem').innerHTML='এখনও কবিতা নেই গুরুদেব';}
+  if(filtered.length>0){
+   let last=filtered[filtered.length-1];
+   document.getElementById('latestPoem').innerHTML='<b>❤️ '+ (last.title||last.t) +' ❤️</b><br><br>'+ (last.text||last.c||'');
+  } else {
+   document.getElementById('latestPoem').innerHTML='এখনও কবিতা নেই গুরুদেব';
+  }
  }
- let localList=getMyPoems(); fetch(SHEET_URL).then(r=>r.json()).then(data=>{let arr=Array.isArray(data)?data:[]; render(arr.concat(localList));}).catch(e=>{render(localList);});
+ let localList=[]; try{localList=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+ fetch(SHEET_URL).then(r=>r.json()).then(data=>{ let arr=Array.isArray(data)?data:[]; render(arr.concat(localList)); }).catch(e=>{ render(localList); });
 }
 function openAllModal(){
- let filtered=poems;
+ let seen={}; let filtered=[];
+ for(let po of _allData){
+  let raw=(po.title||po.t||'').toString().trim(); if(!raw) continue;
+  let low=raw.toLowerCase(); if(low.includes('চালিয়ে যান')) continue; if(seen[raw]) continue; seen[raw]=1; filtered.push(po);
+ }
  document.getElementById('allTitle').innerText='সব কবিতা - পুরো বই (১০ আলো) ('+filtered.length+')';
- let html=filtered.slice().reverse().map(po=>{let realIdx=_allData.indexOf(po); return `<div style="background:#FFF8E1;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #FFE082;"><div style="display:flex;justify-content:space-between;align-items:center;"><b style="color:#4A148C;">${po.title||po.t}</b><div style="display:flex;gap:6px;"><button onclick="editPoem(${realIdx})" style="width:38px;height:38px;border-radius:50%;border:0;background:linear-gradient(135deg,#FFEB3B,#FF9800);font-size:18px;">✏️</button><button onclick="deletePoem(${realIdx})" style="width:32px;height:32px;border-radius:50%;border:0;background:#FFEBEE;">🗑️</button></div></div><div style="white-space:pre-line;margin-top:8px;font-size:14px;line-height:1.9;">${po.text||po.c||''}</div></div>`;}).join('');
- document.getElementById('allList').innerHTML=html||'<p style="color:#888">নেই</p>'; document.getElementById('allModal').classList.add('active');
+ let html=filtered.slice().reverse().map((po,i)=>{
+  let realIdx=_allData.indexOf(po);
+  return `<div style="background:#FFF8E1;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #FFE082;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><b style="color:#4A148C;">${po.title||po.t}</b>
+  <div style="display:flex;gap:6px;">
+  <button onclick="editPoem(${realIdx})" style="width:38px;height:38px;border-radius:50%;border:0;background:linear-gradient(135deg,#FFEB3B,#FF9800);font-size:18px;">✏️</button>
+  <button onclick="deletePoem(${realIdx})" style="width:32px;height:32px;border-radius:50%;border:0;background:#FFEBEE;">🗑️</button>
+  </div></div>
+  <div style="white-space:pre-line;margin-top:8px;font-size:14px;line-height:1.9;">${po.text||po.c||''}</div>
+  <span style="font-size:10px;background:#EDE7F6;color:#4A148C;padding:3px 8px;border-radius:10px;margin-top:6px;display:inline-block">📖 সম্পূর্ণ - চালিয়ে যান বন্ধ</span></div>`;
+ }).join('');
+ document.getElementById('allList').innerHTML=html||'<p style="color:#888">নেই</p>';
+ document.getElementById('allModal').classList.add('active');
 }
-function openEditLatest(){ if(_allData.length==0) return; editPoem(_allData.length-1); }
+function openEditLatest(){ if(poems.length==0) return; editPoem(_allData.length-1); }
 function editPoem(idx){
  let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
- let po=_allData[idx];
- let currentRaw=(po.title||po.t||'').toString().trim();
- let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return; newT=newT.trim(); if(!newT) return;
- let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return; newC=newC.trim(); if(!newC) return;
- let myPoems=getMyPoems(); let isLocal=idx>=sheetDataLength;
- if(isLocal){
-   let li=idx-sheetDataLength;
-   if(myPoems[li]){myPoems[li].title=newT; myPoems[li].t=newT; myPoems[li].text=newC; myPoems[li].c=newC; localStorage.setItem('myPoems',JSON.stringify(myPoems));}
- } else {
-   let em=getEditedSheet();
-   let originalKey=currentRaw;
-   for(let k in em){ if(em[k].title===currentRaw){ originalKey=k; break; } }
-   em[originalKey]={title:newT,text:newC,date:new Date().toLocaleString('bn-BD')};
-   if(originalKey!==currentRaw) delete em[currentRaw];
-   localStorage.setItem('editedSheet',JSON.stringify(em));
- }
- alert('✅ এডিট সেভ হয়েছে গুরুদেব! ✏️✨'); loadPoems(); document.getElementById('allModal').classList.remove('active');
-}
-function deletePoem(idx){
- let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
- if(!confirm('ডিলিট করবেন?')) return;
- let po=_allData[idx]; let raw=(po.title||po.t||'').toString().trim();
- let myPoems=getMyPoems(); let isLocal=idx>=sheetDataLength;
- if(isLocal){myPoems.splice(idx-sheetDataLength,1); localStorage.setItem('myPoems',JSON.stringify(myPoems));}
- else{let h=getHiddenSheet(); if(!h.includes(raw)) h.push(raw); localStorage.setItem('hiddenSheet',JSON.stringify(h)); let em=getEditedSheet(); delete em[raw]; localStorage.setItem('editedSheet',JSON.stringify(em));}
- document.getElementById('allModal').classList.remove('active'); loadPoems();
+ let po=_allData[idx]; let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return;
+ let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return;
+ let localList=JSON.parse(localStorage.getItem('myPoems')||'[]');
+ localList.push({id:Date.now(),title:newT,t:newT,text:newC,c:newC});
+ localStorage.setItem('myPoems',JSON.stringify(localList));
+ alert('✅ এডিট সেভ হয়েছে গুরুদেব! ✏️✨'); location.reload();
 }
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
-function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=getMyPoems(); myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে!');}
-document.getElementById('searchBox').addEventListener('input',function(){var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none';});});
+function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে! এখন পেজে শুধু শেষ ১টাই দেখাবে।');}
+document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
 loadPoems();
 function openDirectAppDoor(){let p=prompt('🔒 শীটের দরজা পাসওয়ার্ড:'); if(p==='Biboswan @22'){ location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'; } else if(p!==null){ alert('❌ ভুল'); }}
-let currentEditId=null; const originalPoems={}; document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
-function loadCardEdits(){try{const saved=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); Object.keys(saved).forEach(pid=>{const el=document.getElementById(pid); if(el&&saved[pid].poem) el.innerHTML=saved[pid].poem;}); const savedDoors=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); Object.keys(savedDoors).forEach(did=>{const d=document.getElementById(did); if(d&&savedDoors[did].title) d.querySelector('.door-title').innerText=savedDoors[did].title;});}catch(e){}}
+
+// === কার্ডের কবিতা ৭ দিন পর পর বদল - গুরুদেবের জন্য শুধু এইটুকুই নতুন ===
+let currentEditId=null;
+const originalPoems={};
+document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
+
+function loadCardEdits(){
+  try{
+    const saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+    Object.keys(saved).forEach(pid=>{
+      const el=document.getElementById(pid);
+      if(el && saved[pid].poem){ el.innerHTML=saved[pid].poem; }
+    });
+    const savedDoors = JSON.parse(localStorage.getItem('bibhag_doors')||'{}');
+    Object.keys(savedDoors).forEach(did=>{
+      const d=document.getElementById(did);
+      if(d && savedDoors[did].title){ d.querySelector('.door-title').innerText=savedDoors[did].title; }
+    });
+  }catch(e){}
+}
 loadCardEdits();
-function editCardPoem(poemId){let p=prompt('🔒 কার্ড এডিট পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} currentEditId=poemId; const doorEl=document.querySelector(`[data-poem="${poemId}"]`); const poemEl=document.getElementById(poemId); document.getElementById('cardEditTitle').innerText='✏️ '+(doorEl?doorEl.querySelector('.door-title').innerText:poemId)+' - কবিতা বদলান'; const saved=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); document.getElementById('cardEditInfo').innerText='শেষ বদল: '+(saved[poemId]?.date||'কখনো বদলাননি'); document.getElementById('cardTitleInput').value=doorEl?doorEl.querySelector('.door-title').innerText:''; document.getElementById('cardPoemInput').value=poemEl.innerText.trim(); document.getElementById('cardEditModal').classList.add('active');}
-function saveCardPoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} const title=document.getElementById('cardTitleInput').value.trim(); const poemText=document.getElementById('cardPoemInput').value.trim(); if(!poemText){ alert('কবিতা লিখুন গুরুদেব'); return;} const poemId=currentEditId; let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); saves[poemId]={poem:poemText,date:new Date().toLocaleDateString('bn-BD')}; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(title){let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); const de=document.querySelector(`[data-poem="${poemId}"]`); dSaves[de.id]=dSaves[de.id]||{}; dSaves[de.id].title=title; localStorage.setItem('bibhag_doors',JSON.stringify(dSaves)); de.querySelector('.door-title').innerText=title;} document.getElementById(poemId).innerHTML=poemText; closeCardEdit(); alert('✅ গুরুদেব সেভ হয়ে গেছে!');}
-function closeCardEdit(){document.getElementById('cardEditModal').classList.remove('active');}
-function resetCardPoem(){if(!currentEditId) return; if(!confirm('আগের আসল কবিতায় ফিরে যাবেন?')) return; let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); delete saves[currentEditId]; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); document.getElementById(currentEditId).innerHTML=originalPoems[currentEditId]; closeCardEdit();}
+
+function editCardPoem(poemId){
+  let p=prompt('🔒 কার্ড এডিট পাসওয়ার্ড:');
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  currentEditId=poemId;
+  const doorEl=document.querySelector(`[data-poem="${poemId}"]`);
+  const poemEl=document.getElementById(poemId);
+  document.getElementById('cardEditTitle').innerText='✏️ '+(doorEl?doorEl.querySelector('.door-title').innerText:poemId)+' - কবিতা বদলান';
+  const saved=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+  document.getElementById('cardEditInfo').innerText='শেষ বদল: '+(saved[poemId]?.date || 'কখনো বদলাননি')+' | ৭ দিন পর নতুন দিন, কার্ড হালকা থাকবে';
+  document.getElementById('cardTitleInput').value=doorEl?doorEl.querySelector('.door-title').innerText:'';
+  document.getElementById('cardPoemInput').value=poemEl.innerText.trim();
+  document.getElementById('cardEditModal').classList.add('active');
+}
+function saveCardPoem(){
+  let p=prompt('🔓 সেভ পাসওয়ার্ড:');
+  if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
+  const title=document.getElementById('cardTitleInput').value.trim();
+  const poemText=document.getElementById('cardPoemInput').value.trim();
+  if(!poemText){ alert('কবিতা লিখুন গুরুদেব'); return; }
+  const poemId=currentEditId;
+  let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+  saves[poemId]={poem:poemText,date:new Date().toLocaleDateString('bn-BD')};
+  localStorage.setItem('bibhag_edits',JSON.stringify(saves));
+  if(title){
+    let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}');
+    const de=document.querySelector(`[data-poem="${poemId}"]`);
+    dSaves[de.id]=dSaves[de.id]||{};
+    dSaves[de.id].title=title;
+    localStorage.setItem('bibhag_doors',JSON.stringify(dSaves));
+    de.querySelector('.door-title').innerText=title;
+  }
+  document.getElementById(poemId).innerHTML=poemText;
+  closeCardEdit();
+  alert('✅ গুরুদেব সেভ হয়ে গেছে! কার্ড হালকা থাকলো, কবিতা বদলে গেলো। ৭ দিন পর আবার বদলাবেন।');
+}
+function closeCardEdit(){ document.getElementById('cardEditModal').classList.remove('active'); }
+function resetCardPoem(){
+  if(!currentEditId) return;
+  if(!confirm('আগের আসল কবিতায় ফিরে যাবেন?')) return;
+  let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+  delete saves[currentEditId];
+  localStorage.setItem('bibhag_edits',JSON.stringify(saves));
+  document.getElementById(currentEditId).innerHTML=originalPoems[currentEditId];
+  closeCardEdit();
+  alert('↩️ আগের কবিতায় ফিরে গেছে');
+}
 let pressTimer2=null;
 document.querySelectorAll('.door').forEach(door=>{
   if(!door.dataset.poem) return;
-  door.addEventListener('touchstart', e=>{pressTimer2=setTimeout(()=>{let p=prompt('🔒 কার্ড এডিট চালু করবেন?'); if(p==='Biboswan @22'){document.querySelectorAll('.door').forEach(d=>{if(d.dataset.poem) d.style.outline='3px dashed #FFEB3B'}); alert('✏️ এডিট মোড চালু! ১৫ সেকেন্ড থাকবে।'); setTimeout(()=>{document.querySelectorAll('.door').forEach(d=>d.style.outline='');},15000);}else if(p!==null) alert('❌ ভুল');},2500);});
+  door.addEventListener('touchstart', e=>{
+    pressTimer2=setTimeout(()=>{
+      let p=prompt('🔒 কার্ড এডিট চালু করবেন? পাসওয়ার্ড:');
+      if(p==='Biboswan @22'){
+        document.querySelectorAll('.door').forEach(d=>{ if(d.dataset.poem) d.classList.add('editing'); });
+        alert('✏️ এডিট মোড চালু! কার্ডে ✏️ বদলান দেখছেন, ওটাতে ক্লিক করে কবিতা বদলান। ১৫ সেকেন্ড থাকবে।');
+        setTimeout(()=>{ document.querySelectorAll('.door').forEach(d=>d.classList.remove('editing')); },15000);
+      } else if(p!==null) alert('❌ ভুল');
+    }, 2500);
+  });
   door.addEventListener('touchend', ()=> clearTimeout(pressTimer2));
-  door.addEventListener('click', e=>{if(door.classList.contains('editing')){e.stopPropagation(); editCardPoem(door.dataset.poem); return;} togglePoem(door.dataset.poem);});
+  door.addEventListener('click', e=>{
+    if(door.classList.contains('editing')){
+      e.stopPropagation();
+      editCardPoem(door.dataset.poem);
+      return;
+    }
+    togglePoem(door.dataset.poem);
+  });
 });
 </script></body></html>
-  
-  
-  
