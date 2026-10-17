@@ -445,7 +445,6 @@ if(isLocal){
      body:JSON.stringify({id: String(sid), title: newT, poem: newC})
    });
 }
-alert('✅ এডিট সেভ হয়েছে গুরুদেব! শীটেও গেছে ✨');
 function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে! এখন পেজে শুধু শেষ ১টাই দেখাবে।');}
