@@ -1,4 +1,3 @@
-
 <!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল স্টুডিও - ১০ দরজা</title>
 <link rel="icon" type="image/png" href="1791273060137.png">
 <style>
@@ -396,7 +395,8 @@ function openAllModal(){
 function openEditLatest(){ if(_allData.length==0) return; editPoem(_allData.length-1); }
 function editPoem(idx){
  let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return; }
- let po=_allData[idx]; let oldRaw=(po.title||po.t||'').toString().trim();
+ let po=_allData[idx];
+ let currentRaw=(po.title||po.t||'').toString().trim();
  let newT=prompt('✏️ নাম এডিট:',po.title||po.t); if(newT===null) return; newT=newT.trim(); if(!newT) return;
  let newC=prompt('✏️ কবিতা এডিট (পুরো):',po.text||po.c); if(newC===null) return; newC=newC.trim(); if(!newC) return;
  let myPoems=getMyPoems(); let isLocal=idx>=sheetDataLength;
@@ -404,7 +404,12 @@ function editPoem(idx){
    let li=idx-sheetDataLength;
    if(myPoems[li]){myPoems[li].title=newT; myPoems[li].t=newT; myPoems[li].text=newC; myPoems[li].c=newC; localStorage.setItem('myPoems',JSON.stringify(myPoems));}
  } else {
-   let em=getEditedSheet(); em[oldRaw]={title:newT,text:newC,date:new Date().toLocaleString('bn-BD')}; localStorage.setItem('editedSheet',JSON.stringify(em));
+   let em=getEditedSheet();
+   let originalKey=currentRaw;
+   for(let k in em){ if(em[k].title===currentRaw){ originalKey=k; break; } }
+   em[originalKey]={title:newT,text:newC,date:new Date().toLocaleString('bn-BD')};
+   if(originalKey!==currentRaw) delete em[currentRaw];
+   localStorage.setItem('editedSheet',JSON.stringify(em));
  }
  alert('✅ এডিট সেভ হয়েছে গুরুদেব! ✏️✨'); loadPoems(); document.getElementById('allModal').classList.remove('active');
 }
