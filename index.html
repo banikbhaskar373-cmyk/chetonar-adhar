@@ -156,10 +156,18 @@ function openModal(){let p=prompt('🔒 + বাটনের পাসওয়�
 function closeModal(){document.getElementById('modal').classList.remove('active');}
 function savePoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'add', t:title, c:text, title:title, poem:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); setTimeout(loadPoems,1200); alert('✅ সেভ হয়েছে!');}
 document.getElementById('searchBox').addEventListener('input',function(){ 
-  var val=this.value.toLowerCase().trim(); 
+  var raw=this.value.toLowerCase().trim();
+  var val=raw.replace(/\s+/g,'');
+  if(val.normalize) val=val.normalize('NFC');
   document.querySelectorAll('.door').forEach(function(el){ 
-    var txt=el.innerText.toLowerCase(); 
-    el.style.display=(val===''||txt.indexOf(val)>-1)?'':'none'; 
+    var tEl=el.querySelector('.door-title');
+    var title=(tEl?tEl.innerText:'').toLowerCase().replace(/\s+/g,'').trim();
+    if(title.normalize) title=title.normalize('NFC');
+    var shortVal = val.substring(0,4);
+    var match = (val==='' || title.indexOf(val)>-1 || title.indexOf(shortVal)>-1);
+    if(val.indexOf('স্বাধীন')>-1 && el.id==='door3') match=true;
+    if(val.indexOf('swadhin')>-1 && el.id==='door3') match=true;
+    el.style.display = match ? '' : 'none';
   }); 
   document.getElementById('sheetFrame').style.display='none';
 });
