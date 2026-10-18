@@ -152,8 +152,8 @@ let filtered = [];
 if(list.length > 0){
   filtered = [list[list.length-1]];
 }
-  document.getElementById('count').innerText=filtered.length+' টি কবিতা';
-  document.getElementById('totalBadge').innerText='মোট '+filtered.length+' টি';
+  document.getElementById('count').innerText=total poems+' টি কবিতা';
+  document.getElementById('totalBadge').innerText='মোট '+total poems+' টি';
   if(filtered.length>0){
    let last=filtered[filtered.length-1];
    document.getElementById('latestPoem').innerHTML='<b>❤️ '+ (last.title||last.t) +' ❤️</b><br><br>'+ (last.poem||last.text||last.c||'');
