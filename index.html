@@ -152,19 +152,21 @@ function render(list){
   }
 }
 function loadPoems(){
-  localStorage.removeItem('myPoems');
-  localStorage.removeItem('editedSheet');
-  fetch(SHEET_URL+'?t='+Date.now()+'&r='+Math.random(), {cache:'no-store'}).then(r=>r.json()).then(data=>{
+  fetch(SHEET_URL+'?t='+Date.now(), {cache:'no-store'}).then(r=>r.json()).then(data=>{
     let arr=Array.isArray(data)?data:[];
     let seen={}; let unique=[];
-    for(let po of arr){
-      let raw=(po.title||po.t||'').toString().trim(); if(!raw) continue;
-      if(seen[raw]) continue; seen[raw]=1; unique.push(po);
+    for(let po of arr){ let raw=(po.title||po.t||'').trim(); if(!raw||seen[raw]) continue; seen[raw]=1; unique.push(po); }
+    _allData=unique; sheetDataLength=unique.length;
+    _allDataForBook=unique;
+    document.getElementById('count').innerText='মোট '+unique.length+' টি';
+    document.getElementById('totalBadge').innerText='মোট '+unique.length+' টি';
+    if(unique.length>0){
+      let last=unique[unique.length-1];
+      document.getElementById('latestPoem').innerHTML='<b>❤️ '+(last.title||last.t)+' ❤️</b><br><br>'+(last.text||last.c||last.poem||'').replace(/\n/g,'<br>');
     }
-    sheetDataLength=unique.length;
-    render(unique);
   }).catch(e=>{});
 }
+let _allDataForBook=[];
 function openAllModal(){
   let filtered=getFiltered(_allData);
   document.getElementById('allTitle').innerText='সব কবিতা - পুরো বই ('+_allData.length+' টি) | ফিল্টার: '+filtered.length;
