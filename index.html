@@ -244,8 +244,21 @@ function deletePoem(idx){
  loadPoems();
 }
 
-function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল পাসওয়ার্ড'); return;} document.getElementById('modal').classList.add('active');}
+function openModal(){let p=prompt('🔒 + বাটনের পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
+function savePoem(){
+ let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;}
+ let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;}
+ let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){}
+ myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text,poem:text});
+ localStorage.setItem('myPoems',JSON.stringify(myPoems));
+ fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({title:title,poem:text})});
+ document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems();
+ alert('✅ সেভ হয়েছে! এখন পেজে শুধু শেষ ১টাই দেখাবে।');
+}
+document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
+loadPoems();
+function openDirectAppDoor(){let p=prompt('🔒 শীটের দরজা পাসওয়ার্ড:'); if(p==='Biboswan @22'){ location.href='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'; } else if(p!==null){ alert('❌ ভুল'); }}
  let currentEditId=null;
 const originalPoems={};
 document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
@@ -256,10 +269,6 @@ function loadCardEdits(){
     Object.keys(saved).forEach(pid=>{
       const el=document.getElementById(pid);
       if(el && saved[pid].poem){ el.innerHTML=saved[pid].poem; }
-   }
-document.getElementById('searchBox').addEventListener('input',function(){loadPoems(this.value)});
-loadPoems();
-function openDirectAppDoor(){let p=prompt('🔒 App Door পাসওয়ার্ড:'); if(p!=='Biboswan @22'){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('directAppDoor').classList.add('active');}
     });
     const savedDoors = JSON.parse(localStorage.getItem('bibhag_doors')||'{}');
     Object.keys(savedDoors).forEach(did=>{
