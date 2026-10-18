@@ -147,13 +147,11 @@ let _allData=[], poems=[], sheetDataLength=0;
 function loadPoems(){
  function render(list){
   _allData=list; poems=list;
-  let seen={}; let filtered=[];
-  for(let po of list){
-   let raw=(po.title||po.t||'').toString().trim(); if(!raw) continue;
-   let low=raw.toLowerCase(); if(low.includes('চালিয়ে যান')||low.includes('continue')||low.includes('প্রধান দরজা')) continue;
-   if(/^\d{10,}$/.test(raw)) continue;
-   if(seen[raw]) continue; seen[raw]=1; filtered.push(po);
-  }
+  let totalPoems = list.length;
+let filtered = [];
+if(list.length > 0){
+  filtered = [list[list.length-1]];
+}
   document.getElementById('count').innerText=filtered.length+' টি কবিতা';
   document.getElementById('totalBadge').innerText='মোট '+filtered.length+' টি';
   if(filtered.length>0){
