@@ -140,7 +140,7 @@
 <div class="modal" id="allModal"><div class="modalBox" style="max-width:95%"><h3 id="allTitle" style="color:#4A148C"></h3><div id="allList"></div><button onclick="document.getElementById('allModal').classList.remove('active')" style="background:#eee;color:#333;margin-top:10px">বন্ধ</button></div></div>
 <div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ডের কবিতা বদলান</h3><p id="cardEditInfo" style="font-size:12px;color:#666;margin-top:6px"></p><input id="cardTitleInput" placeholder="কার্ডের নাম"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ করুন</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <script>
-const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
+const SHEET_URL='https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPqZh4C6bNA0hf3e3gPEXFCdgHiapLotLp5A/exec'; 
 function togglePoem(id){var el=document.getElementById(id); el.style.display=el.style.display=='block'?'none':'block'; if(el.style.display=='block') el.scrollIntoView({behavior:'smooth',block:'center'});}
 function toggleSheet(){var f=document.getElementById('sheetFrame'); f.style.display=f.style.display=='none'?'block':'none'; if(f.style.display=='block') f.scrollIntoView({behavior:'smooth'});}
 let _allData=[], poems=[], sheetDataLength=0;
