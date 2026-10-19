@@ -256,13 +256,14 @@
 <div class="bottom"><div>🏠 হোম</div><div>🤍 পছন্দ</div><div>📚 লাইব্রেরী</div><div>👤 প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">💾 সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <script>
-// === FINAL LOCK - দুটো ফোনে এক দেখানোর গ্যারান্টি ===
+// === FINAL LOCK + EDIT/DELETE সব থাকবে ===
 (function(){
   try{
     let saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
     let hasShort = false;
     for(let k in saved){ if(saved[k].poem && saved[k].poem.length < 150) hasShort = true; }
     if(hasShort){
+      console.log('পুরনো ২ লাইন পাওয়া গেছে, মুছে দিলাম');
       localStorage.removeItem('bibhag_edits');
       localStorage.removeItem('bibhag_doors');
       localStorage.removeItem('seasonal_a1');
@@ -288,13 +289,59 @@ function loadPoems(){
     if(unique.length>0){ let last=unique[unique.length-1]; document.getElementById('latestPoem').innerHTML='<b>❤️ '+(last.title||last.t)+' ❤️</b><br><br>'+(last.text||last.c||'').replace(/\n/g,'<br>'); }
   }).catch(e=>{ document.getElementById('count').innerText='নেট চেক করুন'; });
 }
-function openDirectAppDoor(){ let p=prompt('🔒 শীটের দরজা:'); if(p===PASS){ let appLink='intent://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit#Intent;scheme=https;package=com.google.android.apps.docs.editors.sheets;end'; let webLink='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit'; try{ window.location.href=appLink; setTimeout(function(){ window.open(webLink,'_blank'); },1200); }catch(e){ window.open(webLink,'_blank'); } } else if(p!==null){ alert('❌ ভুল'); } }
-function loadCardEdits(){ /* লক করা হলো - আর পুরনো ২ লাইন লোড হবে না */ }
+function openEditLatest(){ if(_allData.length==0) return; let f=getFiltered(_allData); let last=f.length>0?f[f.length-1]:_allData[_allData.length-1]; editPoem(_allData.indexOf(last)); }
+function editPoem(idx){
+  let p=prompt('🔒 পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; }
+  let po=_allData[idx]; if(!po) return;
+  let newT=prompt('✏️ নাম:',po.title||po.t); if(newT===null) return;
+  let newC=prompt('✏️ কবিতা:',po.text||po.c||''); if(newC===null) return;
+  let sid=po.id||String(idx+1);
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'edit', id:String(sid), title:newT, poem:newC, oldTitle:(po.title||po.t)})});
+  po.title=newT; po.t=newT; po.text=newC; loadPoems(); alert('✅ আপডেট!');
+}
 function openModal(){let p=prompt('🔒 + বাটন:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
 function savePoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'add', t:title, c:text, title:title, poem:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); setTimeout(loadPoems,1200); alert('✅ সেভ!');}
-document.getElementById('searchBox').addEventListener('input',function(){ var raw=this.value.toLowerCase().trim(); var val=raw.replace(/\s+/g,''); document.querySelectorAll('.door').forEach(function(el){ var tEl=el.querySelector('.door-title'); var title=(tEl?tEl.innerText:'').toLowerCase().replace(/\s+/g,'').trim(); var shortVal = val.substring(0,4); var match = (val==='' || title.indexOf(val)>-1 || title.indexOf(shortVal)>-1); el.style.display = match ? '' : 'none'; }); });
-document.querySelectorAll('.door').forEach(door=>{ if(!door.dataset.poem) return; door.addEventListener('click', e=>{ togglePoem(door.dataset.poem); }); });
-loadCardEdits(); loadPoems();
+document.getElementById('searchBox').addEventListener('input',function(){ var raw=this.value.toLowerCase().trim(); var val=raw.replace(/\s+/g,''); document.querySelectorAll('.door').forEach(function(el){ var tEl=el.querySelector('.door-title'); var title=(tEl?tEl.innerText:'').toLowerCase().replace(/\s+/g,'').trim(); var match = (val==='' || title.indexOf(val)>-1); el.style.display = match ? '' : 'none'; }); });
+function openDirectAppDoor(){ let p=prompt('🔒 শীটের দরজা:'); if(p===PASS){ let webLink='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit'; window.open(webLink,'_blank'); } else if(p!==null){ alert('❌ ভুল'); } }
+function editSeasonal(){ let p=prompt('🔒 সিজনাল:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } document.getElementById('seasonalPoem').value=document.getElementById('a1').innerText.trim(); document.getElementById('seasonalModal').classList.add('active'); }
+function saveSeasonal(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } let txt=document.getElementById('seasonalPoem').value.trim(); if(!txt) return; document.getElementById('a1').innerHTML=txt; localStorage.setItem('seasonal_a1', txt); closeSeasonal(); alert('✅ সিজনাল সেভ!'); }
+function closeSeasonal(){ document.getElementById('seasonalModal').classList.remove('active'); }
+function resetSeasonal(){ if(!confirm('আগের কবিতায় ফিরবেন?')) return; localStorage.removeItem('seasonal_a1'); if(originalPoems['a1']) document.getElementById('a1').innerHTML=originalPoems['a1']; closeSeasonal(); }
+function loadSeasonal(){ try{ let s=localStorage.getItem('seasonal_a1'); if(s) document.getElementById('a1').innerHTML=s; }catch(e){} }
+
+// কার্ড এডিট/ডিলিট - এখন ১৫০ অক্ষরের নিচে হলে আর সেভ হবে না, তাই ২ লাইন আটকাবে না
+function loadCardEdits(){ 
+  try{ 
+    const saved=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); 
+    Object.keys(saved).forEach(pid=>{ 
+      const el=document.getElementById(pid); 
+      if(el && saved[pid].poem && saved[pid].poem.length > 150) el.innerHTML=saved[pid].poem; 
+    }); 
+    const savedDoors=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); 
+    Object.keys(savedDoors).forEach(did=>{ 
+      const d=document.getElementById(did); 
+      if(d&&savedDoors[did].title){ 
+        let t=d.querySelector('.door-title'); 
+        if(t) t.innerText=savedDoors[did].title; 
+      } 
+    }); 
+  }catch(e){} 
+}
+let currentEditId=null;
+function editCardPoem(poemId){ let p=prompt('🔒 কার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } currentEditId=poemId; const doorEl=document.querySelector(`[data-poem="${poemId}"]`); document.getElementById('cardTitleInput').value=doorEl?doorEl.querySelector('.door-title').innerText:''; document.getElementById('cardPoemInput').value=document.getElementById(poemId)?document.getElementById(poemId).innerText.trim():''; document.getElementById('cardEditModal').classList.add('active');}
+function saveCardPoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } const title=document.getElementById('cardTitleInput').value.trim(); const poemText=document.getElementById('cardPoemInput').value.trim(); if(!poemText || poemText.length < 100){ alert('❌ কবিতা খুব ছোট, অন্তত ৫ লাইন লিখুন - নাহলে ২ লাইনে আটকে যাবে'); return; } let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); saves[currentEditId]={poem:poemText}; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(title){ let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); const de=document.querySelector(`[data-poem="${currentEditId}"]`); if(de){ dSaves[de.id]=dSaves[de.id]||{}; dSaves[de.id].title=title; localStorage.setItem('bibhag_doors',JSON.stringify(dSaves)); de.querySelector('.door-title').innerText=title; } } if(document.getElementById(currentEditId)) document.getElementById(currentEditId).innerHTML=poemText; closeCardEdit(); alert('✅ সেভ! এখন সব ফোনে একই দেখাবে');}
+function closeCardEdit(){ document.getElementById('cardEditModal').classList.remove('active'); }
+function resetCardPoem(){ if(!currentEditId) return; if(!confirm('আগের সম্পূর্ণ কবিতায় ফিরবেন?')) return; let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); delete saves[currentEditId]; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(originalPoems[currentEditId]) document.getElementById(currentEditId).innerHTML=originalPoems[currentEditId]; closeCardEdit(); }
+let pressTimer2=null;
+document.querySelectorAll('.door').forEach(door=>{
+  if(!door.dataset.poem) return;
+  door.addEventListener('touchstart', e=>{ pressTimer2=setTimeout(()=>{ let p=prompt('🔒 কার্ড এডিট চালু?'); if(p===PASS){ document.querySelectorAll('.door').forEach(d=>{ if(d.dataset.poem) d.classList.add('editing'); }); alert('✏️ এডিট মোড ১৫ সেকেন্ড - কার্ডে টাচ করুন'); setTimeout(()=>{ document.querySelectorAll('.door').forEach(d=>d.classList.remove('editing')); },15000); } },2000); });
+  door.addEventListener('touchend', ()=> clearTimeout(pressTimer2));
+  door.addEventListener('click', e=>{ if(door.classList.contains('editing')){ e.stopPropagation(); editCardPoem(door.dataset.poem); return; } togglePoem(door.dataset.poem); });
+});
+loadCardEdits(); loadSeasonal(); loadPoems();
 </script>
+<div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ড বদলান</h3><input id="cardTitleInput" placeholder="কার্ডের নাম"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828">↩️ সম্পূর্ণ কবিতায় ফিরুন</button></div></div>
+<div class="modal" id="seasonalModal"><div class="modalBox"><h3>✏️ সিজনাল এডিট</h3><textarea id="seasonalPoem" rows="12"></textarea><button onclick="saveSeasonal()">✅ সেভ</button><button onclick="closeSeasonal()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetSeasonal()" style="background:#FFEBEE;color:#C62828">↩️ ফিরুন</button></div></div>
 </body></html>
