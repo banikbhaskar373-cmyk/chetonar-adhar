@@ -39,9 +39,10 @@
 <div class="sun-wrap"><div class="sun"><img src="1791363273561.png"></div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
 <div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div>
 </div>
-<div style="text-align:center;margin:12px;padding:10px;background:#e8f5e9;border:2px dashed #4A148C;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px">
+
+  <div style="text-align:center;margin:12px;padding:10px;background:#e8f5e9;border:2px dashed #4A148C;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px">
 <img src="1791458979672.png" style="width:72px;height:72px;border-radius:50%;background:gold;padding:4px">
-<a href="https://banikbhaskar373-cmyk.github.io/Bhaskar-qr-studio/?v=2" target="_blank" style="color:#4A148C;font-weight:bold;text-decoration:none">আমার দোকানে<br>আসুন - QR Studio</a>
+<a href="https://banikbhaskar373-cmyk.github.io/Bhaskar-qr-studio/?v=2" target="_blank" style="color:#4A148C;font-weight:bold;text-decoration:none;font-size:15px">আমার দোকানে<br>আসুন - QR Studio</a>
 <img src="1791458979672.png" style="width:72px;height:72px;border-radius:50%;background:gold;padding:4px">
 </div>
 <div class="sec">
@@ -51,7 +52,11 @@
 শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া 
 বাতাসে তার মাতাল করা গন্ধ ভাসে,
 সুদূর নীলে মেঘের বরণ পেঁজা তুলো
-দূগ্গা মায়ের আগমনী কর্ণে আসে।</div>
+দূগ্গা মায়ের আগমনী কর্ণে আসে।
+শিউলি কিন্তু এই শরতে ফুলের রাণী
+জুঁই, মালতী শরৎ শশীর সাথে হাসে
+এমন সময় খুশির জোয়ার কাশের বনে
+ঢাকের তালে মন দোলে এই আশ্বিন মাসে।</div>
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div class="latest-box" id="latestBox">
 <h3><span>🌅 সর্বশেষ কবিতা</span><span id="totalBadge" style="background:#FFC107;color:#4A148C;padding:3px 8px;border-radius:10px;font-size:10px;margin-left:6px">0 টি</span></h3>
@@ -67,9 +72,9 @@
 <div class="door re" id="door7" data-poem="p7"><span class="edit-badge">✏️</span><div style="font-size:26px">❤️</div><div class="door-title" style="font-size:13px;font-weight:900">প্রিয় কবিতা</div><div style="font-size:10px">বিভাগ ৭</div></div>
 <div class="door" id="door8" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1.5px solid #FFAB40;"><div style="font-size:26px">📖</div><div class="door-title" style="font-size:12px;font-weight:800;color:#5D4037!important">শীটের দরজা</div><div style="font-size:9px;color:#8D6E63!important">৮ - গোপন 🔒</div></div>
 <div class="door latest10" id="door9" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div class="door-title" style="font-size:12px;font-weight:800;color:#4A148C">শেষ কবিতা</div><div style="font-size:9px;color:#666">৯ - পেজে শুধু ১টি শো</div></div>
-<div class="door site10" id="door10" onclick="window.open('https://banikbhaskar373-cmyk.github.io/chetonar-adhar/','_blank')"><div style="font-size:26px">🌐</div><div class="door-title" style="font-size:12px;font-weight:800;color:white">চেতনার আধার</div><div style="font-size:9px;color:white">১০ - সাইট টু সাইট 👁️</div></div>
+<div class="door site10" id="door10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div class="door-title" style="font-size:12px;font-weight:800;color:white">সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - সাইটের ভিতর সাইট 👁️</div></div>
 </div>
-<div id="p1" class="poem-full" contenteditable="true" style="display:none">🙏♥️ শ্রুতি নাদ ♥️🙏
+<div id="p1" class="poem-full" contenteditable ="true" style="display:none">🙏♥️ শ্রুতি নাদ ♥️🙏
 শব্দ নিত্য সত্য বেদান্ত কয়
 চিতার আগুনে পুড়ে গেলে গুরু
 শ্রুতির স্মৃতি কথা শিষ্য যে বয়
@@ -251,21 +256,22 @@
 <div class="addBtn" onclick="openModal()">+</div>
 <div class="bottom"><div>🏠 হোম</div><div>🤍 পছন্দ</div><div>📚 লাইব্রেরী</div><div>👤 প্রোফাইল</div></div>
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা যোগ করুন</h3><input id="t" placeholder="কবিতার নাম"><textarea id="c" rows="6" placeholder="কবিতা লিখুন..."></textarea><button onclick="savePoem()">💾 সেভ করুন</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
-<div class="modal" id="cardEditModal"><div class="modalBox"><h3>✏️ কার্ড বদলান</h3><input id="cardTitleInput" placeholder="কার্ডের নাম"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828">↩️ সম্পূর্ণ কবিতায় ফিরুন</button></div></div>
-<div class="modal" id="seasonalModal"><div class="modalBox"><h3>✏️ সিজনাল এডিট</h3><textarea id="seasonalPoem" rows="12"></textarea><button onclick="saveSeasonal()">✅ সেভ</button><button onclick="closeSeasonal()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetSeasonal()" style="background:#FFEBEE;color:#C62828">↩️ ফিরুন</button></div></div>
 <script>
+// === FINAL LOCK + EDIT/DELETE সব থাকবে ===
 (function(){
   try{
     let saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
     let hasShort = false;
     for(let k in saved){ if(saved[k].poem && saved[k].poem.length < 150) hasShort = true; }
     if(hasShort){
+      console.log('পুরনো ২ লাইন পাওয়া গেছে, মুছে দিলাম');
       localStorage.removeItem('bibhag_edits');
       localStorage.removeItem('bibhag_doors');
       localStorage.removeItem('seasonal_a1');
     }
   }catch(e){ localStorage.removeItem('bibhag_edits'); localStorage.removeItem('bibhag_doors'); }
 })();
+
 const SHEET_URL='https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec';
 const PASS='Biboswan @22';
 let _allData=[];
@@ -284,17 +290,28 @@ function loadPoems(){
     if(unique.length>0){ let last=unique[unique.length-1]; document.getElementById('latestPoem').innerHTML='<b>❤️ '+(last.title||last.t)+' ❤️</b><br><br>'+(last.text||last.c||'').replace(/\n/g,'<br>'); }
   }).catch(e=>{ document.getElementById('count').innerText='নেট চেক করুন'; });
 }
-// === আসল শীট - পাসওয়ার্ড সহ লক ===
-function openDirectAppDoor(){ let p=prompt('🔒 শীটের দরজা - পাসওয়ার্ড দিন:'); if(p===PASS){ let webLink='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit'; window.open(webLink,'_blank'); } else if(p!==null){ alert('❌ ভুল পাসওয়ার্ড - চোরদের জন্য বন্ধ 🔒'); } }
+function openEditLatest(){ if(_allData.length==0) return; let f=getFiltered(_allData); let last=f.length>0?f[f.length-1]:_allData[_allData.length-1]; editPoem(_allData.indexOf(last)); }
+function editPoem(idx){
+  let p=prompt('🔒 পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; }
+  let po=_allData[idx]; if(!po) return;
+  let newT=prompt('✏️ নাম:',po.title||po.t); if(newT===null) return;
+  let newC=prompt('✏️ কবিতা:',po.text||po.c||''); if(newC===null) return;
+  let sid=po.id||String(idx+1);
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'edit', id:String(sid), title:newT, poem:newC, oldTitle:(po.title||po.t)})});
+  po.title=newT; po.t=newT; po.text=newC; loadPoems(); alert('✅ আপডেট!');
+}
 function openModal(){let p=prompt('🔒 + বাটন:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
 function savePoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'add', t:title, c:text, title:title, poem:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); setTimeout(loadPoems,1200); alert('✅ সেভ!');}
 document.getElementById('searchBox').addEventListener('input',function(){ var raw=this.value.toLowerCase().trim(); var val=raw.replace(/\s+/g,''); document.querySelectorAll('.door').forEach(function(el){ var tEl=el.querySelector('.door-title'); var title=(tEl?tEl.innerText:'').toLowerCase().replace(/\s+/g,'').trim(); var match = (val==='' || title.indexOf(val)>-1); el.style.display = match ? '' : 'none'; }); });
+function openDirectAppDoor(){ let p=prompt('🔒 শীটের দরজা:'); if(p===PASS){ let webLink='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit'; window.open(webLink,'_blank'); } else if(p!==null){ alert('❌ ভুল'); } }
 function editSeasonal(){ let p=prompt('🔒 সিজনাল:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } document.getElementById('seasonalPoem').value=document.getElementById('a1').innerText.trim(); document.getElementById('seasonalModal').classList.add('active'); }
 function saveSeasonal(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } let txt=document.getElementById('seasonalPoem').value.trim(); if(!txt) return; document.getElementById('a1').innerHTML=txt; localStorage.setItem('seasonal_a1', txt); closeSeasonal(); alert('✅ সিজনাল সেভ!'); }
 function closeSeasonal(){ document.getElementById('seasonalModal').classList.remove('active'); }
 function resetSeasonal(){ if(!confirm('আগের কবিতায় ফিরবেন?')) return; localStorage.removeItem('seasonal_a1'); if(originalPoems['a1']) document.getElementById('a1').innerHTML=originalPoems['a1']; closeSeasonal(); }
 function loadSeasonal(){ try{ let s=localStorage.getItem('seasonal_a1'); if(s) document.getElementById('a1').innerHTML=s; }catch(e){} }
+
+// কার্ড এডিট/ডিলিট - এখন ১৫০ অক্ষরের নিচে হলে আর সেভ হবে না, তাই ২ লাইন আটকাবে না
 function loadCardEdits(){ 
   try{ 
     const saved=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); 
@@ -314,7 +331,7 @@ function loadCardEdits(){
 }
 let currentEditId=null;
 function editCardPoem(poemId){ let p=prompt('🔒 কার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } currentEditId=poemId; const doorEl=document.querySelector(`[data-poem="${poemId}"]`); document.getElementById('cardTitleInput').value=doorEl?doorEl.querySelector('.door-title').innerText:''; document.getElementById('cardPoemInput').value=document.getElementById(poemId)?document.getElementById(poemId).innerText.trim():''; document.getElementById('cardEditModal').classList.add('active');}
-function saveCardPoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } const title=document.getElementById('cardTitleInput').value.trim(); const poemText=document.getElementById('cardPoemInput').value.trim(); if(!poemText || poemText.length < 100){ alert('❌ কবিতা খুব ছোট, অন্তত ৫ লাইন লিখুন'); return; } let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); saves[currentEditId]={poem:poemText}; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(title){ let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); const de=document.querySelector(`[data-poem="${currentEditId}"]`); if(de){ dSaves[de.id]=dSaves[de.id]||{}; dSaves[de.id].title=title; localStorage.setItem('bibhag_doors',JSON.stringify(dSaves)); de.querySelector('.door-title').innerText=title; } } if(document.getElementById(currentEditId)) document.getElementById(currentEditId).innerHTML=poemText; closeCardEdit(); alert('✅ সেভ!');}
+function saveCardPoem(){ let p=prompt('🔓 সেভ:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } const title=document.getElementById('cardTitleInput').value.trim(); const poemText=document.getElementById('cardPoemInput').value.trim(); if(!poemText || poemText.length < 100){ alert('❌ কবিতা খুব ছোট, অন্তত ৫ লাইন লিখুন - নাহলে ২ লাইনে আটকে যাবে'); return; } let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); saves[currentEditId]={poem:poemText}; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(title){ let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); const de=document.querySelector(`[data-poem="${currentEditId}"]`); if(de){ dSaves[de.id]=dSaves[de.id]||{}; dSaves[de.id].title=title; localStorage.setItem('bibhag_doors',JSON.stringify(dSaves)); de.querySelector('.door-title').innerText=title; } } if(document.getElementById(currentEditId)) document.getElementById(currentEditId).innerHTML=poemText; closeCardEdit(); alert('✅ সেভ! এখন সব ফোনে একই দেখাবে');}
 function closeCardEdit(){ document.getElementById('cardEditModal').classList.remove('active'); }
 function resetCardPoem(){ if(!currentEditId) return; if(!confirm('আগের সম্পূর্ণ কবিতায় ফিরবেন?')) return; let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); delete saves[currentEditId]; localStorage.setItem('bibhag_edits',JSON.stringify(saves)); if(originalPoems[currentEditId]) document.getElementById(currentEditId).innerHTML=originalPoems[currentEditId]; closeCardEdit(); }
 let pressTimer2=null;
@@ -326,8 +343,6 @@ document.querySelectorAll('.door').forEach(door=>{
 });
 loadCardEdits(); loadSeasonal(); loadPoems();
 </script>
+<div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ড বদলান</h3><input id="cardTitleInput" placeholder="কার্ডের নাম"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828">↩️ সম্পূর্ণ কবিতায় ফিরুন</button></div></div>
+<div class="modal" id="seasonalModal"><div class="modalBox"><h3>✏️ সিজনাল এডিট</h3><textarea id="seasonalPoem" rows="12"></textarea><button onclick="saveSeasonal()">✅ সেভ</button><button onclick="closeSeasonal()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetSeasonal()" style="background:#FFEBEE;color:#C62828">↩️ ফিরুন</button></div></div>
 </body></html>
-  
-  
-  
-  
