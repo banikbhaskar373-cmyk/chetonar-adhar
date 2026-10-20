@@ -98,8 +98,16 @@
 function checkSheetPass(){
   var p=prompt('🔒 শীটের পাসওয়ার্ড দিন:');
   if(p===null) return false;
-  if(p.trim()==='Biboswan @22'){ return true; }
-  else{ alert('❌ ভুল পাসওয়ার্ড! চোর ঢুকতে পারবে না!'); return false; }
+  // পাসওয়ার্ড আর লিঙ্ক দুটোই এনক্রিপ্ট করে বাঁধা আছে
+  var realPass = atob('Qmlib3N3YW4gQDIy'); // Biboswan @22
+  var realLink = atob('aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMU43UHRDVHVQZjBCM0REREpHZ0JCMjU4bThyZGUzMUpKNmVjQnRqRlQwUE5RL2VkaXQ/dXNwPXNoYXJpbmc=');
+  if(p.trim()===realPass){
+    window.open(realLink,'_blank');
+    return false;
+  }else{
+    alert('❌ ভুল পাসওয়ার্ড! চোর ধরা পড়েছে!');
+    return false;
+  }
 }
 </script>
 <div class="door latest10" id="door9" onclick="scrollToLatest()"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">৯. সর্বশেষ লোড - ১টি</div><div style="font-size:9px">৯ - তালা নেই, খোলা</div></div>
