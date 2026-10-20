@@ -98,7 +98,19 @@
 </div>
 </div>
 </a>
-
+<!-- প্রধান দরজা - তালা বন্ধ -->
+<a id="mainDoor" href="#" onclick="return lockMainDoor()" class="door" style="position:relative">
+  <div style="position:absolute;top:8px;left:8px;background:#000;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center">🔒</div>
+  প্রধান দরজা
+</a>
+<script>
+function lockMainDoor(){
+  var p = prompt('প্রধান দরজার পাসওয়ার্ড:');
+  if(p==='Biboswan @22') return true;
+  alert('ভুল পাসওয়ার্ড');
+  return false;
+}
+</script>
 <div class="door latest10" id="door9" onclick="scrollToLatest()"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">৯. সর্বশেষ লোড - ১টি</div><div style="font-size:9px">৯ - তালা নেই, খোলা</div></div>
 <div class="door site10" id="door10" onclick="toggleSheetOpen()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800;color:white">১০. সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - খোলা (তালা নেই) 👁️</div></div>
  </div>
