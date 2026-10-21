@@ -70,13 +70,28 @@
 <div class="door pi" id="door5" data-poem="p5"><span class="edit-badge">✏️</span><div style="font-size:26px">🕊️</div><div class="door-title" style="font-size:13px;font-weight:900">মানবতার বার্তা</div><div style="font-size:10px">বিভাগ ৫</div></div>
 <div class="door te" id="door6" data-poem="p6"><span class="edit-badge">✏️</span><div style="font-size:26px">💭</div><div class="door-title" style="font-size:13px;font-weight:900">ভাবনার ভাঙা গড়া</div><div style="font-size:10px">বিভাগ ৬</div></div>
 <div class="door re" id="door7" data-poem="p7"><span class="edit-badge">✏️</span><div style="font-size:26px">❤️</div><div class="door-title" style="font-size:13px;font-weight:900">প্রিয় কবিতা</div><div style="font-size:10px">বিভাগ ৭</div></div>
-<!-- গুগুল শীটের প্রধান দরজা - ফাইনাল লিঙ্ক -->
-<a id="sheetDoorLink" href="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing" target="_blank" style="text-decoration:none;display:block;margin:12px 10px">
-<div style="height:58px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px;background:linear-gradient(90deg,#2d7bff,#5a9bff);color:#fff">
-  <div>🔒</div>
-  <div><b style="color:#fff">সরাসরি শীটে যান - নতুন দরজা</b><br><small style="color:#fff">শুধু আপনার জন্য - 100% খুলবে</small></div>
+<!-- ঠিক ডিজাইন - ভাঙবে না - আসল ঘর -->
+<a id="sheetDoorLink" href="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing" style="text-decoration:none;display:block;margin:12px 10px" onclick="return checkSheetPass(event)">
+<div style="min-height:58px;height:auto;display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:30px;background:linear-gradient(90deg,#2d7bff,#5a9bff);color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.2);border:2px solid #fff">
+  <div style="font-size:22px;flex-shrink:0">🔒</div>
+  <div style="line-height:1.2">
+    <b style="color:#fff;font-size:15px;display:block">সরাসরি শীটে যান - নতুন দরজা</b>
+    <small style="color:#FFEB3B;font-size:12px">শুধু আপনার জন্য - 100% খুলবে</small>
+  </div>
 </div>
 </a>
+
+<script>
+function _gp(){return atob('Qmlib3N3YW4gQDIy');}
+const REAL_SHEET='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';
+function checkSheetPass(e){
+  e.preventDefault(); e.stopPropagation();
+  let p=prompt('🔒 আসল ঘর - পাসওয়ার্ড:');
+  if(p===_gp()){window.open(REAL_SHEET,'_blank');return false;}
+  if(p!==null) alert('❌ ভুল পাসওয়ার্ড!');
+  return false;
+}
+</script>
 <div class="door latest10" id="door9" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div class="door-title" style="font-size:12px;font-weight:800;color:#4A148C">শেষ কবিতা</div><div style="font-size:9px;color:#666">৯ - পেজে শুধু ১টি শো</div></div>
 <div class="door site10" id="door10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div class="door-title" style="font-size:12px;font-weight:800;color:white">সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - সাইটের ভিতর সাইট 👁️</div></div>
 </div>
