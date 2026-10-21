@@ -204,14 +204,35 @@ function closeModal(){document.getElementById('modal').classList.remove('active'
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text,isLocal:true}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে!');}
 document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
 loadPoems();
-
-// === শরৎ কবিতা - তালা সহ এডিট - ফাইনাল ফিক্স ===
+// === সিজনাল কবিতা - প্রতি সিজনে বদল - ফাইনাল ===
 let saratTimer=null;
 function saratEdit(){ 
-  let p=prompt('🔒 শরৎ কবিতা এডিট পাসওয়ার্ড:'); 
+  let p=prompt('🔒 সিজনাল পাসওয়ার্ড:'); 
   if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } 
+  let newTitle=prompt('✏️ সিজনের নাম বদলান (যেমন: শরতের আলোয় / হেমন্তের / শীতের):', document.querySelector('#featSarat h3').innerText);
+  if(newTitle===null) return;
   let cur=document.getElementById('a1').innerText.replace('✏️ শরৎ এডিট','').trim(); 
-  let nc=prompt('✏️ শরৎ কবিতা বদলান:',cur); 
+  let nc=prompt('✏️ এই সিজনের কবিতা লিখুন:',cur); 
+  if(nc===null) return; 
+  document.querySelector('#featSarat h3').innerText=newTitle.trim();
+  document.getElementById('a1').innerHTML=nc+'<span class="edit-badge" onclick="saratEdit()" style="display:block;cursor:pointer">✏️ শরৎ এডিট</span>'; 
+  localStorage.setItem('sarat_edit',nc); 
+  localStorage.setItem('sarat_title',newTitle.trim()); 
+  alert('✅ সিজনাল কবিতা সেভ! এবার '+newTitle.trim()+' দেখাবে!'); 
+}
+let se=localStorage.getItem('sarat_edit'); 
+let st=localStorage.getItem('sarat_title');
+if(st){ document.querySelector('#featSarat h3').innerText=st; }
+if(se){ document.getElementById('a1').innerHTML=se+'<span class="edit-badge" onclick="saratEdit()" style="display:block;cursor:pointer">✏️ শরৎ এডিট</span>'; }
+document.getElementById('a1').addEventListener('click', function(e){ if(e.target.classList.contains('edit-badge')){ saratEdit(); } });
+// সিজনাল বাটন 2 সেকেন্ড চেপে ধরলে এডিট
+document.getElementById('featSarat').addEventListener('touchstart',()=>{ saratTimer=setTimeout(()=>{ saratEdit(); },2000); });
+document.getElementById('featSarat').addEventListener('touchend',()=>clearTimeout(saratTimer));
+document.getElementById('featSarat').addEventListener('mousedown',()=>{ saratTimer=setTimeout(()=>{ saratEdit(); },2000); });
+document.getElementById('featSarat').addEventListener('mouseup',()=>clearTimeout(saratTimer));
+document.getElementById('toggleSarat').onclick=function(){ var e=document.getElementById('a1'); e.style.display=e.style.display=='block'?'none':'block'; };
+document.getElementById('featSarat').onclick=function(e){ if(saratTimer) return; var el=document.getElementById('a1'); el.style.display=el.style.display=='block'?'none':'block'; };
+
   if(nc===null) return; 
   document.getElementById('a1').innerHTML=nc+'<span class="edit-badge" onclick="saratEdit()" style="display:block;cursor:pointer">✏️ শরৎ এডিট</span>'; 
   localStorage.setItem('sarat_edit',nc); 
