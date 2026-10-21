@@ -153,29 +153,6 @@ function render(list){
     document.getElementById('latestPoem').innerHTML='এখনও কবিতা নেই গুরুদেব';
   }
 }
-// === শরৎ কবিতা - লুকানো তালা - কার্ডের মতো ===
-let pressTimerShorot=null;
-const shorotDoor=document.getElementById('shorotDoor');
-if(shorotDoor){
-  shorotDoor.addEventListener('touchstart', e=>{
-    pressTimerShorot=setTimeout(()=>{
-      let p=prompt('🔒 শরৎ কবিতা এডিট - পাসওয়ার্ড:');
-      if(p===_gp()){
-        let current=document.getElementById('a1').innerText;
-        let newPoem=prompt('✏️ শরতের কবিতা বদলান:',current);
-        if(newPoem!==null && newPoem.trim()!==''){
-          document.getElementById('a1').innerHTML=newPoem;
-          let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
-          saves['a1']={poem:newPoem,date:new Date().toLocaleDateString('bn-BD')};
-          localStorage.setItem('bibhag_edits',JSON.stringify(saves));
-          alert('✅ শরৎ কবিতা সেভ হয়েছে গুরুদেব!');
-        }
-      } else if(p!==null){ alert('❌ ভুল পাসওয়ার্ড'); }
-    },2200); // ২.২ সেকেন্ড লম্বা টিপে ধরুন
-  });
-  shorotDoor.addEventListener('touchend', ()=> clearTimeout(pressTimerShorot));
-  shorotDoor.addEventListener('touchmove', ()=> clearTimeout(pressTimerShorot));
-}
  function loadPoems(){
   fetch(SHEET_URL+'?t='+Date.now(), {cache:'no-store'}).then(r=>r.json()).then(data=>{
     let arr=Array.isArray(data)?data:[];
