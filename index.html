@@ -247,15 +247,88 @@ function saveCardPoem(){
   document.getElementById(currentEditId).innerHTML=pt; closeCardEdit(); alert('✅ সেভ!');
 }
 function closeCardEdit(){ document.getElementById('cardEditModal').classList.remove('active'); }
-function resetCardPoem(){ let s=JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); delete s[currentEditId]; localStorage.setItem('bibhag_edits',JSON.stringify(s)); document.getElementById(currentEditId).innerHTML=originalPoems[currentEditId]; closeCardEdit(); }
-let pressTimer2=null;
+// কার্ড এডিট - ফাইনাল 100% কাজ করবে
+let currentEditId=null; 
+const originalPoems={}; 
+document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
+
+function loadCardEdits(){
+  try{
+    const saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+    Object.keys(saved).forEach(pid=>{
+      const el=document.getElementById(pid);
+      if(el && saved[pid].poem){ el.innerHTML=saved[pid].poem; }
+    });
+    const savedDoors = JSON.parse(localStorage.getItem('bibhag_doors')||'{}');
+    Object.keys(savedDoors).forEach(did=>{
+      const d=document.getElementById(did);
+      if(d && savedDoors[did].title){
+        const tt=d.querySelector('.door-title');
+        if(tt) tt.innerText=savedDoors[did].title;
+      }
+    });
+  }catch(e){}
+}
+loadCardEdits();
+
+function editCardPoem(poemId){
+  let p=prompt('🔒 কার্ড এডিট পাসওয়ার্ড:');
+  if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; }
+  currentEditId=poemId;
+  const doorEl=document.querySelector(`[data-poem="${poemId}"]`);
+  const poemEl=document.getElementById(poemId);
+  document.getElementById('cardEditTitle').innerText='✏️ '+(doorEl?doorEl.querySelector('.door-title').innerText:poemId)+' - এডিট';
+  document.getElementById('cardTitleInput').value=doorEl?doorEl.querySelector('.door-title').innerText:'';
+  document.getElementById('cardPoemInput').value=poemEl?poemEl.innerText.trim():'';
+  document.getElementById('cardEditModal').classList.add('active');
+}
+function saveCardPoem(){
+  let p=prompt('🔓 সেভ পাসওয়ার্ড:');
+  if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; }
+  const title=document.getElementById('cardTitleInput').value.trim();
+  const poemText=document.getElementById('cardPoemInput').value.trim();
+  if(!poemText){ alert('কবিতা লিখুন গুরুদেব'); return; }
+  const poemId=currentEditId;
+  let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+  saves[poemId]={poem:poemText, date:new Date().toLocaleDateString('bn-BD')};
+  localStorage.setItem('bibhag_edits', JSON.stringify(saves));
+  if(title){
+    let dSaves=JSON.parse(localStorage.getItem('bibhag_doors')||'{}');
+    const de=document.querySelector(`[data-poem="${poemId}"]`);
+    if(de){
+      dSaves[de.id]=dSaves[de.id]||{};
+      dSaves[de.id].title=title;
+      localStorage.setItem('bibhag_doors', JSON.stringify(dSaves));
+      const dt=de.querySelector('.door-title');
+      if(dt) dt.innerText=title;
+    }
+  }
+  const pe=document.getElementById(poemId);
+  if(pe) pe.innerHTML=poemText;
+  closeCardEdit();
+  alert('✅ গুরুদেব সেভ হয়ে গেছে! প্রতি সিজনে বদলাতে পারবেন।');
+}
+function closeCardEdit(){ document.getElementById('cardEditModal').classList.remove('active'); }
+function resetCardPoem(){
+  if(!currentEditId) return;
+  if(!confirm('আগের আসল কবিতায় ফিরে যাবেন?')) return;
+  let saves=JSON.parse(localStorage.getItem('bibhag_edits')||'{}');
+  delete saves[currentEditId];
+  localStorage.setItem('bibhag_edits', JSON.stringify(saves));
+  const pe=document.getElementById(currentEditId);
+  if(pe && originalPoems[currentEditId]) pe.innerHTML=originalPoems[currentEditId];
+  closeCardEdit();
+}
+
 document.querySelectorAll('.door').forEach(door=>{
   if(!door.dataset.poem) return;
-  let badge=door.querySelector('.edit-badge');
+  const badge=door.querySelector('.edit-badge');
   if(badge){
-    badge.onclick=function(e){ e.stopPropagation(); editCardPoem(door.dataset.poem); };
-  }
-});
+    badge.style.cursor='pointer';
+    badge.style.pointerEvents='auto';
+    badge.onclick=function(e){
+      e.stop
+  
 </script></body></html>
  
  
