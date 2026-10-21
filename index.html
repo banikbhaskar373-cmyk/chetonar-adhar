@@ -24,10 +24,10 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 .latest-box{background:white;border:2px solid #FFC107;border-radius:16px;padding:14px;margin:10px 0}
 .latest-box h3{font-size:14px;color:#4A148C;display:flex;justify-content:space-between;align-items:center}
 .poem-text{white-space:pre-line;font-size:14.5px;line-height:1.9;margin-top:8px}
-.grid10{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.door{border-radius:14px;padding:12px;text-align:center;box-shadow:0 4px 12px #0002;border:none;cursor:pointer;color:#fff;transition:transform 0.2s;position:relative}
+.grid10{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch}
+.door{border-radius:14px;padding:12px 8px;min-height:132px;height:132px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-sizing:border-box;overflow:hidden}
 .door:active{transform:scale(0.96)}
-.door div{color:#fff!important}.door small{color:#fff!important;opacity:0.9}
+.door div{color:#fff!important;text-align:center!important}.door div div{font-size:15px!important;line-height:20px!important;min-height:40px;display:flex;align-items:center;justify-content:center}
 .door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1.5px solid #7C4DFF;color:#4A148C}
 .door.latest10 div{color:#4A148C!important}.door.latest10 small{color:#6A1B9A!important}
 .door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}
