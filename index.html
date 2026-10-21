@@ -204,15 +204,28 @@ function closeModal(){document.getElementById('modal').classList.remove('active'
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text,isLocal:true}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে!');}
 document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
 loadPoems();
-// শরৎ কবিতা লুকানো তালা
+
+// === শরৎ কবিতা - তালা সহ এডিট - ফাইনাল ফিক্স ===
 let saratTimer=null;
-function saratEdit(){ let p=prompt('🔒 শরৎ কবিতা এডিট পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } let cur=document.getElementById('a1').innerText; let nc=prompt('✏️ শরৎ কবিতা বদলান:',cur); if(nc===null) return; document.getElementById('a1').innerHTML=nc+'<span class="edit-badge" style="display:block">✏️ শরৎ এডিট</span>'; localStorage.setItem('sarat_edit',nc); alert('✅ শরৎ কবিতা সেভ!'); }
-let se=localStorage.getItem('sarat_edit'); if(se){ document.getElementById('a1').innerHTML=se+'<span class="edit-badge" style="display:block">✏️ শরৎ এডিট</span>'; }
+function saratEdit(){ 
+  let p=prompt('🔒 শরৎ কবিতা এডিট পাসওয়ার্ড:'); 
+  if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } 
+  let cur=document.getElementById('a1').innerText.replace('✏️ শরৎ এডিট','').trim(); 
+  let nc=prompt('✏️ শরৎ কবিতা বদলান:',cur); 
+  if(nc===null) return; 
+  document.getElementById('a1').innerHTML=nc+'<span class="edit-badge" onclick="saratEdit()" style="display:block;cursor:pointer">✏️ শরৎ এডিট</span>'; 
+  localStorage.setItem('sarat_edit',nc); 
+  alert('✅ শরৎ কবিতা সেভ!'); 
+}
+let se=localStorage.getItem('sarat_edit'); 
+if(se){ document.getElementById('a1').innerHTML=se+'<span class="edit-badge" onclick="saratEdit()" style="display:block;cursor:pointer">✏️ শরৎ এডিট</span>'; }
+document.getElementById('a1').addEventListener('click', function(e){
+  if(e.target.classList.contains('edit-badge')){ saratEdit(); }
+});
 document.getElementById('featSarat').addEventListener('touchstart',()=>{ saratTimer=setTimeout(()=>{ saratEdit(); },2500); });
 document.getElementById('featSarat').addEventListener('touchend',()=>clearTimeout(saratTimer));
 document.getElementById('toggleSarat').onclick=function(){ var e=document.getElementById('a1'); e.style.display=e.style.display=='block'?'none':'block'; };
 document.getElementById('featSarat').onclick=function(){ var e=document.getElementById('a1'); e.style.display=e.style.display=='block'?'none':'block'; };
-
 // কার্ড এডিট
 let currentEditId=null; const originalPoems={}; document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
 function loadCardEdits(){ try{ const saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); Object.keys(saved).forEach(pid=>{ const el=document.getElementById(pid); if(el && saved[pid].poem){ el.innerHTML=saved[pid].poem; } }); const savedDoors = JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); Object.keys(savedDoors).forEach(did=>{ const d=document.getElementById(did); if(d && savedDoors[did].title){ d.querySelector('.door-title').innerText=savedDoors[did].title; } }); }catch(e){} }
