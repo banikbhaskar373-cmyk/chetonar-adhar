@@ -1,16 +1,17 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FINAL 4 PART SMALL</title><style>
+
+ <!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bibeker Alok Dorson - FINAL SUN</title><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#6200ea;font-family:system-ui;color:#fff}
 .app{width:100%;min-height:100vh;background:#6200ea;padding-bottom:80px}
-.header{background:#6200ea;padding:2px 10px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
-.logo-top{width:88%!important;max-width:300px!important;aspect-ratio:1/1!important;margin:-10px auto -15px!important;padding:0!important;display:flex!important;align-items:center;justify-content:center;overflow:hidden!important;background:transparent!important;border:none!important}
+.header{background:#6200ea;padding:0 10px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo-top{width:88%!important;max-width:300px!important;aspect-ratio:1/1!important;margin:0 auto -25px!important;padding:0!important;display:flex!important;align-items:center;justify-content:center;overflow:hidden!important;background:transparent!important;border:none!important}
 .logo-top img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important}
-.header h1{font-size:18px;color:#00FF7F;font-weight:700;line-height:1.4;margin-top:6px}
-.tagline{margin-top:8px;background:#FFEB3B;color:#4A148C;padding:5px 14px;border-radius:20px;font-weight:800;font-size:14px}
-.sun-wrap{display:flex;flex-direction:column;align-items:center;margin:10px auto 8px;width:100%;max-width:340px}
+.header h1{font-size:18px;color:#00FF7F;font-weight:700;line-height:1.2;margin-top:0!important}
+.tagline{margin-top:4px;background:#FFEB3B;color:#4A148C;padding:5px 14px;border-radius:20px;font-weight:800;font-size:14px}
+.sun-wrap{display:flex;flex-direction:column;align-items:center;margin:6px auto 8px;width:100%;max-width:340px}
 .sun{width:88%;max-width:300px;aspect-ratio:1/1;margin:0 auto;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:transparent}
 .sun img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important}
-.sun-label{margin-top:8px;background:#3a0070;color:#FFEB3B;padding:5px 14px;border-radius:20px;font-weight:700;font-size:12px}
-.search{margin:8px auto 0;width:92%;max-width:400px;background:linear-gradient(90deg,#ff9a9e,#fecfef,#a1c4fd,#c2e9fb);padding:8px;border-radius:25px;border:2px solid #FFD700;display:flex;align-items:center}
+.sun-label{margin-top:6px;background:#3a0070;color:#FFEB3B;padding:5px 14px;border-radius:20px;font-weight:700;font-size:12px}
+.search{margin:6px auto 0;width:92%;max-width:400px;background:linear-gradient(90deg,#ff9a9e,#fecfef,#a1c4fd,#c2e9fb);padding:8px;border-radius:25px;border:2px solid #FFD700;display:flex;align-items:center}
 .search input{background:linear-gradient(90deg,#fff9c4,#ffe0b2);border:none;outline:none;border-radius:20px;padding:10px 12px;font-size:14px;color:#4A148C;font-weight:bold;flex:1}
 .sec{padding:10px}.sec h2{font-size:14px;display:flex;justify-content:space-between;margin:10px 0 6px;color:#fff}
 .latest-box{background:#fff;border:2px solid #FFC107;border-radius:14px;padding:12px;margin:8px 0;color:#222;cursor:pointer}
@@ -20,126 +21,130 @@
 .door-poem{display:none;background:#FFF8E1;color:#222;border:2px solid #FFD54F;border-radius:0 0 12px 12px;padding:10px;margin-top:-6px;white-space:pre-line;font-size:13px;line-height:1.7}
 .door-wrap.open .door{border-radius:12px 12px 0 0}.door-wrap.open .door-poem{display:block}
 .g{background:linear-gradient(90deg,#0bb36a,#3ed68a)}.o{background:linear-gradient(90deg,#ff7e1a,#ffb02e)}.b{background:linear-gradient(90deg,#2d7bff,#5a9bff)}.pu{background:linear-gradient(90deg,#6b4cff,#8a6cff)}.pi{background:linear-gradient(90deg,#ff4a8a,#ff7ca8)}.te{background:linear-gradient(90deg,#0faa9a,#2fd18c)}.re{background:linear-gradient(90deg,#ff3a2e,#ff7a3d)}.ye{background:linear-gradient(90deg,#ff9800,#ffc107)}
-.door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1.5px solid #7C4DFF;color:#4A148C}.door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed)}
+.door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1.5px solid #7C4DFF;color:#4A148C}.door.site10{grid-column:span 2;background:linear-gradient(135deg,#2e7d32,#43a047)}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:50px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999;color:#222;font-size:12px}
 .addBtn{position:fixed;right:14px;bottom:70px;width:46px;height:46px;background:#4a00e0;color:#fff;border-radius:50%;font-size:26px;display:flex;align-items:center;justify-content:center;z-index:1000}
 .modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:#0008;z-index:2000;align-items:center;justify-content:center;padding:10px}.modal.active{display:flex}
 .modalBox{background:#fff;width:96%;max-width:420px;border-radius:14px;padding:14px;max-height:80vh;overflow:auto;color:#222}
-.qr-block{margin:8px;background:#FFFEF0;border:2px dashed #D4AF37;border-radius:14px;padding:10px 6px;display:flex;align-items:center;justify-content:space-between;gap:6px;cursor:pointer}
-.qr-logo{width:90px!important;height:90px!important;min-width:90px!important;background:transparent!important;border:none!important;display:flex!important;align-items:center;justify-content:center;overflow:visible!important}
+.qr-block{margin:6px 8px;background:#FFFEF0;border:2px dashed #D4AF37;border-radius:14px;padding:6px 6px;display:flex;align-items:center;justify-content:space-between;gap:2px!important;cursor:pointer}
+.qr-logo{width:70px!important;height:70px!important;min-width:70px!important;background:transparent!important;border:none!important;display:flex!important;align-items:center;justify-content:center;overflow:visible!important}
 .qr-logo img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important}
-.qr-text{text-align:center;font-weight:900;color:#4A148C;font-size:12px;flex:1}
+.qr-text{text-align:center;font-weight:900;color:#4A148C;font-size:11px;line-height:1.1;flex:1}
 #sheetFrame{display:none;width:96%;margin:12px auto;background:#fff;border-radius:12px;padding:10px;border:3px solid #2563eb;box-shadow:0 4px 20px #0003}
-.dl-btn{margin-top:8px;background:#4A148C;color:#fff;border:0;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;display:inline-block}
-.dl-all{width:100%;background:linear-gradient(90deg,#ff9800,#ff5722);color:#fff;border:0;padding:10px;border-radius:20px;font-weight:800;margin:8px 0;cursor:pointer}
 #totalBadge{background:#FFC107;padding:2px 6px;border-radius:8px;font-size:9px}</style></head><body>
-<div class="app"><div class="header"><div class="logo-top"><img src="1792539030636.png"></div><h1>🖥️ ভাস্কর ডিজিটাল 🖥️ স্টুডিওর<br>প্রথম নিবেদন</h1><div class="tagline">❤️ বিবেকের আলোক দর্শন ❤️</div><div class="sun-wrap"><div class="sun"><img src="1791363273561.png"></div><div class="sun-label">১০ দরজা = ১০ আলো = পড়ুন</div></div><div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div></div>
-<div class="qr-block" onclick="window.open('https://bhaskardigitalstudio.in','_blank')"><div class="qr-logo"><img src="1792539030636.png"></div><div class="qr-text">আমার দোকানে আসুন<br>Bhaskar<br>digitalstudio.in<br><span style="font-size:9px;color:#f00">👆 ক্লিক - দোকান</span></div><div class="qr-logo"><img src="1792539030636.png"></div></div>
-<div class="sec"><button class="dl-all" onclick="downloadAll()">📥 ৮ টা কবিতা একসাথে ডাউনলোড</button>
-<div class="door-wrap" id="wrap-a1" style="grid-column:span 2"><div class="door ye" onclick="togWrap('wrap-a1')" id="seasonalBox"><div style="font-size:22px">🌸</div><div style="font-size:12px;font-weight:900">শরৎ সময় - সিজনাল - খুলুন/বন্ধ - লং প্রেস এডিট</div></div><div class="door-poem" id="a1"><b>৮) শরৎ সময় - সিজনাল</b>
+<div class="app"><div class="header"><div class="logo-top"><img src="1792539030636.png"></div><h1>🖥️ ভাস্কর ডিজিটাল 🖥️ স্টুডিওর<br>প্রথম নিবেদন</h1><div class="tagline">❤️ বিবেকের আলোক দর্শন ❤️</div><div class="sun-wrap"><div class="sun"><img src="1791363273561.png"></div><div class="sun-label">১০ দরজা = ১০ আলো = সকলে পড়ুন - খোলা</div></div><div class="search">🔍<input id="searchBox" placeholder="কবিতা খুঁজুন..."></div></div>
+<div class="qr-block" onclick="openSiteFree()"><div class="qr-logo"><img src="1792539030636.png"></div><div class="qr-text">আমার দোকানে<br>আসুন<br>Bhaskar<br>digitalstudio.in<br><span style="font-size:9px;color:#2e7d32;font-weight:900">👆 খোলা - ক্লিক</span></div><div class="qr-logo"><img src="1792539030636.png"></div></div>
+<div class="sec">
+<div class="door-wrap" id="wrap-a1" style="grid-column:span 2"><div class="door ye" onclick="togWrap('wrap-a1')" id="seasonalBox"><div style="font-size:22px">🌸</div><div style="font-size:12px;font-weight:900">শরৎ সময় - সিজনাল - পড়ুন - খোলা</div></div><div class="door-poem" id="a1"><b>৮) শরৎ সময় - সিজনাল</b>
 শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া
 বাতাসে তার মাতাল করা গন্ধ ভাসে,
 শিউলি ঝরে প্রভাতকালে শিশির ভেজা ঘাসে।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('a1')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
-<div class="latest-box" id="latestBox" onclick="toggleLatest()"><h3>🌅 সর্বশেষ কবিতা <span id="totalBadge">0 টি</span> <span style="font-size:10px;color:#888">👆 খুলুন/বন্ধ</span></h3><div id="latestPoem" class="latest-content">লোড হচ্ছে...</div><div style="display:flex;gap:4px;margin-top:6px"><button onclick="event.stopPropagation();openAllModal()" style="flex:1;background:#FFC107;border:0;padding:6px;border-radius:20px;font-weight:700">📖 সব পড়ুন</button><button onclick="event.stopPropagation();editLatest()" style="background:#4A148C;color:#fff;border:0;padding:6px 12px;border-radius:20px;font-weight:700">✏️ এডিট</button><button onclick="event.stopPropagation();downloadOne('latestPoem')" style="background:#2E7D32;color:#fff;border:0;padding:6px 12px;border-radius:20px;font-weight:700">📥 ডাউনলোড</button></div></div>
+<div class="latest-box" id="latestBox" onclick="toggleLatest()"><h3>🌅 সর্বশেষ কবিতা <span id="totalBadge">0 টি</span> <span style="font-size:10px;color:#888">👆 সকলে পড়ুন - খোলা</span></h3><div id="latestPoem" class="latest-content">লোড হচ্ছে...</div><div style="display:flex;gap:4px;margin-top:6px"><button onclick="event.stopPropagation();openAllModal()" style="flex:1;background:#FFC107;border:0;padding:6px;border-radius:20px;font-weight:700">📖 সব পড়ুন - খোলা</button><button onclick="event.stopPropagation();editLatest()" style="background:#4A148C;color:#fff;border:0;padding:6px 12px;border-radius:20px;font-weight:700">✏️ এডিট</button></div></div>
 
 <div class="grid10">
-<div class="door-wrap" id="wrap-p1"><div class="door g" onclick="togWrap('wrap-p1')"><div style="font-size:22px">🌿</div><div style="font-size:12px;font-weight:900">১. বেদের কথন</div></div><div class="door-poem" id="p1"><b>১. শ্রুতি নাদ</b>
+<div class="door-wrap" id="wrap-p1"><div class="door g" onclick="togWrap('wrap-p1')"><div style="font-size:22px">🌿</div><div style="font-size:12px;font-weight:900">১. বেদের কথন - পড়ুন</div></div><div class="door-poem" id="p1"><b>১. শ্রুতি নাদ</b>
 শব্দ নিত্য সত্য বেদান্ত কয়
 শ্রুতির স্মৃতি কথা শিষ্য যে বয়
 নাদ হতে বীজ হতে সৃষ্টি লয়।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p1')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p2"><div class="door o" onclick="togWrap('wrap-p2')"><div style="font-size:22px">☀️</div><div style="font-size:12px;font-weight:900">২. মাতৃ সঙ্গীত</div></div><div class="door-poem" id="p2"><b>২. জয় মা</b>
 ও মা হাতে আমার দে না অসি
 যা দিয়ে হয় অহম নাশ,
 তোর সাধনায় মন রাঙিয়ে
 কাটাই যেন বারো মাস।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p2')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p3"><div class="door b" onclick="togWrap('wrap-p3')"><div style="font-size:22px">🇮🇳</div><div style="font-size:12px;font-weight:900">৩. স্বাধীনতা</div></div><div class="door-poem" id="p3"><b>৩. এ কেমন স্বাধীনতা</b>
 জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে
 আদর ভরা ভিতের গড়ন পিতার আশ্রয়ে
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p3')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p4"><div class="door pu" onclick="togWrap('wrap-p4')"><div style="font-size:22px">🏡</div><div style="font-size:12px;font-weight:900">৪. পরিবার</div></div><div class="door-poem" id="p4"><b>৪. শুদ্ধ হোক অন্তর্দৃষ্টি</b>
 চশমাটা আজ পাল্টে গেছে
 বিদ্ধ হয়ে উষ্ণায়নে,
 পরিবারের আলোয় দেখি
 নতুন পথের সন্ধানে।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p4')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 <div class="door-wrap" id="wrap-p5"><div class="door pi" onclick="togWrap('wrap-p5')"><div style="font-size:22px">🕊️</div><div style="font-size:12px;font-weight:900">৫. মানবতা</div></div><div class="door-poem" id="p5"><b>৫. অপরাজেয়</b>
 প্রকৃতির নিয়মে বয়ে যায় পল
 নই মোরা দিশাহীন সমন্বয়ে,
 মানুষ মানুষের জন্যে বাঁচে
 এই সত্যে দাঁড়াই নির্ভয়ে।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p5')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p6"><div class="door te" onclick="togWrap('wrap-p6')"><div style="font-size:22px">💭</div><div style="font-size:12px;font-weight:900">৬. ভাঙা গড়া</div></div><div class="door-poem" id="p6"><b>৬. ভাবনার ভাঙা গড়া</b>
 অবেলায় আজি, চেতনায় সাজি
 খুলেছি দোকান হাটে,
 ভাঙা গড়ার খেলায় মেতে
 জীবন চলে আপন পাটে।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p6')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p7"><div class="door re" onclick="togWrap('wrap-p7')"><div style="font-size:22px">❤️</div><div style="font-size:12px;font-weight:900">৭. প্রিয় কবিতা</div></div><div class="door-poem" id="p7"><b>৭. প্রিয় কবিতা</b>
 আছো তুমি গাছে গাছে
 আছো উষ্মার আঁচে
 হৃদয়ের গভীরে তুমি
 আলো হয়ে বাঁচো।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p7')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
 <div class="door-wrap" id="wrap-p8"><div class="door ye" onclick="togWrap('wrap-p8')"><div style="font-size:22px">🌼</div><div style="font-size:12px;font-weight:900">৮. শরৎ কাব্য</div></div><div class="door-poem" id="p8"><b>৮. শরৎ কাব্য</b>
 কাশফুলে ভরা মাঠে
 শরৎ এসেছে আজ,
 নীল আকাশে সাদা মেঘে
 প্রকৃতি সেজেছে সাজ।
-কলমে - বিবস্বান
-<button class="dl-btn" onclick="downloadOne('p8')">📥 ডাউনলোড</button></div></div>
+কলমে - বিবস্বান</div></div>
 
-<div class="door-wrap"><div class="door site10" onclick="openSheetWithPass()" style="background:linear-gradient(135deg,#0d47a1,#1976d2);border:2px solid #FFD700"><div style="font-size:20px">📚</div><div style="font-size:11px">৯. শীটের প্রধান দরজা<br><span style="font-size:8px">🔒 পাসওয়ার্ড দিয়ে ঘরে ঢুকুন</span></div></div></div>
-<div class="door-wrap"><div class="door latest10" onclick="scrollToLatest()"><div style="font-size:20px">🌅</div><div style="font-size:11px">১০. সর্বশেষ - লম্বা ব্লক</div></div></div>
-<div class="door-wrap"><div class="door site10" onclick="toggleSite()" style="background:linear-gradient(135deg,#2e7d32,#43a047)"><div style="font-size:20px">🌐</div><div style="font-size:11px">১১. সাইট টু সাইট - লম্বা - পাসওয়ার্ড ছাড়া</div></div></div>
 </div>
-<div id="sheetFrame"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="color:#222">📖 Live</b><button onclick="document.getElementById('sheetFrame').style.display='none'" style="background:#FFEBEE;border:0;padding:4px 10px;border-radius:8px">✕ বন্ধ</button></div><iframe id="sheetIframe" src="" style="width:100%;height:600px;border:0"></iframe></div></div>
-<div class="addBtn" onclick="openM()">+</div><div class="bottom"><div onclick="location.reload()">🏠 হোম</div><div onclick="openAllModal()">📖 পড়ুন</div><div onclick="toggleSite()">🌐 সাইট</div><div>👤 প্রোফাইল</div></div></div>
-<div class="modal" id="modal"><div class="modalBox"><h3>🔒 নতুন কবিতা</h3><input id="t" placeholder="নাম" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px;margin:6px 0"><textarea id="c" rows="6" placeholder="কবিতা..." style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px"></textarea><button onclick="saveP()" style="width:100%;background:#4A148C;color:#fff;border:0;padding:8px;border-radius:20px;margin-top:6px">💾 সেভ</button><button onclick="closeM()" style="width:100%;background:#eee;border:0;padding:6px;border-radius:20px;margin-top:4px">বাতিল</button></div></div>
+<!-- গুগুল শীটের প্রধান দরজা - আপনার দেওয়া - শীতের খাতা - পাসওয়ার্ডে সুরক্ষিত -->
+<a id="sheetDoorLink" href="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing" style="text-decoration:none;display:block;margin:12px 10px" onclick="return checkSheetPass(event)">
+<div style="height:58px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px;background:linear-gradient(90deg,#0d47a1,#1976d2);border:2px solid #FFD700;color:#fff;box-shadow:0 3px 10px #0003">
+  <div style="font-size:22px">🔒</div>
+  <div><b style="color:#fff">সরাসরি শীটে যান - খাতার দরজা</b><br><small style="color:#FFEB3B">🔑 গুগুল খাতা - আপনার জন্য সুরক্ষিত</small></div>
+</div>
+</a>
+
+<div class="door-wrap" style="grid-column:span 2"><div class="door latest10" onclick="scrollToLatest()"><div style="font-size:20px">🌅</div><div style="font-size:11px;font-weight:900">১০. সর্বশেষ - সকলে পড়ুন - খোলা</div></div></div>
+<div class="door-wrap" style="grid-column:span 2"><div class="door site10" onclick="openSiteFree()"><div style="font-size:20px">🌐</div><div style="font-size:11px;font-weight:900">১১. সাইট টু সাইট - পুরো খোলা - পাসওয়ার্ড ছাড়া</div></div></div>
+</div>
+<div id="sheetFrame"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="color:#222">🌐 Live Site - খোলা</b><button onclick="document.getElementById('sheetFrame').style.display='none'" style="background:#FFEBEE;border:0;padding:4px 10px;border-radius:8px">✕ বন্ধ</button></div><iframe id="sheetIframe" src="" style="width:100%;height:600px;border:0"></iframe></div></div>
+<div class="addBtn" onclick="openM()">+</div><div class="bottom"><div onclick="location.reload()">🏠 হোম</div><div onclick="openAllModal()">📖 পড়ুন</div><div onclick="openSiteFree()">🌐 সাইট</div><div>👤 প্রোফাইল</div></div></div>
+
+ <div class="modal" id="modal"><div class="modalBox"><h3>🔒 নতুন কবিতা</h3><input id="t" placeholder="নাম" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px;margin:6px 0"><textarea id="c" rows="6" placeholder="কবিতা..." style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px"></textarea><button onclick="saveP()" style="width:100%;background:#4A148C;color:#fff;border:0;padding:8px;border-radius:20px;margin-top:6px">💾 সেভ</button><button onclick="closeM()" style="width:100%;background:#eee;border:0;padding:6px;border-radius:20px;margin-top:4px">বাতিল</button></div></div>
 <div class="modal" id="allModal"><div class="modalBox"><h3 id="allTitle"></h3><div id="allList"></div><button onclick="document.getElementById('allModal').classList.remove('active')" style="width:100%;background:#eee;border:0;padding:6px;border-radius:8px;margin-top:8px">বন্ধ</button></div></div>
-<div class="modal" id="cardEditModal"><div class="modalBox"><h3>🔒 কার্ড এডিট</h3><input id="cardTitleInput" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px;margin:6px 0"><textarea id="cardPoemInput" rows="10" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px"></textarea><button onclick="saveC()" style="width:100%;background:#2E7D32;color:#fff;border:0;padding:10px;border-radius:20px;margin-top:6px;font-weight:800">✅ সেভ</button><button onclick="delC()" style="width:100%;background:#FFEBEE;color:#c00;border:0;padding:6px;border-radius:20px;margin-top:4px">🗑️ ডিলিট</button><button onclick="closeC()" style="width:100%;background:#eee;border:0;padding:6px;border-radius:20px;margin-top:4px">বাতিল</button></div></div>
+<div class="modal" id="cardEditModal"><div class="modalBox"><h3>🔒 কার্ড এডিট - এক ওষুধ</h3><input id="cardTitleInput" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px;margin:6px 0"><textarea id="cardPoemInput" rows="10" style="width:100%;padding:8px;border:2px solid #FFC107;border-radius:8px"></textarea><button onclick="saveC()" style="width:100%;background:#2E7D32;color:#fff;border:0;padding:10px;border-radius:20px;margin-top:6px;font-weight:800">✅ সেভ</button><button onclick="delC()" style="width:100%;background:#FFEBEE;color:#c00;border:0;padding:6px;border-radius:20px;margin-top:4px">🗑️ ডিলিট</button><button onclick="closeC()" style="width:100%;background:#eee;border:0;padding:6px;border-radius:20px;margin-top:4px">বাতিল</button></div></div>
 <script>
-const URL='https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec';const PASS='Biboswan @22';let D=[];let C=null;let T=null;
-const SHEET='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview';const SITE='https://bhaskardigitalstudio.in';
-function ask(m){return prompt(m)===PASS}
-function togWrap(id){let w=document.getElementById(id);if(!w)return;if(w.classList.contains('open')){w.classList.remove('open')}else{document.querySelectorAll('.door-wrap').forEach(x=>x.classList.remove('open'));w.classList.add('open');w.scrollIntoView({behavior:'smooth',block:'center'})}}
-function loadL(){['p1','p2','p3','p4','p5','p6','p7','p8','a1'].forEach(i=>{let s=localStorage.getItem('card_'+i);if(!s)return;try{let o=JSON.parse(s);let e=document.getElementById(i);if(e){e.innerHTML='<b>'+o.title+'</b><br><br>'+o.poem+'<button class=dl-btn onclick=downloadOne(\''+i+'\')>📥 ডাউনলোড</button>'}}catch(e){}})}
-function load(){loadL();fetch(URL+'?t='+Date.now()).then(r=>r.json()).then(d=>{D=Array.isArray(d)?d:[];document.getElementById('count').innerText=D.length+' টি';document.getElementById('totalBadge').innerText='মোট '+D.length;if(D.length>0){let l=D[D.length-1];document.getElementById('latestPoem').innerHTML='<b>'+l.title+'</b><br><br>'+l.text}})}
-function toggleLatest(){document.getElementById('latestPoem').classList.toggle('open')}
-function editLatest(){if(!ask('Edit Latest:'))return;if(D.length==0)return;let l=D[D.length-1];let nt=prompt('Title:',l.title);if(!nt)return;let np=prompt('Poem:',l.text);if(!np)return;document.getElementById('latestPoem').innerHTML='<b>'+nt+'</b><br><br>'+np;document.getElementById('latestPoem').classList.add('open');fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:nt,poem:np})});alert('Saved!')}
-function downloadOne(id){let e=document.getElementById(id);if(!e)return;let txt=e.innerText.replace('📥 ডাউনলোড','').trim();let blob=new Blob([txt],{type:'text/plain;charset=utf-8'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=id+'_Biboswan.txt';a.click()}
-function downloadAll(){let all='';['p1','p2','p3','p4','p5','p6','p7','p8','a1'].forEach(id=>{let e=document.getElementById(id);if(e){all+=e.innerText.replace('📥 ডাউনলোড','').trim()+'\n\n---\n\n'}});let blob=new Blob([all],{type:'text/plain;charset=utf-8'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Biboswan_8_Kobita.txt';a.click()}
-function openM(){if(!ask('New:'))return;document.getElementById('modal').classList.add('active')}
+const URL='https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec';
+function _gp(){return atob('Qmlib3N3YW4gQDIy');} // সমস্ত পাসওয়ার্ড লুকানো
+let D=[];let C=null;
+const SHEET='https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/edit?usp=sharing';const SITE='https://bhaskardigitalstudio.in';
+function ask(m){let v=prompt(m+' - পাসওয়ার্ড:');return v===_gp();}
+// সূর্যের সেবা - পড়া সবার জন্য খোলা
+function togWrap(id){let w=document.getElementById(id);if(!w)return;if(w.classList.contains('open')){w.classList.remove('open');}else{w.classList.add('open');setTimeout(()=>w.scrollIntoView({behavior:'smooth',block:'center'}),100);}}
+function loadL(){['p1','p2','p3','p4','p5','p6','p7','p8','a1'].forEach(i=>{let s=localStorage.getItem('card_'+i);if(!s)return;try{let o=JSON.parse(s);let e=document.getElementById(i);if(e){e.innerHTML='<b>'+o.title+'</b><br><br>'+o.poem+'<div style="display:flex;gap:6px;margin-top:10px"><button onclick="openCardEdit(\''+i+'\')" style="flex:1;background:#4A148C;color:#fff;border:0;padding:6px;border-radius:20px;font-size:11px">✏️ এডিট</button><button onclick="delCard(\''+i+'\')" style="flex:1;background:#FFEBEE;color:#c00;border:0;padding:6px;border-radius:20px;font-size:11px">🗑️ ডিলিট</button></div>';}}catch(e){}})}
+function load(){loadL();fetch(URL+'?t='+Date.now()).then(r=>r.json()).then(d=>{D=Array.isArray(d)?d:[];let tb=document.getElementById('totalBadge');if(tb)tb.innerText='মোট '+D.length;if(D.length>0){let l=D[D.length-1];let lp=document.getElementById('latestPoem');if(lp)lp.innerHTML='<b>'+l.title+'</b><br><br>'+l.text;}});addEditBtns();}
+function addEditBtns(){['p1','p2','p3','p4','p5','p6','p7','p8','a1'].forEach(id=>{let el=document.getElementById(id);if(!el||el.querySelector('button'))return;el.innerHTML+='<div style="display:flex;gap:6px;margin-top:10px"><button onclick="openCardEdit(\''+id+'\')" style="flex:1;background:#4A148C;color:#fff;border:0;padding:6px;border-radius:20px;font-size:11px;font-weight:700">✏️ এডিট</button><button onclick="delCard(\''+id+'\')" style="flex:1;background:#FFEBEE;color:#c00;border:0;padding:6px;border-radius:20px;font-size:11px;font-weight:700">🗑️ ডিলিট</button></div>';});}
+// এডিট/ডিলিট - এক ওষুধ - শরৎ + সব কার্ড - পাসওয়ার্ড লুকানো
+function openCardEdit(id){if(!ask('🔒 কার্ড এডিট - এক ওষুধ'))return;C=id;let pe=document.getElementById(C);let btn=document.querySelector('#wrap-'+id+' .door');let title=btn?btn.innerText.trim():id;document.getElementById('cardTitleInput').value=title;let txt=pe?pe.innerText.replace('✏️ এডিট','').replace('🗑️ ডিলিট','').trim():'';document.getElementById('cardPoemInput').value=txt;document.getElementById('cardEditModal').classList.add('active');}
+function delCard(id){if(!ask('🔒 ডিলিট - এক ওষুধ'))return;if(!confirm('🗑️ ডিলিট করবেন?'))return;localStorage.removeItem('card_'+id);location.reload();}
+function toggleLatest(){let e=document.getElementById('latestPoem');if(e)e.classList.toggle('open')}
+function editLatest(){if(!ask('Edit Latest'))return;if(D.length==0)return;let l=D[D.length-1];let nt=prompt('Title:',l.title);if(!nt)return;let np=prompt('Poem:',l.text);if(!np)return;let lp=document.getElementById('latestPoem');if(lp){lp.innerHTML='<b>'+nt+'</b><br><br>'+np;lp.classList.add('open');}fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:nt,poem:np})});alert('Saved!')}
+function openM(){if(!ask('🔒 নতুন'))return;document.getElementById('modal').classList.add('active')}
 function closeM(){document.getElementById('modal').classList.remove('active')}
-function saveP(){if(!ask('Save:'))return;let t=document.getElementById('t').value.trim();let c=document.getElementById('c').value.trim();if(!t||!c)return;fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:t,poem:c})});closeM();setTimeout(load,1500)}
+function saveP(){if(!ask('🔒 সেভ'))return;let t=document.getElementById('t').value.trim();let c=document.getElementById('c').value.trim();if(!t||!c)return;fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:t,poem:c})});closeM();setTimeout(load,1500)}
 function closeC(){document.getElementById('cardEditModal').classList.remove('active');C=null}
-function saveC(){if(!ask('Save:'))return;let nt=document.getElementById('cardTitleInput').value.trim();let np=document.getElementById('cardPoemInput').value.trim();if(!nt||!np)return;let el=document.getElementById(C);if(el){el.innerHTML='<b>'+nt+'</b><br><br>'+np+'<button class=dl-btn onclick=downloadOne(\''+C+'\')>📥 ডাউনলোড</button>'}localStorage.setItem('card_'+C,JSON.stringify({title:nt,poem:np}));fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:nt,poem:np})});alert('Saved!');closeC()}
-function delC(){if(!ask('Del:'))return;if(!confirm('Del?'))return;localStorage.removeItem('card_'+C);closeC();location.reload()}
-function openSheetWithPass(){if(!ask('Sheet Pass:'))return;let f=document.getElementById('sheetFrame');let i=document.getElementById('sheetIframe');i.src=SHEET;f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'start'})}
-function toggleSite(){let f=document.getElementById('sheetFrame');let i=document.getElementById('sheetIframe');if(f.style.display=='block'&&i.src===SITE){f.style.display='none';return}i.src=SITE;f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'start'})}
-function scrollToLatest(){let b=document.getElementById('latestBox');if(b){b.scrollIntoView({behavior:'smooth'});document.getElementById('latestPoem').classList.add('open')}}
+function saveC(){if(!ask('🔒 সেভ'))return;let nt=document.getElementById('cardTitleInput').value.trim();let np=document.getElementById('cardPoemInput').value.trim();if(!nt||!np)return;let el=document.getElementById(C);if(el){el.innerHTML='<b>'+nt+'</b><br><br>'+np+'<div style="display:flex;gap:6px;margin-top:10px"><button onclick="openCardEdit(\''+C+'\')" style="flex:1;background:#4A148C;color:#fff;border:0;padding:6px;border-radius:20px;font-size:11px">✏️ এডিট</button><button onclick="delCard(\''+C+'\')" style="flex:1;background:#FFEBEE;color:#c00;border:0;padding:6px;border-radius:20px;font-size:11px">🗑️ ডিলিট</button></div>';}localStorage.setItem('card_'+C,JSON.stringify({title:nt,poem:np}));fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',title:nt,poem:np})});alert('Saved!');closeC()}
+function delC(){if(!ask('🔒 ডিলিট'))return;if(!confirm('Del?'))return;localStorage.removeItem('card_'+C);closeC();location.reload();}
+function checkSheetPass(e){e.preventDefault();let p=prompt('🔒 খাতার দরজা - গুগুল খাতা:');if(p===_gp()){window.open(SHEET,'_blank');return false}else if(p!==null){alert('❌ ভুল পাসওয়ার্ড! খাতা খুলবে না!')}return false}
+// সাইট টু সাইট - পুরো খোলা - সকলের জন্য - পাসওয়ার্ড নেই - সূর্যের সেবা
+function openSiteFree(){let f=document.getElementById('sheetFrame');let i=document.getElementById('sheetIframe');i.src=SITE;f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'start'});}
+function toggleSite(){openSiteFree();}
+function scrollToLatest(){let b=document.getElementById('latestBox');if(b){b.scrollIntoView({behavior:'smooth'});let lp=document.getElementById('latestPoem');if(lp)lp.classList.add('open')}}
 function openAllModal(){if(D.length==0)return;let l=D[D.length-1];document.getElementById('allTitle').innerText='Total '+D.length;document.getElementById('allList').innerHTML='<div style="padding:10px;background:#FFF8E1;color:#222"><b>'+l.title+'</b><div>'+l.text+'</div></div>';document.getElementById('allModal').classList.add('active')}
-document.getElementById('searchBox').addEventListener('input',function(){let v=this.value.toLowerCase();document.querySelectorAll('.door-wrap').forEach(e=>{let t=e.innerText.toLowerCase();if(v!==''&&t.indexOf(v)==-1){if(!e.innerText.toLowerCase().includes('শীট')&&!e.innerText.toLowerCase().includes('সর্বশেষ')&&!e.innerText.toLowerCase().includes('সাইট')){e.style.display='none';return}}e.style.display='block'})});
-let LT=null;document.getElementById('seasonalBox').addEventListener('touchstart',()=>{LT=setTimeout(()=>{if(!ask('Seasonal Edit:'))return;C='a1';let pe=document.getElementById('a1');document.getElementById('cardTitleInput').value='শরৎ সময় - সিজনাল';document.getElementById('cardPoemInput').value=pe?pe.innerText.replace('📥 ডাউনলোড','').trim():'';document.getElementById('cardEditModal').classList.add('active')},800)});document.getElementById('seasonalBox').addEventListener('touchend',()=>clearTimeout(LT));
-document.querySelectorAll('.door-wrap').forEach(w=>{let d=w.querySelector('.door');if(!w.id.startsWith('wrap-p')&&w.id!=='wrap-a1')return;let pid=w.id.replace('wrap-','');d.addEventListener('touchstart',()=>{T=setTimeout(()=>{if(!ask('Card Edit:'))return;C=pid;let pe=document.getElementById(C);document.getElementById('cardTitleInput').value=d.innerText.trim();document.getElementById('cardPoemInput').value=pe?pe.innerText.replace('📥 ডাউনলোড','').trim():'';document.getElementById('cardEditModal').classList.add('active')},800)});d.addEventListener('touchend',()=>clearTimeout(T))});
+document.getElementById('searchBox').addEventListener('input',function(){let v=this.value.toLowerCase();document.querySelectorAll('.door-wrap').forEach(e=>{let t=e.innerText.toLowerCase();if(v!==''&&t.indexOf(v)==-1){if(!e.innerText.toLowerCase().includes('শীট')&&!e.innerText.toLowerCase().includes('সর্বশেষ')&&!e.innerText.toLowerCase().includes('সাইট')&&!e.innerText.toLowerCase().includes('খাতা')){e.style.display='none';return}}e.style.display='block'})});
 load();
-</script></body></html> 
+</script></body></html>
+ 
  
  
