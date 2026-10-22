@@ -25,15 +25,11 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 .latest-box h3{font-size:14px;color:#4A148C;display:flex;justify-content:space-between;align-items:center}
 .poem-text{white-space:pre-line;font-size:14.5px;line-height:1.9;margin-top:8px}
 .grid10{display:grid;grid-template-columns:1fr 1fr;gap:8px}
- .door{border-radius:18px;padding:10px 6px;min-height:98px;height:98px;
+.door{border-radius:18px;padding:6px 4px;min-height:98px;height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;box-sizing:border-box}
 .door:active{transform:scale(0.96)}
 .door div{font-size:12.5px!important;line-height:15px!important;white-space:normal!important}
-.door.latest10{grid-column:span 2;
-.door.site10{grid-column:span 2;
-.door.latest10{grid-column:span 2;
-.door.site10{grid-column:span 2;
-.door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}
-.door .edit,.edit-label{display:none!important}
+.door.latest10{grid-column:span 2;min-height:82px;height:82px;padding:8px 10px;background:#fff;border:2px solid #FFC107;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.door.site10{grid-column:span 2;min-height:82px;height:82px;padding:8px 10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
 .bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
 .addBtn{position:fixed;right:18px;bottom:70px;width:56px;height:56px;background:#4a00e0;color:#fff;border-radius:50%;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #0004;cursor:pointer;z-index:1000}
@@ -44,12 +40,12 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 .modalBox button{width:100%;margin-top:10px;background:#4a00e0;color:#fff;border:none;padding:12px;border-radius:10px;font-size:15px;font-weight:700}
 .badge-full{font-size:10px;background:#EDE7F6;color:#4A148C;padding:3px 8px;border-radius:10px;margin-top:8px;display:inline-block}
 .edit-badge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.65);color:#FFEB3B;border:none;border-radius:20px;padding:4px 8px;font-size:11px;display:none;z-index:9}
-.door.editing .edit-badge{display:block}.door.editing{outline:3px dashed #FFEB3B}
+.door.editing .edit-badge{display:block!important}.door.editing{outline:3px dashed #FFEB3B}
 .poem-full.editing{outline:3px dashed #FF9800}
 </style></head><body>
 <div class="app">
 <div class="header">
-<div class="logo-top"><img src="1791273060137.png"alt="ভাস্কর ডিজিটাল স্টুডিও"></div>
+<div class="logo-top"><img src="1791273060137.png" alt="ভাস্কর ডিজিটাল স্টুডিও"></div>
 <h1><span class="title-line">🖥️ ভাস্কর ডিজিটাল 🖥️</span> স্টুডিওর প্রথম নিবেদন</h1>
 <div class="highlight-box"><span style="color:#FF1744">♥️</span> বিবেকের আলোক দর্শন <span style="color:#FF1744">♥️</span></div>
 <div class="sun-wrap"><div class="sun"><img src="1791363273561.png" alt="লেখক - বিবস্বান"></div><div class="sun-label">১০ দরজা = ১০ আলো = সূর্য নং</div></div>
@@ -63,7 +59,6 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 <h2>আজকের কবিতা <span id="toggleSarat">সব দেখুন ›</span></h2>
 <div class="feat" id="featSarat"><div><h3>শরতের আলোয় কবিতা - চেপে ধরুন ✏️</h3></div><div style="font-size:26px">🌸</div></div>
 </div>
-<!-- গুগুল শীটের প্রধান দরজা - তালা সহ - লুকাবে না - ফাইনাল -->
 <div id="sheetDoorLink" style="margin:12px 10px">
 <div style="height:58px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:30px;background:linear-gradient(90deg,#2d7bff,#5a9bff);color:#fff;cursor:pointer" onclick="openSheetDoorLocked()">
   <div>🔒</div>
@@ -72,9 +67,7 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 </div>
 <div style="text-align:center;margin:10px;padding:8px;background:#fff8e1;border-radius:8px"><small style="color:#999">বিজ্ঞাপন</small><div style="min-height:90px;display:flex;align-items:center;justify-content:center;color:#aaa">এখানে বিজ্ঞাপন আসবে</div></div>
 <div class="sec">
-<div id="a1" class="poem-full" style="display:none">
-🎈🎈 শরৎ সময় 🎈🎈
-
+<div id="a1" class="poem-full" style="display:none">🎈🎈 শরৎ সময় 🎈🎈
 শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া 
 বাতাসে তার মাতাল করা গন্ধ ভাসে,
 সুদূর নীলে মেঘের বরণ পেঁজা তুলো
@@ -83,15 +76,6 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 জুঁই, মালতী শরৎ শশীর সাথে হাসে
 এমন সময় খুশির জোয়ার কাশের বনে
 ঢাকের তালে মন দোলে এই আশ্বিন মাসে।
-কামিনী দেয় থোকা ফুলের মিষ্টি সুবাস 
-ঘাসের ডগায় শিশির কণা দেয় যে ধরা 
-মায়ের আসার খবর এলে পাল পাড়াতে 
-ব্যস্ত কুমোর সেরার সেরা ঠাকুর গড়া 
-(পদ্ম বলে) 
-মায়ের পূজায় আমার দাবী সবার আগে 
-একশো সাতে গুণতি আমার থমকে গেলে
-করতে পূরণ সত্য রামের
-চোখ যে লাগে।
 <span class="edit-badge" style="display:block">✏️ শরৎ এডিট</span>
 </div>
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
@@ -112,7 +96,7 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 <div class="door pu" id="door4" data-poem="p4"><span class="edit-badge">✏️ বদলান</span><div style="font-size:26px">🏡🧑‍🧑‍🧒‍🧒🌳</div><div class="door-title" style="font-size:13px;font-weight:900">"পরিবার থেকে পরিবেশ"</div><div style="font-size:10px">বিভাগ ৪ • রোমান্টিক • ১০টি</div></div>
 <div class="door pi" id="door5" data-poem="p5"><span class="edit-badge">✏️ বদলান</span><div style="font-size:26px">🕊️♥️🤝</div><div class="door-title" style="font-size:13px;font-weight:900">"মানবতার বার্তা"</div><div style="font-size:10px">বিভাগ ৫ • প্রেম • ১৪টি</div></div>
 <div class="door te" id="door6" data-poem="p6"><span class="edit-badge">✏️ বদলান</span><div style="font-size:26px">💭</div><div class="door-title" style="font-size:13px;font-weight:900">ভাবনার ভাঙা গড়া</div><div style="font-size:10px">বিভাগ ৬ • চিন্তা • ১টি</div></div>
-<div class="door re" id="door7" data-poem="p7"><span class="edit-badge">✏️ বদলান</span><div style="font-size:26px">❤️</div><div class="door-title" style="font-size:13px;font-weight:900">প্রিয় কবিতা</div><div style="font-size:10px">বিভাগ ৭ </div></div>
+<div class="door re" id="door7" data-poem="p7"><span class="edit-badge">✏️ বদলান</span><div style="font-size:26px">❤️</div><div class="door-title" style="font-size:13px;font-weight:900">প্রিয় কবিতা</div><div style="font-size:10px">বিভাগ ৭</div></div>
 <div class="door" onclick="openSheetDoorLocked()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1.5px solid #FFAB40;"><div style="font-size:26px;color:#E65100!important">📖</div><div style="font-size:12px;font-weight:800;color:#5D4037!important">শীটের দরজা</div><div style="font-size:9px;color:#8D6E63!important">৮ - তালা সহ 🔒</div></div>
 <div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">শেষ কবিতা</div><div style="font-size:9px">৯ - পেজে শুধু ১টি শো</div></div>
 <div class="door site10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800;color:white">সাইট টু সাইট</div><div style="font-size:9px;color:white">১০ - সাইটের ভিতর সাইট 👁️ তালা ছাড়া</div></div>
@@ -121,11 +105,7 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 শব্দ নিত্য সত্য বেদান্ত কয়
 চিতার আগুনে পুড়ে গেলে গুরু 
 শ্রুতির স্মৃতি কথা শিষ্য যে বয়
-বলো সবে বেদান্তের জয়। 
-শব্দমধ্যে জ্ঞানের প্রকাশ
-বিনাশ হয়না কখনোই,
-তাই তো বেদ অপৌরুষেয়
-বিনাশশীল অবোধ মনুষ্যই। </div>
+বলো সবে বেদান্তের জয়।</div>
 <div id="p2" class="poem-full" style="display:none">🙏♥️ জয় মা ♥️🙏
  ও মা হাতে আমার দে না অসি
 যা দিয়ে হয় অহম নাশ,
@@ -133,9 +113,7 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 শান্তি সুখে করি বাস।</div>
 <div id="p3" class="poem-full" style="display:none">🎈♥️এ কেমন স্বাধীনতা♥️🎈
 জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে
-আদর ভরা ভিতের গড়ন পিতার আশ্রয়ে।
-বেড়ে ওঠার হাতছানি দেয় হামাগুড়ি পা
-পরতে-পরতে হাঁটতে শেখা ধুলায় ভরে গা।</div>
+আদর ভরা ভিতের গড়ন পিতার আশ্রয়ে।</div>
 <div id="p4" class="poem-full" style="display:none">🙏🌻শুদ্ধ হোক অন্তর্দৃষ্টি🌻🙏
 চশমাটা আজ পাল্টে গেছে
 বিদ্ধ হয়ে উষ্ণায়নে,
@@ -153,9 +131,7 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 দিশাহীন বেলা কাটে।</div>
 <div id="p7" class="poem-full" style="display:none">♥️♥️প্রিয় কবিতা♥️♥️
 আছো তুমি গাছে গাছে
-আছো উষ্মার আঁচে
-আছো দেওয়ালে দেওয়ালে
-আছো পোস্টারে</div>
+আছো উষ্মার আঁচে</div>
 <div id="sheetFrame" style="display:none;width:100%;background:#fff;border-radius:12px;margin-top:10px;padding:10px;border:2px solid #2563eb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="color:#2563eb">🌐 সাইট টু সাইট - ভিতরেই খুলছে</b><button onclick="toggleSheet()" style="background:#eee;border:0;padding:6px 12px;border-radius:20px">✖️ বন্ধ</button></div><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0" loading="lazy"></iframe></div>
 </div>
 <div class="addBtn" onclick="openModal()">+</div>
@@ -164,13 +140,11 @@ input,textarea{ -webkit-user-select:text; user-select:text; }
 <div class="modal" id="allModal"><div class="modalBox" style="max-width:95%"><h3 id="allTitle" style="color:#4A148C"></h3><div id="allList"></div><button onclick="document.getElementById('allModal').classList.remove('active')" style="background:#eee;color:#333;margin-top:10px">বন্ধ</button></div></div>
 <div class="modal" id="cardEditModal"><div class="modalBox"><h3 id="cardEditTitle">✏️ কার্ডের কবিতা বদলান</h3><p id="cardEditInfo" style="font-size:12px;color:#666;margin-top:6px"></p><input id="cardTitleInput" placeholder="কার্ডের নাম"><textarea id="cardPoemInput" rows="14" placeholder="নতুন কবিতা"></textarea><button onclick="saveCardPoem()">✅ সেভ করুন</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button><button onclick="resetCardPoem()" style="background:#FFEBEE;color:#C62828;font-size:12px">↩️ আগের কবিতায় ফিরুন</button></div></div>
 <script>
-// === টাইট সিকিউরিটি - কপি বন্ধ - গুরুদেব ===
 document.addEventListener('contextmenu', e=>{ e.preventDefault(); return false; });
 document.addEventListener('copy', e=>{ e.preventDefault(); return false; });
 document.addEventListener('cut', e=>{ e.preventDefault(); return false; });
 document.addEventListener('selectstart', e=>{ if(e.target.tagName!=='INPUT' && e.target.tagName!=='TEXTAREA'){ e.preventDefault(); return false; } });
 document.addEventListener('keydown', e=>{ if((e.ctrlKey && (e.key=='c' || e.key=='C' || e.key=='u' || e.key=='U' || e.key=='s' || e.key=='S')) || e.key=='F12' || (e.ctrlKey && e.shiftKey && e.key=='I')){ e.preventDefault(); return false; } });
-
 const SHEET_URL='https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec';
 const PASS='Biboswan @22';
 let _allData=[], poems=[], sheetDataLength=0;
@@ -207,7 +181,6 @@ function closeModal(){document.getElementById('modal').classList.remove('active'
 function savePoem(){let p=prompt('🔓 সেভ পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return;} let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text){ alert('লিখুন'); return;} let myPoems=[]; try{myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]');}catch(e){} myPoems.push({id:Date.now(),title:title,t:title,text:text,c:text,isLocal:true}); localStorage.setItem('myPoems',JSON.stringify(myPoems)); fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,c:text})}); document.getElementById('t').value=''; document.getElementById('c').value=''; closeModal(); loadPoems(); alert('✅ সেভ হয়েছে!');}
 document.getElementById('searchBox').addEventListener('input',function(){ var val=this.value.toLowerCase().trim(); document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; var t=b.innerText.toLowerCase(); el.style.display=(val===''||t.indexOf(val)>-1)?'':'none'; }); });
 loadPoems();
-// শরৎ কবিতা লুকানো তালা
 let saratTimer=null;
 function saratEdit(){ let p=prompt('🔒 শরৎ কবিতা এডিট পাসওয়ার্ড:'); if(p!==PASS){ if(p!==null) alert('❌ ভুল'); return; } let cur=document.getElementById('a1').innerText; let nc=prompt('✏️ শরৎ কবিতা বদলান:',cur); if(nc===null) return; document.getElementById('a1').innerHTML=nc+'<span class="edit-badge" style="display:block">✏️ শরৎ এডিট</span>'; localStorage.setItem('sarat_edit',nc); alert('✅ শরৎ কবিতা সেভ!'); }
 let se=localStorage.getItem('sarat_edit'); if(se){ document.getElementById('a1').innerHTML=se+'<span class="edit-badge" style="display:block">✏️ শরৎ এডিট</span>'; }
@@ -215,8 +188,6 @@ document.getElementById('featSarat').addEventListener('touchstart',()=>{ saratTi
 document.getElementById('featSarat').addEventListener('touchend',()=>clearTimeout(saratTimer));
 document.getElementById('toggleSarat').onclick=function(){ var e=document.getElementById('a1'); e.style.display=e.style.display=='block'?'none':'block'; };
 document.getElementById('featSarat').onclick=function(){ var e=document.getElementById('a1'); e.style.display=e.style.display=='block'?'none':'block'; };
-
-// কার্ড এডিট
 let currentEditId=null; const originalPoems={}; document.querySelectorAll('.poem-full').forEach(el=>{ originalPoems[el.id]=el.innerHTML; });
 function loadCardEdits(){ try{ const saved = JSON.parse(localStorage.getItem('bibhag_edits')||'{}'); Object.keys(saved).forEach(pid=>{ const el=document.getElementById(pid); if(el && saved[pid].poem){ el.innerHTML=saved[pid].poem; } }); const savedDoors = JSON.parse(localStorage.getItem('bibhag_doors')||'{}'); Object.keys(savedDoors).forEach(did=>{ const d=document.getElementById(did); if(d && savedDoors[did].title){ d.querySelector('.door-title').innerText=savedDoors[did].title; } }); }catch(e){} }
 loadCardEdits();
@@ -232,7 +203,3 @@ document.querySelectorAll('.door').forEach(door=>{
   door.addEventListener('click', e=>{ if(door.classList.contains('editing')){ e.stopPropagation(); editCardPoem(door.dataset.poem); return; } togglePoem(door.dataset.poem); });
 });
 </script></body></html>
-  
-  
-  
-  
