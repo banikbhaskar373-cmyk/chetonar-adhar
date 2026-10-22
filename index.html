@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল - ১০ দরজা - Final Close Button</title>
+<!DOCTYPE html> <!-- 🔒 টাইট সিকিউরিটি -->
+<style>*{ -webkit-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; } input,textarea{ -webkit-user-select:text!important; user-select:text!important; } </style>
+<script>document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('copy',e=>e.preventDefault());document.addEventListener('cut',e=>e.preventDefault());document.addEventListener('selectstart',e=>{if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA')e.preventDefault()});</script>
+<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল - ১০ দরজা - Final Close Button</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#fff6e8;font-family:system-ui}
 .app{width:100%;min-height:100vh;background:#fffaf3;padding-bottom:90px}
@@ -181,4 +184,26 @@ function openLatestAgain(){
   if(lp){ lp.style.display='block'; lp.scrollIntoView({behavior:'smooth'}); }
   if(btn){ btn.innerHTML='✕ বন্ধ করুন'; btn.onclick=closeLatest; }
   }
+
+// 🔒 টাইট সিকিউরিটি - টাচ কপি, লং প্রেস, রাইট ক্লিক বন্ধ
+document.addEventListener('contextmenu', e=>{ e.preventDefault(); return false; });
+document.addEventListener('copy', e=>{ e.preventDefault(); alert('🔒 কপি বন্ধ - সুরক্ষিত!'); return false; });
+document.addEventListener('cut', e=>{ e.preventDefault(); return false; });
+document.addEventListener('selectstart', e=>{
+  var t=e.target.tagName;
+  if(t!=='INPUT' && t!=='TEXTAREA'){ e.preventDefault(); return false; }
+});
+document.addEventListener('touchstart', function(e){
+  if(e.touches.length>1){ e.preventDefault(); } // 2 আঙুলে জুম/কপি বন্ধ
+},{passive:false});
+let lastTouch=0;
+document.addEventListener('touchend', function(e){
+  var now=Date.now();
+  if(now-lastTouch<=300){ e.preventDefault(); } // ডবল টাচ কপি বন্ধ
+  lastTouch=now;
+},{passive:false});
+
+// শুধু পাসওয়ার্ড দিলে কপি খুলবে (আপনার জন্য)
+let secureMode=true;
+function unlockCopy(){ let p=prompt('🔒 সিকিউরিটি খুলতে পাসওয়ার্ড:'); if(p==='Biboswan @22'){ secureMode=false; document.documentElement.style.setProperty('-webkit-user-select','text','important'); alert('✅ কপি খোলা হলো!'); } }
 </script></body></html>
