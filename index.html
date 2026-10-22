@@ -3,6 +3,19 @@
 <script>document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('copy',e=>e.preventDefault());document.addEventListener('cut',e=>e.preventDefault());document.addEventListener('selectstart',e=>{if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA')e.preventDefault()});</script>
 <html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ভাস্কর ডিজিটাল - ১০ দরজা - Final Close Button</title>
 <style>
+/* শুধু সাইট টু সাইটের লেখা কপি বন্ধ */
+td { 
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+</style>
+<script>
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('contextmenu', e => {
+  if(e.target.closest('td')) e.preventDefault();
+});
+</script>
+<style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#fff6e8;font-family:system-ui}
 .app{width:100%;min-height:100vh;background:#fffaf3;padding-bottom:90px}
 .header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:18px 10px 12px;display:flex;flex-direction:column;align-items:center}
