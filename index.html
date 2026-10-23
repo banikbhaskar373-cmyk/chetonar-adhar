@@ -91,21 +91,6 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 শরৎ কালে ছাতিম ফুলের জীবন পাওয়া বাতাসে ভেসে
 সুদূর নীলে মেঘের বরণ পেঁজা তুলো দুধে মায়ের হাসি
 </div>
-
-<script>
-function editPoem(){
-  let t = document.getElementById('a1');
-  let text = prompt("কবিতা এডিট করুন:", t.innerText.replace('✕ বন্ধ করুন','').replace('✏️ এডিট',''));
-  if(text) { 
-    // প্রথম ২ লাইন বাটন, বাকি কবিতা
-    t.innerHTML = `<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-<button onclick="document.getElementById('a1').style.display='none'" style="background:#333; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✕ বন্ধ করুন</button>
-<button onclick="editPoem()" style="background:#ff6f61; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✏️ এডিট</button>
-</div>` + text;
-  }
-}
-</script>
-
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div class="latest-box" id="latestBox" style="position:relative;padding-top:38px">
 <button onclick="closeLatest()" class="poem-close" id="latestCloseBtn">✕ বন্ধ করুন</button>
