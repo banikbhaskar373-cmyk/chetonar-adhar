@@ -83,9 +83,28 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 <div id="seasonalTitle" onclick="document.getElementById('a1').style.display='block'; document.getElementById('a1').scrollIntoView({behavior:'smooth'})" style="background: linear-gradient(90deg,#ff9a1f,#ff5e7e); color:#fff; padding:12px 16px; border-radius:14px; font-weight:bold; font-size:16px; display:flex; justify-content:space-between; align-items:center; margin:8px 0; cursor:pointer;">
 শরতের আলো ( সিজনাল কবিতা ) <span>🌸</span>
 </div>
-<div id="a1" class="poem-full" style="display:none" data-poem="a1">🎈🎈 শরৎ সময় 🎈🎈
-শরৎ কালে ছাতিম ফুলের জীবন পাওয়া বাতাসে তার মাতাল করা গন্ধ ভাসে,
-সুদূর নীলে মেঘের বরণ পেঁজা তুলো দূগ্গা মায়ের আগমনী কর্ণে আসে।</div>
+<div id="a1" class="poem-full" style="display:none; background:#fff; border-radius:12px; padding:12px; margin-top:8px; white-space:pre-line;">
+<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+<button onclick="document.getElementById('a1').style.display='none'" style="background:#333; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✕ বন্ধ করুন</button>
+<button onclick="editPoem()" style="background:#ff6f61; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✏️ এডিট</button>
+</div>
+শরৎ কালে ছাতিম ফুলের জীবন পাওয়া বাতাসে ভেসে
+সুদূর নীলে মেঘের বরণ পেঁজা তুলো দুধে মায়ের হাসি
+</div>
+
+<script>
+function editPoem(){
+  let t = document.getElementById('a1');
+  let text = prompt("কবিতা এডিট করুন:", t.innerText.replace('✕ বন্ধ করুন','').replace('✏️ এডিট',''));
+  if(text) { 
+    // প্রথম ২ লাইন বাটন, বাকি কবিতা
+    t.innerHTML = `<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+<button onclick="document.getElementById('a1').style.display='none'" style="background:#333; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✕ বন্ধ করুন</button>
+<button onclick="editPoem()" style="background:#ff6f61; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✏️ এডিট</button>
+</div>` + text;
+  }
+}
+</script>
 
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div class="latest-box" id="latestBox" style="position:relative;padding-top:38px">
