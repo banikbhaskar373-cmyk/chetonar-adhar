@@ -80,14 +80,18 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 
 <div class="sec">
 <h2>আজকের কবিতা <span style="font-size:11px;color:#ff6a2a">পড়ুন এবং শেয়ার করুন</span></h2>
-<div id="seasonalTitle" onclick="document.getElementById('a1').style.display='block'; document.getElementById('a1').scrollIntoView({behavior:'smooth'})" style="background: linear-gradient(90deg,#ff9a1f,#ff5e7e); color:#fff; padding:12px 16px; border-radius:14px; font-weight:bold; font-size:16px; display:flex; justify-content:space-between; align-items:center; margin:8px 0; cursor:pointer;">
-<span id="seasonalText">শরতের আলো ( সিজনাল কবিতা )</span> <span>🌸</span>
+<div id="seasonalBlock" style="position:relative; background: linear-gradient(90deg,#ff9a1f,#ff5e7e); border-radius:14px; padding:14px 16px; margin:10px 0; cursor:pointer; border:2px dashed #ffe28a;" onclick="document.getElementById('a1').style.display='block'; document.getElementById('a1').scrollIntoView({behavior:'smooth'})">
+  <!-- লুকানো এডিট - ছবির মতো -->
+  <div onclick="event.stopPropagation(); editsharot()" style="position:absolute; top:8px; right:10px; background:#2b2b2b; opacity:0.85; width:28px; height:22px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:12px;">✏️</div>
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span id="seasonalText" style="color:#fff; font-weight:bold; font-size:16px;">শরতের আলো ( সিজনাল কবিতা )</span><span>🌸</span>
+  </div>
 </div>
 
-<div id="a1" class="poem-full" style="display:none; background:#fff; border-radius:12px; padding:12px; margin-top:8px; white-space:pre-line;">
-<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-<button onclick="document.getElementById('a1').style.display='none'" style="background:#333; color:#fff; border:0; padding:6px 12px; border-radius:8px;">✕ বন্ধ করুন</button>
-<button onclick="editsharot()" style="background:transparent; border:0; color:#fff; opacity:0.08; font-size:10px; padding:6px;">●</button>
+<div id="a1" class="poem-full" style="display:none; background:#fff; border-radius:12px; padding:12px; margin-top:8px; white-space:pre-line; box-shadow:0 2px 10px #0001;">
+<div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+<button onclick="document.getElementById('a1').style.display='none'" style="background:#333; color:#fff; border:0; padding:6px 14px; border-radius:8px;">✕ বন্ধ করুন</button>
+<span onclick="editsharot()" style="font-size:12px; opacity:0.6;">✏️ এডিট</span>
 </div>
 <span id="sharotPoemText">শরৎ কালে ছাতিম ফুলের জীবন পাওয়া বাতাসে ভেসে
 সুদূর নীলে মেঘের বরণ পেঁজা তুলো দুধে মায়ের হাসি</span>
@@ -99,23 +103,15 @@ function editsharot(){
   if(p != "Biboswan @22") { if(p) alert("ভুল পাসওয়ার্ড"); return; }
   var titleEl = document.getElementById('seasonalText');
   var newTitle = prompt("🎈 ব্লক টাইটেল এডিট:", titleEl.innerText);
-  if(newTitle && newTitle.trim()!=""){
-    titleEl.innerText = newTitle;
-    localStorage.setItem("sharotTitle", newTitle);
-  }
+  if(newTitle && newTitle.trim()!=""){ titleEl.innerText = newTitle; localStorage.setItem("sharotTitle", newTitle); }
   var poemEl = document.getElementById('sharotPoemText');
   var newPoem = prompt("✏️ কবিতা এডিট:", poemEl.innerText);
-  if(newPoem && newPoem.trim()!=""){
-    poemEl.innerText = newPoem;
-    localStorage.setItem("poem_a1", newPoem);
-  }
-  alert("✅ সেভ হয়ে গেছে গুরুদেব");
+  if(newPoem && newPoem.trim()!=""){ poemEl.innerText = newPoem; localStorage.setItem("poem_a1", newPoem); }
+  alert("✅ সেভ হয়েছে গুরুদেব");
 }
 (function(){
-  var t = localStorage.getItem("sharotTitle");
-  if(t) document.getElementById('seasonalText').innerText = t;
-  var m = localStorage.getItem("poem_a1");
-  if(m) document.getElementById('sharotPoemText').innerText = m;
+  var t=localStorage.getItem("sharotTitle"); if(t) document.getElementById('seasonalText').innerText=t;
+  var m=localStorage.getItem("poem_a1"); if(m) document.getElementById('sharotPoemText').innerText=m;
 })();
 </script>
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
