@@ -80,9 +80,8 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 
 <div class="sec">
 <h2>আজকের কবিতা <span style="font-size:11px;color:#ff6a2a">পড়ুন এবং শেয়ার করুন</span></h2>
-<div id="seasonalTitle" style="position:relative; background: linear-gradient(90deg,#ff9a1f,#ff5e7e); border-radius:14px; padding:14px 16px; margin:10px 0; cursor:pointer; border:2px dashed #ffe28a; user-select:none; -webkit-user-select:none;">
-  <!-- লং প্রেসে আসবে - এখন লুকানো -->
-  <div id="sharotEditBtn" onclick="event.stopPropagation(); editsharot()" style="display:none; position:absolute; top:8px; right:10px; background:#2b2b2b; color:#fff; padding:4px 10px; border-radius:12px; font-size:12px;">✏️ এডিট</div>
+<div id="seasonalTitle" style="position:relative; background: linear-gradient(90deg,#ff9a1f,#ff5e7e); border-radius:14px; padding:14px 16px; margin:10px 0; cursor:pointer; border:2px dashed #ffe28a; user-select:none; -webkit-user-select:none;" onclick="if(window.sharotLongPressed) { window.sharotLongPressed=false; return; } document.getElementById('a1').style.display='block'; document.getElementById('a1').scrollIntoView({behavior:'smooth'})">
+  <div id="sharotEditBtn" onclick="event.stopPropagation(); editsharot()" style="display:none; position:absolute; top:8px; right:10px; background:#2b2b2b; color:#fff; padding:4px 10px; border-radius:12px; font-size:12px; z-index:10;">✏️ এডিট</div>
   <span id="seasonalText" style="color:#fff; font-weight:bold; font-size:17px;">শরতের আলো ( সিজনাল কবিতা )</span><span style="float:right;">🌸</span>
 </div>
 
@@ -95,42 +94,41 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 </div>
 
 <script>
-let pressTimer;
-const sTitle = document.getElementById('seasonalTitle');
-const sEditBtn = document.getElementById('sharotEditBtn');
-
-function startPress(e){
-  pressTimer = setTimeout(()=>{
-    sEditBtn.style.display='flex';
-    if(navigator.vibrate) navigator.vibrate(50);
-  }, 650);
-}
-function cancelPress(){ clearTimeout(pressTimer); }
-
-sTitle.addEventListener('touchstart', startPress);
-sTitle.addEventListener('mousedown', startPress);
-sTitle.addEventListener('touchend', cancelPress);
-sTitle.addEventListener('mouseup', cancelPress);
-sTitle.addEventListener('mouseleave', cancelPress);
-sTitle.addEventListener('touchmove', cancelPress);
-
-// বাইরে টাচ করলে আবার লুকিয়ে যাবে
-document.addEventListener('click', (e)=>{
-  if(!sTitle.contains(e.target)) sEditBtn.style.display='none';
-});
-
-function editsharot(){
-  var p = prompt("🔒 পাসওয়ার্ড:");
-  if(p != "Biboswan @22") { if(p) alert("ভুল পাসওয়ার্ড"); return; }
-  var titleEl = document.getElementById('seasonalText');
-  var newTitle = prompt("🎈 ব্লক টাইটেল এডিট:", titleEl.innerText);
-  if(newTitle && newTitle.trim()!=""){ titleEl.innerText = newTitle; localStorage.setItem("sharotTitle", newTitle); }
-  var poemEl = document.getElementById('sharotPoemText');
-  var newPoem = prompt("✏️ কবিতা এডিট:", poemEl.innerText);
-  if(newPoem && newPoem.trim()!=""){ poemEl.innerText = newPoem; localStorage.setItem("poem_a1", newPoem); }
-  sEditBtn.style.display='none';
-}
 (function(){
+  let pressTimer = null;
+  window.sharotLongPressed = false;
+  const sTitle = document.getElementById('seasonalTitle');
+  const sEditBtn = document.getElementById('sharotEditBtn');
+
+  function startPress(){
+    window.sharotLongPressed = false;
+    pressTimer = setTimeout(()=>{
+      window.sharotLongPressed = true;
+      sEditBtn.style.display='flex';
+      if(navigator.vibrate) navigator.vibrate(50);
+      setTimeout(()=>{ sEditBtn.style.display='none'; }, 4000);
+    }, 700);
+  }
+  function cancelPress(){ clearTimeout(pressTimer); }
+
+  sTitle.addEventListener('touchstart', startPress, {passive:true});
+  sTitle.addEventListener('mousedown', startPress);
+  sTitle.addEventListener('touchend', cancelPress);
+  sTitle.addEventListener('mouseup', cancelPress);
+  sTitle.addEventListener('mouseleave', cancelPress);
+
+  window.editsharot = function(){
+    var p = prompt("🔒 পাসওয়ার্ড:");
+    if(p != "Biboswan @22") { if(p) alert("ভুল পাসওয়ার্ড"); return; }
+    var titleEl = document.getElementById('seasonalText');
+    var newTitle = prompt("🎈 ব্লক টাইটেল এডিট:", titleEl.innerText);
+    if(newTitle && newTitle.trim()!=""){ titleEl.innerText = newTitle; localStorage.setItem("sharotTitle", newTitle); }
+    var poemEl = document.getElementById('sharotPoemText');
+    var newPoem = prompt("✏️ কবিতা এডিট:", poemEl.innerText);
+    if(newPoem && newPoem.trim()!=""){ poemEl.innerText = newPoem; localStorage.setItem("poem_a1", newPoem); }
+    sEditBtn.style.display='none';
+  };
+
   var t=localStorage.getItem("sharotTitle"); if(t) document.getElementById('seasonalText').innerText=t;
   var m=localStorage.getItem("poem_a1"); if(m) document.getElementById('sharotPoemText').innerText=m;
 })();
