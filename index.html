@@ -127,12 +127,9 @@ td { user-select: none !important; -webkit-user-select: none !important; }
 <div id="p5" class="poem-full" style="display:none">🕊️ মানবতার বার্তা - অপরাজেয় ...</div>
 <div id="p6" class="poem-full" style="display:none">💭 ভাবনার ভাঙা গড়া ...</div>
 <div id="p7" class="poem-full" style="display:none">❤️ প্রিয় কবিতা ...</div>
-
-<div id="sheetFrame" style="display:none;position:relative;user-select:none;-webkit-user-select:none;">
-<div id="sheetShield" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:9999;"></div>
-<iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:600px;border:0"></iframe>
-</div>
-
+<div id="sheetFrame" style="display:none;margin:10px;border:2.5px solid #FFD700;border-radius:12px;overflow:hidden;background:#fff">
+<div style="background:#4A148C;color:#FFEB3B;padding:8px 12px;display:flex;justify-content:space-between"><span>📖 শীট</span><button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:4px 10px;border-radius:12px">✕ বন্ধ</button></div>
+<iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%;height:550px;border:0"></iframe>
 </div>
 
 <div class="addBtn" onclick="openModal()">+</div>
