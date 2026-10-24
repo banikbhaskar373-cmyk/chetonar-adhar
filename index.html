@@ -526,6 +526,7 @@ function openLatestAgain(){
   if(btn){ btn.innerHTML='✕ বন্ধ করুন'; btn.onclick=closeLatest; }
 }
 localStorage.removeItem('myPoems');
+(function(){try{localStorage.removeItem('myPoems');}catch(e){}})();
 </script>
 </body>
 </html>
