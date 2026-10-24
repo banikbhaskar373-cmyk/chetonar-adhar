@@ -136,7 +136,7 @@
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা</h3><input id="t" placeholder="নাম"><textarea id="c" rows="6" placeholder="কবিতা"></textarea><button onclick="savePoem()">💾 সেভ</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <div class="modal" id="cardEditModal"><div class="modalBox"><h3>✏️ বদলান</h3><input id="cardTitleInput"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <script>
-const SHEET_URL="https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec"
+const SHEET_URL="https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec";
 let _allData=[], sheetDataLength=0;
 function ensureCloseBtn(el){ if(!el.querySelector('.poem-close')){ var b=document.createElement('button'); b.className='poem-close'; b.innerHTML='✕ বন্ধ করুন'; b.onclick=function(e){e.stopPropagation(); el.style.display='none';}; el.prepend(b);} }
 function togglePoem(id){ var el=document.getElementById(id); if(!el) return; ensureCloseBtn(el); el.style.display=el.style.display=='block'?'none':'block'; if(el.style.display=='block') el.scrollIntoView({behavior:'smooth',block:'center'});}
