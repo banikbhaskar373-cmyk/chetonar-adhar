@@ -190,9 +190,15 @@ td { user-select: none !important; -webkit-user-select: none !important; }
     sEditBtn.style.display='none';
   };
 
-  var t=localStorage.getItem("sharotTitle"); if(t) document.getElementById('seasonalText').innerText=t;
-  var m=localStorage.getItem("poem_a1"); if(m) document.getElementById('sharotPoemText').innerText=m;
-})();
+   var t=localStorage.getItem("sharotTitle"); if(t) document.getElementById('seasonalText').innerText=t;
+  var m=localStorage.getItem("poem_a1");
+  if(m){
+    if(m.length<200){
+      localStorage.removeItem("poem_a1");
+    }else{
+      document.getElementById('sharotPoemText').innerText=m;
+    }
+  } 
 </script>
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div class="latest-box" id="latestBox" style="position:relative;padding-top:38px">
