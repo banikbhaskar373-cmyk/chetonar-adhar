@@ -484,9 +484,7 @@ function editPoem(idx){
  let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22') return;
  let po=_allData[idx]; let newT=prompt('✏️ নাম:',po.title||po.t); if(newT===null) return;
  let newC=prompt('✏️ কবিতা:',po.poem||po.text||po.c); if(newC===null) return;
- let isLocal=idx>=sheetDataLength;
- if(isLocal){ let myPoems=JSON.parse(localStorage.getItem('myPoems')||'[]'); let li=idx-sheetDataLength; myPoems[li].title=newT; myPoems[li].t=newT; myPoems[li].poem=newC; myPoems[li].text=newC; localStorage.setItem('myPoems',JSON.stringify(myPoems)); }
- else { fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({id:String(po.id||idx+1),title:newT,poem:newC})}); }
+{ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({id:String(po.id||idx+1),title:newT,poem:newC})}); }
  loadPoems(); alert('✅ সেভ!');
 }
 function openModal(){let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22') return; document.getElementById('modal').classList.add('active');}
