@@ -64,16 +64,29 @@ td { user-select: none !important; -webkit-user-select: none !important; }
   white-space: pre-line;
 }
 #sheetFrame{
-  left: 0 !important;
-  right: 0 !important;
-  margin: 0 auto !important;
-  transform: none !important;
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  width: 92% !important;
+  max-width: 600px !important;
+  height: 85vh !important;
+  margin: 0 !important;
   float: none !important;
-  display: block !important;
+  overflow-y: auto !important;
+  z-index: 9999 !important;
 }
 #sheetFrame iframe{
+  width: 100% !important;
   margin: 0 auto !important;
   display: block !important;
+}
+.poem-full{
+  width: 100% !important;
+  margin: 0 auto !important;
+  text-align: center !important;
 }
 </style>
 </head>
