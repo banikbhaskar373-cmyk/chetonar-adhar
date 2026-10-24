@@ -481,14 +481,14 @@ loadPoems();
 function openEditLatest(){ if(_allData.length==0) return; editPoem(_allData.length-1); }
 function editPoem(idx){
  let p=prompt('🔒 পাসওয়ার্ড (Biboswan @22):'); if(p!=='Biboswan @22') return;
- let po=_allData[idx]; let newT=prompt('✏️ নাম:',po.title||po.t); if(newT===null) return;
- let newC=prompt('✏️ কবিতা:',po.poem||po.text||po.c); if(newC===null) return;
-{ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({id:String(po.id||idx+1),title:newT,poem:newC})}); }
+ let po=_allData[idx]; let newT=prompt('✏️ নাম:',po.title||po.t||''); if(newT===null) return;
+ let newC=prompt('✏️ কবিতা:',po.poem||po.text||po.c||''); if(newC===null) return;
+ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({id:String(po.id||idx+1),title:newT,t:newT,poem:newC,c:newC})});
  loadPoems(); alert('✅ সেভ!');
 }
 function openModal(){let p=prompt('🔒 পাসওয়ার্ড:'); if(p!=='Biboswan @22') return; document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active');}
-function savePoem(){let p=prompt('🔓 পাসওয়ার্ড:'); if(p!=='Biboswan @22') return; let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text) return; fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,title:title,c:text,poem:text})}); closeModal(); loadPoems();} var val=this.value.toLowerCase().trim();
+function savePoem(){let p=prompt('🔓 পাসওয়ার্ড:'); if(p!=='Biboswan @22') return; let title=document.getElementById('t').value.trim(); let text=document.getElementById('c').value.trim(); if(!title||!text) return; fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({t:title,title:title,c:text,poem:text})}); closeModal(); loadPoems();}
   if(val===''){ document.querySelectorAll('.door').forEach(el=>el.style.display=''); document.querySelectorAll('.poem-full').forEach(el=>el.style.display='none'); document.getElementById('latestBox').style.display='block'; return; }
   document.querySelectorAll('.door').forEach(function(el){ var b=el.querySelector('.door-title'); if(!b) return; el.style.display=b.innerText.toLowerCase().indexOf(val)>-1?'':'none'; });
 });
