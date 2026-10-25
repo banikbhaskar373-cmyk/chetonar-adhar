@@ -385,5 +385,21 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   lb.addEventListener('mouseleave', cancel);
 })();
 </script>
+<style>
+#seasonalTitle{display:block !important;}
+#a1 button:nth-of-type(n+2){display:none !important;}
+#a1{padding-top:0px !important;}
+#a1 p{margin-top:18px !important;}
+</style>
+<script>
+setTimeout(function(){
+  var btns = document.querySelectorAll("#a1 button");
+  for(var i=1;i<btns.length;i++){ btns[i].remove(); }
+}, 300);
+setInterval(function(){
+  var btns = document.querySelectorAll("#a1 button");
+  for(var i=1;i<btns.length;i++){ btns[i].remove(); }
+}, 1000);
+</script>
 </body>
 </html> 
