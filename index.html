@@ -100,7 +100,7 @@
 
 <h3 style="display:flex; justify-content:space-between; align-items:center; margin:0">আজকের কবিতা</h3>
 
-<div id="latestPoem" style="white-space:pre-line; margin-top:15px; line-height:1.8"></div>
+<div id="latestPoem" style="white-space:pre-line; margin-top:15px; line-height:1.8; min-height:80px; display:block !important; color:#222"></div>
 
 <div style="display:flex; gap:10px; margin-top:15px">
 <button onclick="openLatestAgain()" style="background:#4c1d95; color:#ffeb3b; border:none; padding:8px 16px; border-radius:20px">আবার পড়ুন</button>
@@ -393,6 +393,32 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   lb.addEventListener('mouseup', cancel);
   lb.addEventListener('mouseleave', cancel);
 })();
+</script>
+<script>
+// সর্বশেষ কবিতা ফিরিয়ে আনা
+window.addEventListener('load', function(){
+  var box = document.getElementById('latestPoem');
+  var saved = localStorage.getItem('latestPoem') || localStorage.getItem('latest_kobita') || localStorage.getItem('biswasPoem');
+  
+  if(saved && saved.trim() !== ""){
+    box.innerText = saved;
+    box.style.display = 'block';
+  } else {
+    // যদি কিছুই না থাকে তাহলে একটা ডিফল্ট লেখা দেখাবে
+    box.innerHTML = "এখানে আপনার সর্বশেষ কবিতাটি দেখা যাবে।\nনিচের + বোতাম টিপে নতুন কবিতা যোগ করুন।";
+    box.style.display = 'block';
+    box.style.color = '#666';
+  }
+});
+
+function closeLatest(){
+  document.getElementById('latestBox').style.display = 'none';
+}
+function openLatestAgain(){
+  document.getElementById('latestBox').style.display = 'block';
+  var saved = localStorage.getItem('latestPoem');
+  if(saved) document.getElementById('latestPoem').innerText = saved;
+}
 </script>
 </body>
 </html>
