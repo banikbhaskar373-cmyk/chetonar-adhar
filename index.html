@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ভাস্কর ডিজিটাল - ১০ দরজা - FINAL COMPLETE</title>
+<title>ভাস্কর ডিজিটাল - ১০ দরজা - FINAL FULL</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5073265811027270" crossorigin="anonymous"></script>
 <style>*{ -webkit-user-select:none!important; user-select:none!important; -webkit-touch-callout:none!important; } input,textarea{ -webkit-user-select:text!important; user-select:text!important; }</style>
 <script>document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('copy',e=>e.preventDefault());document.addEventListener('cut',e=>e.preventDefault());document.addEventListener('selectstart',e=>{if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA')e.preventDefault()});</script>
@@ -46,8 +46,7 @@
 .ad-box{margin:12px 10px;text-align:center;display:block}
 #seasonalTitle{display:block!important;cursor:pointer}
 #a1{padding-top:0px!important}
-#a1 p{margin-top:18px!important}
-/* FIX DOUBLE CLOSE */
+#sharotPoemText{white-space:pre-wrap!important;line-height:1.9!important;display:block!important;word-break:normal;overflow-wrap:break-word;}
 #a1 button:not(.poem-close){display:none!important;}
 </style>
 </head>
@@ -75,7 +74,7 @@
 
 <div id="a1" class="poem-full" style="display:block; background:#fffef5; border:2px solid #fbbf24; border-radius:14px; padding:0px 6px 6px 6px; margin:6px; position:relative;">
 <button class="poem-close" onclick="document.getElementById('a1').style.display='none'" style="position:absolute; top:2px; right:4px; background:#4c1d95; color:#ffeb3b; border:none; padding:4px 10px; border-radius:20px; font-weight:bold; z-index:99; font-size:11px;">X বন্ধ করুন</button>
-<p id="sharotPoemText" style="white-space:pre-line; line-height:1.7; text-align:center; font-size:14px; color:#333; margin:18px 0 0 0;">🌺🌺 শরৎ এলো 🌺🌺
+<p id="sharotPoemText" style="white-space:pre-wrap; line-height:1.7; text-align:center; font-size:14px; color:#333; margin:18px 0 0 0;">🌺🌺 শরৎ এলো 🌺🌺
 শরৎ কালে "ছাতিম" ফুলের জীবন পাওয়া
 বাতাসে তার মাতাল করা গন্ধ ভাসে,
 সুদূর নীলে মেঘের বরণ পেঁজা তুলো
@@ -99,8 +98,8 @@
 <b style="color:#4c1d95;">🔒 শরৎ গোপন এডিট ( Biboswan @22 )</b><br>
 <label style="font-size:12px;font-weight:700;margin-top:8px;display:block">ব্লকের টাইটেল:</label>
 <input id="sharotTitleInput" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ccc;margin-top:4px">
-<label style="font-size:12px;font-weight:700;margin-top:8px;display:block">কবিতা:</label>
-<textarea id="sharotEditArea" style="width:100%; height:200px; border-radius:8px; padding:8px; margin-top:4px;"></textarea><br>
+<label style="font-size:12px;font-weight:700;margin-top:8px;display:block">কবিতা (প্রতি লাইন Enter):</label>
+<textarea id="sharotEditArea" style="width:100%; height:220px; border-radius:8px; padding:8px; margin-top:4px;white-space:pre-wrap"></textarea><br>
 <button onclick="saveSharot()" style="background:#4c1d95; color:#ffeb3b; padding:8px 14px; border:none; border-radius:20px; margin-top:8px;font-weight:700">💾 সেভ</button>
 <button onclick="document.getElementById('sharotHiddenEdit').style.display='none'" style="background:#333; color:#fff; padding:8px 14px; border:none; border-radius:20px;margin-left:6px">X বন্ধ</button>
 </div>
@@ -126,7 +125,7 @@
 <div class="door" onclick="openDirectAppDoor()" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1.5px solid #FFAB40;"><div style="font-size:26px">📖</div><div style="font-size:12px;font-weight:800;color:#5D4037!important">শীটের দরজা</div><div style="font-size:9px;color:#8D6E63!important">৮ - কালো শীট 🔒</div></div>
 <div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">সর্বশেষ লোড</div><div style="font-size:9px">৯ - পুরো কবিতা</div></div>
 <div class="door site10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800">সাইট টু সাইট</div><div style="font-size:9px">১০👁️স্ক্রিনেই সরাসরি পড়ুন</div></div>
-</div>
+<div class="ad-box"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5073265811027270" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 <div id="p1" class="poem-full" style="display:none">🙏♥️ শ্রুতি নাদ ♥️🙏
 
 শব্দ নিত্য সত্য বেদান্ত কয়
@@ -142,6 +141,7 @@
 <div id="p5" class="poem-full" style="display:none">🕊️ অপরাজেয়...</div>
 <div id="p6" class="poem-full" style="display:none">🌻 ভাবনার ভাঙা গড়া...</div>
 <div id="p7" class="poem-full" style="display:none">❤️ প্রিয় কবিতা...</div>
+</div>
 <div id="sheetFrame" style="display:none"><div style="background:#4A148C;color:#FFEB3B;padding:8px 12px;display:flex;justify-content:space-between"><span>📖 শীট</span><button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:5px 12px;border-radius:20px;font-weight:700">✕ বন্ধ</button></div><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview"></iframe></div>
 </div>
 <div class="addBtn" onclick="openModal()">+</div>
@@ -198,6 +198,7 @@ function closeLatest(){ var lp=document.getElementById('latestPoem'); var btn=do
 function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var btn=document.getElementById('latestCloseBtn'); if(lp) lp.style.display='block'; if(btn){ btn.innerHTML='✕ বন্ধ করুন'; btn.onclick=closeLatest; } }
 (function(){try{localStorage.removeItem('myPoems');}catch(e){}})();
 </script>
+
 <script>
 (function(){
   const titleBox = document.getElementById('seasonalTitle');
@@ -208,10 +209,21 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   const titleInput = document.getElementById('sharotTitleInput');
   const poemArea = document.getElementById('sharotEditArea');
   const PASS = "Biboswan @22";
+
+  // --- FULL POEM VALIDATION ---
   let savedTitle = localStorage.getItem("sharotTitle");
   if(savedTitle) titleText.innerText = savedTitle;
+
   let savedPoem = localStorage.getItem("poem_a1");
-  if(savedPoem && savedPoem.length>20) poemText.innerText = savedPoem;
+  if(savedPoem){
+    let isBad = savedPoem.includes('পাওয়াবাতাসে') || !savedPoem.includes('কামিনী') || !savedPoem.includes('চোখ যে লাগে') || savedPoem.length < 350;
+    if(isBad){
+      localStorage.removeItem("poem_a1");
+    } else {
+      poemText.innerText = savedPoem;
+    }
+  }
+
   function openEdit(){
     let p = prompt("🔒 পাসওয়ার্ড দিন (শরৎ ব্লক):");
     if(p !== PASS){ if(p) alert("ভুল পাসওয়ার্ড"); return; }
@@ -220,32 +232,26 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
     editPanel.style.display = "block";
     editPanel.scrollIntoView({behavior:'smooth',block:'center'});
   }
+
   window.saveSharot = function(){
     let nt = titleInput.value.trim();
     let np = poemArea.value.trim();
     if(nt) { titleText.innerText = nt; localStorage.setItem("sharotTitle", nt); }
     if(np) { poemText.innerText = np; localStorage.setItem("poem_a1", np); }
     editPanel.style.display = "none";
-    alert("✅ শরৎ ব্লক সেভ হলো");
+    alert("✅ পুরো শরৎ কবিতা সেভ হলো");
   };
+
   let tCount=0, tTimer=null;
-  titleBox.addEventListener('click', ()=>{
-    tCount++; clearTimeout(tTimer);
-    tTimer=setTimeout(()=>tCount=0,800);
-    if(tCount>=3){ tCount=0; openEdit(); }
-  });
+  titleBox.addEventListener('click', ()=>{ tCount++; clearTimeout(tTimer); tTimer=setTimeout(()=>tCount=0,800); if(tCount>=3){ tCount=0; openEdit(); } });
   let lp1=null;
   titleBox.addEventListener('touchstart', ()=>{ lp1=setTimeout(openEdit,700); }, {passive:true});
   titleBox.addEventListener('touchend', ()=>clearTimeout(lp1));
   titleBox.addEventListener('mousedown', ()=>{ lp1=setTimeout(openEdit,700); });
   titleBox.addEventListener('mouseup', ()=>clearTimeout(lp1));
+
   let pCount=0, pTimer=null;
-  poemBox.addEventListener('click', (e)=>{
-    if(e.target.tagName==='BUTTON') return;
-    pCount++; clearTimeout(pTimer);
-    pTimer=setTimeout(()=>pCount=0,800);
-    if(pCount>=3){ pCount=0; openEdit(); }
-  });
+  poemBox.addEventListener('click', (e)=>{ if(e.target.tagName==='BUTTON') return; pCount++; clearTimeout(pTimer); pTimer=setTimeout(()=>pCount=0,800); if(pCount>=3){ pCount=0; openEdit(); } });
   let lp2=null;
   poemBox.addEventListener('touchstart', (e)=>{ if(e.target.tagName==='BUTTON') return; lp2=setTimeout(openEdit,700); }, {passive:true});
   poemBox.addEventListener('touchend', ()=>clearTimeout(lp2));
