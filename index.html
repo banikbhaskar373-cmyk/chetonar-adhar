@@ -48,6 +48,25 @@
 .poem-full{position:relative !important; padding-top:60px !important}
 .poem-full button[onclick*="close"]{position:absolute !important; top:12px; right:12px !important; left:auto !important; z-index:10}
 .poem-full button[onclick*="close"] + button[onclick*="close"]{display:none !important}
+/* ফাইনাল ফিক্স - সব ফোনে একই */
+.poem-full{
+  height:auto !important;
+  max-height:85vh !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+}
+.poem-full p{
+  white-space:pre-line !important;
+  padding-bottom:80px !important;
+}
+/* কালো বাটনটাও বেগুনি করে একটা লুকানো */
+.poem-full button{
+  background:#4c1d95 !important;
+  color:#ffeb3b !important;
+}
+.poem-full button:first-of-type{
+  display:none !important;
+}
 </style>
 </head>
 <body>
