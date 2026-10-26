@@ -433,9 +433,13 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   poemBox.addEventListener('mousedown', (e)=>{ if(e.target.tagName==='BUTTON') return; lp2=setTimeout(openEdit,700); });
   poemBox.addEventListener('mouseup', ()=>clearTimeout(lp2));
 })();
+<script>
+function showProfile() {
+  document.getElementById('profileTab').style.display='block';
+  window.scrollTo(0,0);
+}
 </script>
-<div id="profileTab" style="display: none; background: linear-gradient(to bottom, #8e2de2, #4a00e0); padding:20px; color:white; text-align:center; min-height:100vh;">
-
+<div id="profileTab" style="display:none; background: linear-gradient(to bottom, #8e2de2, #4a00e0); padding:20px; color:white; text-align:center; min-height:100vh;">
   <img src="IMG-20261026-WA7310.jpg" 
        style="width:160px; height:160px; border-radius:50%; border:5px solid gold; box-shadow:0 0 25px gold; object-fit:cover; margin-top:20px;">
 
