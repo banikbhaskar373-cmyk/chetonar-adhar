@@ -481,10 +481,24 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
 
 <script>
 function showProfile(){
-  document.getElementById('profileTab').style.display='block';
+  document.querySelectorAll('[id$="Tab"]').forEach(function(t){ 
+    if(t.id) t.style.display='none'; 
+  });
+  var p = document.getElementById('profileTab');
+  if(p){ 
+    p.style.display='block'; 
+    window.scrollTo(0,0); 
+  }
+}
+function showHome(){
+  document.querySelectorAll('[id$="Tab"]').forEach(function(t){ 
+    if(t.id) t.style.display='none'; 
+  });
+  var h = document.getElementById('homeTab'); 
+  if(h) h.style.display='block';
   window.scrollTo(0,0);
 }
 </script>
-<!-- Profile Tab Final End -->
 </body>
 </html>
+
