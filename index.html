@@ -478,27 +478,35 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
 
   <div style="height:40px;"></div>
 </div>
-
 <script>
+function hideAll(){
+  var a=document.querySelectorAll('div[id$="Tab"]');
+  for(var i=0;i<a.length;i++) if(a[i].id) a[i].style.display='none';
+}
 function showProfile(){
-  document.querySelectorAll('[id$="Tab"]').forEach(function(t){ 
-    if(t.id) t.style.display='none'; 
-  });
-  var p = document.getElementById('profileTab');
-  if(p){ 
-    p.style.display='block'; 
-    window.scrollTo(0,0); 
-  }
+  hideAll();
+  var p=document.getElementById('profileTab');
+  if(p){p.style.display='block'; window.scrollTo(0,0);} else {alert('profileTab পাওয়া যায়নি');}
 }
 function showHome(){
-  document.querySelectorAll('[id$="Tab"]').forEach(function(t){ 
-    if(t.id) t.style.display='none'; 
-  });
-  var h = document.getElementById('homeTab'); 
-  if(h) h.style.display='block';
-  window.scrollTo(0,0);
+  hideAll();
+  var h=document.getElementById('homeTab');
+  if(h){h.style.display='block'; window.scrollTo(0,0);}
 }
+function showChetona(){ hideAll(); var c=document.getElementById('chetonaTab'); if(c) c.style.display='block'; }
+function showLibrary(){ hideAll(); var l=document.getElementById('libraryTab'); if(l) l.style.display='block'; }
+
+// বাটনে অটো লাগানো
+setTimeout(function(){
+  var all=document.body.getElementsByTagName('*');
+  for(var i=0;i<all.length;i++){
+    var txt=(all[i].innerText||'').trim();
+    if(txt==='প্রোফাইল') all[i].onclick=showProfile;
+    if(txt==='হোম') all[i].onclick=showHome;
+    if(txt==='চেতনা') all[i].onclick=showChetona;
+    if(txt==='লাইব্রেরী') all[i].onclick=showLibrary;
+  }
+},800);
 </script>
 </body>
 </html>
-
