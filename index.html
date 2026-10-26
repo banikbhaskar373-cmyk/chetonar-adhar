@@ -433,37 +433,58 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   poemBox.addEventListener('mousedown', (e)=>{ if(e.target.tagName==='BUTTON') return; lp2=setTimeout(openEdit,700); });
   poemBox.addEventListener('mouseup', ()=>clearTimeout(lp2));
 })();
+<!-- Profile Tab Final Start -->
+<div id="profileTab" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(to bottom, #8e2de2, #4a00e0); z-index:9999; overflow-y:auto; padding:20px; color:white;">
+
+  <div style="text-align:right;">
+    <button onclick="document.getElementById('profileTab').style.display='none'" style="background:white; color:#4a00e0; border:none; padding:8px 15px; border-radius:20px; font-weight:bold;">✕ বন্ধ করুন</button>
+  </div>
+
+  <div style="text-align:center;">
+    <img src="IMG-20261026-WA7310.jpg" alt="ভাস্কর বনিক" style="width:140px; height:140px; border-radius:50%; border:4px solid gold; object-fit:cover; margin-top:10px;">
+    <h2 style="color:gold; margin:10px 0 5px 0;">ভাস্কর বনিক (বিবস্বান)</h2>
+    <p style="margin:0; font-size:14px; opacity:0.9;">পিতা - স্বর্গীয়: ৺গোপাল চন্দ্র বনিক</p>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.1); border-left:4px solid gold; padding:15px; border-radius:10px; margin-top:20px; text-align:left; line-height:1.7;">
+    <h3 style="color:gold; margin:0 0 8px 0; font-size:16px;">👉 স্থায়ী ঠিকানা</h3>
+    <p style="margin:0; font-size:14px;">
+    ১৮৩ 'কে', রোড, বেলগাছিয়া,<br>
+    পো:- নেতাজিগড়, থানা- লিলুয়া,<br>
+    জেলা- হাওড়া, পিন- ৭১১১০৮,<br>
+    রাজ্য- পশ্চিমবঙ্গ, দেশ- ভারতবর্ষ
+    </p>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.1); border-left:4px solid gold; padding:15px; border-radius:10px; margin-top:15px; text-align:left; line-height:1.7;">
+    <h3 style="color:gold; margin:0 0 8px 0; font-size:16px;">👉 বর্তমান ঠিকানা</h3>
+    <p style="margin:0; font-size:14px;">
+    ৮৩৯, দক্ষিণ চকপাড়া বাজার রোড,<br>
+    শীতলা মাতা মন্দিরের নিকটে,<br>
+    (লক্ষ্মী নিবাস অ্যাপার্টমেন্ট) ৪ তলা,<br>
+    পো:- মিলনী, থানা- লিলুয়া, পিন- ৭১১২০৪,<br>
+    জেলা - হাওড়া
+    </p>
+  </div>
+
+  <div style="background:rgba(0,0,0,0.3); padding:15px; border-radius:10px; margin-top:15px; text-align:center;">
+    <h3 style="color:gold; margin:0 0 10px 0; font-size:16px;">যোগাযোগ</h3>
+    <p style="margin:5px 0; font-size:16px; letter-spacing:1px;">
+      <a href="tel:9433209439" style="color:white; text-decoration:none;">📞 ৯৪৩৩২০৯৪৩৯</a><br>
+      <a href="tel:9674131894" style="color:white; text-decoration:none;">📞 ৯৬৭৪১৩১৮৯৪</a><br>
+      <a href="tel:7003183586" style="color:white; text-decoration:none;">📞 ৭০০৩১৮৩৫৮৬</a>
+    </p>
+  </div>
+
+  <div style="height:40px;"></div>
+</div>
+
 <script>
-function showProfile() {
+function showProfile(){
   document.getElementById('profileTab').style.display='block';
   window.scrollTo(0,0);
 }
 </script>
-<div id="profileTab" style="display:none; background: linear-gradient(to bottom, #8e2de2, #4a00e0); padding:20px; color:white; text-align:center; min-height:100vh;">
-  <img src="IMG-20261026-WA7310.jpg" 
-       style="width:160px; height:160px; border-radius:50%; border:5px solid gold; box-shadow:0 0 25px gold; object-fit:cover; margin-top:20px;">
-
-  <h2 style="color:gold; margin:15px 0 5px 0;">ভাস্কর বনিক (বিবস্বান)</h2>
-  <p style="font-size:13px;">পিতা - স্বর্গীয়: ৺গোপাল চন্দ্র বনিক</p>
-  <p style="background:rgba(255,255,255,0.2); display:inline-block; padding:5px 15px; border-radius:20px; font-size:12px;">🙏 বিবেকের আলোক দর্শন 🙏</p>
-
-  <div style="background:white; color:#222; border-radius:18px; padding:18px; margin-top:22px; text-align:left; line-height:1.7; font-size:14px;">
-
-    <h3 style="color:#6a11cb; margin:0;">👉 স্থায়ী ঠিকানা</h3>
-    <p>১৮৩ 'কে', রোড, বেলগাছিয়া, পো:-নেতাজিগড়,<br>থানা-লিলুয়া, জেলা-হাওড়া, পিন-৭১১১০৮,<br>রাজ্য-পশ্চিমবঙ্গ, দেশ-ভারতবর্ষ</p>
-
-    <hr>
-
-    <h3 style="color:#6a11cb; margin:0;">👉 বর্তমান ঠিকানা</h3>
-    <p>৮৩৯ দক্ষিন চকপাড়া বাজার রোড,<br>শীতলা মাতা মন্দিরের নিকটে,<br>(লক্ষ্মী নিবাস অ্যাপার্টমেন্ট) ৪ তল,<br>পো:-মিলনী, থানা-লিলুয়া, পিন-৭১১২০৪, জেলা-হাওড়া</p>
-
-    <hr>
-
-    <h3 style="color:#6a11cb; margin:0;">📞 যোগাযোগ</h3>
-    <p>৯৪৩৩২০৯৪৩৯<br>৯৬৭৪১৩১৮৯৪<br>৭০০৩১৮৩৫৮৬</p>
-
-    <a href="tel:9433209439" style="display:block; background:#25D366; color:white; text-align:center; padding:12px; border-radius:30px; text-decoration:none; font-weight:bold;">📞 কল করুন</a>
-  </div>
-</div>
+<!-- Profile Tab Final End -->
 </body>
 </html>
