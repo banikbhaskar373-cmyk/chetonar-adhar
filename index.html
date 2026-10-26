@@ -466,32 +466,22 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
 </div>
 <script>
 function showTab(which){
-  // সব ট্যাব জোর করে বন্ধ
-  var h = document.getElementById('homeTab');
-  var c = document.getElementById('chetonaTab');
-  var l = document.getElementById('libraryTab');
-  var p = document.getElementById('profileTab');
-  if(h) h.style.display='none';
-  if(c) c.style.display='none';
-  if(l) l.style.display='none';
-  if(p) p.style.display='none';
-
-  // যেটা চাই সেটা খোলো
-  var open = document.getElementById(which);
-  if(open){
-    open.style.display='block';
-    window.scrollTo(0,0);
+  var tabs = ['homeTab','chetonaTab','libraryTab','profileTab'];
+  for(var i=0;i<tabs.length;i++){
+    var el = document.getElementById(tabs[i]);
+    if(el) el.style.display='none';
   }
+  var open = document.getElementById(which);
+  if(open){ open.style.display='block'; window.scrollTo(0,0); }
 }
-// প্রথমে হোম দেখাও
 showTab('homeTab');
 </script>
 
-<div id="bottomNav" style="position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:3px solid gold; display:flex; justify-content:space-around; padding:10px 0; z-index:99999;">
-  <div onclick="showTab('homeTab')" style="flex:1; text-align:center; font-weight:bold;">🏠<br>হোম</div>
-  <div onclick="showTab('chetonaTab')" style="flex:1; text-align:center; font-weight:bold;">📖<br>চেতনা</div>
-  <div onclick="showTab('libraryTab')" style="flex:1; text-align:center; font-weight:bold;">📚<br>লাইব্রেরী</div>
-  <div onclick="showTab('profileTab')" style="flex:1; text-align:center; font-weight:bold; color:#4a148c;">👤<br>প্রোফাইল</div>
+<div id="bottomNav" style="position:fixed; bottom:0; left:0; width:100%; background:white; border-top:3px solid gold; display:flex; z-index:99999;">
+  <div onclick="showTab('homeTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">🏠<br>হোম</div>
+  <div onclick="showTab('chetonaTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">📖<br>চেতনা</div>
+  <div onclick="showTab('libraryTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">📚<br>লাইব্রেরী</div>
+  <div onclick="showTab('profileTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer; color:#4a148c; font-weight:bold;">👤<br>প্রোফাইল</div>
 </div>
 </body>
 </html>
