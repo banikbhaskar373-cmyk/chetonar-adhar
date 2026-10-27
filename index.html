@@ -473,19 +473,14 @@ if(e) e.style.display='none';
 }
 var o=document.getElementById(id);
 if(o){o.style.display='block';window.scrollTo(0,0);}
-}         
+}
 showTab('homeTab');
 </script>
 <div id="bottomNav" style="position:fixed;bottom:0;left:0;width:100%;background:white;border-top:3px solid gold;display:flex;z-index:999999;">
-
-<a href="#home" onclick="document.getElementById('homeTab').style.display='block';document.getElementById('chetonaTab').style.display='none';document.getElementById('libraryTab').style.display='none';document.getElementById('profileTab').style.display='none'" style="flex:1;text-align:center;padding:12px;text-decoration:none;color:black;font-weight:bold;">🏠<br>হোম</a>
-
-<a href="#chetona" onclick="document.getElementById('homeTab').style.display='none';document.getElementById('chetonaTab').style.display='block';document.getElementById('libraryTab').style.display='none';document.getElementById('profileTab').style.display='none'" style="flex:1;text-align:center;padding:12px;text-decoration:none;color:black;font-weight:bold;">📖<br>চেতনা</a>
-
-<a href="#library" onclick="document.getElementById('homeTab').style.display='none';document.getElementById('chetonaTab').style.display='none';document.getElementById('libraryTab').style.display='block';document.getElementById('profileTab').style.display='none'" style="flex:1;text-align:center;padding:12px;text-decoration:none;color:black;font-weight:bold;">📚<br>লাইব্রেরী</a>
-
-<a href="#profile" onclick="document.getElementById('homeTab').style.display='none';document.getElementById('chetonaTab').style.display='none';document.getElementById('libraryTab').style.display='none';document.getElementById('profileTab').style.display='block';window.scrollTo(0,0)" style="flex:1;text-align:center;padding:12px;text-decoration:none;color:#4a148c;font-weight:bold;">👤<br>প্রোফাইল</a>
-
+<div onclick="showTab('homeTab')" style="flex:1;text-align:center;padding:12px;">🏠<br>হোম</div>
+<div onclick="showTab('chetonaTab')" style="flex:1;text-align:center;padding:12px;">📖<br>চেতনা</div>
+<div onclick="showTab('libraryTab')" style="flex:1;text-align:center;padding:12px;">📚<br>লাইব্রেরী</div>
+<div onclick="showTab('profileTab')" style="flex:1;text-align:center;padding:12px;color:#4a148c;font-weight:bold;">👤<br>প্রোফাইল</div>
 </div>
 </body>
 </html>
