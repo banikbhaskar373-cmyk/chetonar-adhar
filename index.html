@@ -465,23 +465,22 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   </div>
 </div>
 <script>
-function showTab(which){
-  var tabs = ['homeTab','chetonaTab','libraryTab','profileTab'];
-  for(var i=0;i<tabs.length;i++){
-    var el = document.getElementById(tabs[i]);
-    if(el) el.style.display='none';
-  }
-  var open = document.getElementById(which);
-  if(open){ open.style.display='block'; window.scrollTo(0,0); }
+function showTab(id){
+var a=['homeTab','chetonaTab','libraryTab','profileTab'];
+for(var i=0;i<a.length;i++){
+var e=document.getElementById(a[i]);
+if(e) e.style.display='none';
+}
+var o=document.getElementById(id);
+if(o){o.style.display='block';window.scrollTo(0,0);}
 }
 showTab('homeTab');
 </script>
-
-<div id="bottomNav" style="position:fixed; bottom:0; left:0; width:100%; background:white; border-top:3px solid gold; display:flex; z-index:99999;">
-  <div onclick="showTab('homeTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">🏠<br>হোম</div>
-  <div onclick="showTab('chetonaTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">🕯️<br>চেতনা</div>
-  <div onclick="showTab('libraryTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer;">📚<br>লাইব্রেরী</div>
-  <div onclick="showTab('profileTab')" style="flex:1; text-align:center; padding:10px; cursor:pointer; color:#4a148c; font-weight:bold;">👤<br>প্রোফাইল</div>
+<div id="bottomNav" style="position:fixed;bottom:0;left:0;width:100%;background:white;border-top:3px solid gold;display:flex;z-index:999999;">
+<div onclick="showTab('homeTab')" style="flex:1;text-align:center;padding:12px;">🏠<br>হোম</div>
+<div onclick="showTab('chetonaTab')" style="flex:1;text-align:center;padding:12px;">📖<br>চেতনা</div>
+<div onclick="showTab('libraryTab')" style="flex:1;text-align:center;padding:12px;">📚<br>লাইব্রেরী</div>
+<div onclick="showTab('profileTab')" style="flex:1;text-align:center;padding:12px;color:#4a148c;font-weight:bold;">👤<br>প্রোফাইল</div>
 </div>
 </body>
 </html>
