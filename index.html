@@ -31,8 +31,7 @@
 .door{border-radius:14px;padding:12px;text-align:center;box-shadow:0 4px 12px #0002;border:none;cursor:pointer;color:#fff;position:relative}
 .door.latest10{grid-column:span 2;background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1.5px solid #7C4DFF}.door.latest10 div{color:#4A148C!important}
 .door.site10{grid-column:span 2;background:linear-gradient(135deg,#2563eb,#7c3aed)}
-.bottom{position:fixed;left:0;right:0;bottom:0;height:56px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:999}
-.bi{font-size:9px;color:#888;text-align:center}.bi.on{color:#e14a2a;font-weight:700}.bi div{font-size:18px}
+.bottomNavFixed{position:fixed;left:0;right:0;bottom:0;height:60px;background:#fff;border-top:3px solid gold;display:flex;justify-content:space-around;align-items:center;z-index:999999}
 .addBtn{position:fixed;right:18px;bottom:70px;width:56px;height:56px;background:#4a00e0;color:#fff;border-radius:50%;font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1000}
 .modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:#0008;z-index:2000;align-items:center;justify-content:center;padding:12px}
 .modal.active{display:flex}
@@ -51,6 +50,8 @@
 </style>
 </head>
 <body>
+
+<div id="homeTab">
 <div class="app">
 <div class="header">
 <div class="logo-top"><img src="1791273060137.png"></div>
@@ -67,11 +68,9 @@
 </div>
 <div class="sec">
 <h2>আজকের কবিতা <span style="font-size:11px;color:#ff6a2a">পড়ুন এবং শেয়ার করুন</span></h2>
-
 <div id="seasonalTitle" style="position:relative; background:linear-gradient(90deg,#ff8a00,#ff4e50); padding:12px 16px; border-radius:14px; margin:6px;">
 <span id="seasonalText" style="color:#fff;font-weight:bold;font-size:17px;">শরতের আলো(সিজনাল কবিতা)🌸</span>
 </div>
-
 <div id="a1" class="poem-full" style="display:block; background:#fffef5; border:2px solid #fbbf24; border-radius:14px; padding:0px 6px 6px 6px; margin:6px; position:relative;">
 <button class="poem-close" onclick="document.getElementById('a1').style.display='none'" style="position:absolute; top:2px; right:4px; background:#4c1d95; color:#ffeb3b; border:none; padding:4px 10px; border-radius:20px; font-weight:bold; z-index:99; font-size:11px;">X বন্ধ করুন</button>
 <p id="sharotPoemText" style="white-space:pre-wrap; line-height:1.7; text-align:center; font-size:14px; color:#333; margin:18px 0 0 0;">🌺🌺 শরৎ এলো 🌺🌺
@@ -94,7 +93,6 @@
 করতে পূরণ সত্য রামের
 চোখ যে লাগে।</p>
 </div>
-
 <div id="sharotHiddenEdit" style="display:none; background:#fff; border:2px dashed #4c1d95; border-radius:12px; padding:12px; margin:6px;">
 <b style="color:#4c1d95;">🔒 শরৎ গোপন এডিট ( Biboswan @22 )</b><br>
 <label style="font-size:12px;font-weight:700;margin-top:8px;display:block">ব্লকের টাইটেল:</label>
@@ -104,7 +102,6 @@
 <button onclick="saveSharot()" style="background:#4c1d95; color:#ffeb3b; padding:8px 14px; border:none; border-radius:20px; margin-top:8px;font-weight:700">💾 সেভ</button>
 <button onclick="document.getElementById('sharotHiddenEdit').style.display='none'" style="background:#333; color:#fff; padding:8px 14px; border:none; border-radius:20px;margin-left:6px">X বন্ধ</button>
 </div>
-
 <h2 style="margin-top:14px">"বিবস্বান"-র লেখা <span id="count">লোড হচ্ছে...</span></h2>
 <div class="latest-box" id="latestBox" style="position:relative;padding-top:38px">
 <button onclick="closeLatest()" class="poem-close" id="latestCloseBtn">✕ বন্ধ করুন</button>
@@ -127,202 +124,65 @@
 <div class="door latest10" onclick="document.getElementById('latestBox').scrollIntoView({behavior:'smooth'})"><div style="font-size:26px">🌅</div><div style="font-size:12px;font-weight:800">সর্বশেষ লোড</div><div style="font-size:9px">৯ - পুরো কবিতা</div></div>
 <div class="door site10" onclick="toggleSheet()"><div style="font-size:26px">🌐</div><div style="font-size:12px;font-weight:800">সাইট টু সাইট</div><div style="font-size:9px">১০👁️স্ক্রিনেই সরাসরি পড়ুন</div></div>
 <div class="ad-box"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5073265811027270" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-<div id="p1" class="poem-full" style="display:none">🙏♥️ শ্রুতি নাদ ♥️🙏
-
-
-শব্দ নিত্য সত্য বেদান্ত কয়
-চিতার আগুনে পুড়ে গেলে গুরু
-শ্রুতির স্মৃতি কথা শিষ্য যে বয়
-বলো সবে বেদান্তের জয়।
-শব্দমধ্যে জ্ঞানের প্রকাশ
-বিনাশ হয়না কখনোই,
-তাই তো বেদ অপৌরুষেয়
-বিনাশশীল অবোধ মনুষ্যই।
-শব্দে যদি বিকৃতি ঘটে
-তবুও লক্ষিত তার মানে
-মানে, জ্ঞানে পরিপূর্ণ
-বেদ প্রামাণ্য জনে জনে।
-শ্রুতি নাদে ব্রহ্ম জ্ঞানে
-কল্পনার যে স্থাপনা হয়
-তাতেই প্রমাণ বেদের সত্য
-শব্দ ভেদিয়া জ্ঞান সঞ্চয়।
-পরমজ্ঞানে সাহিত্যের সেবা
-অজ্ঞানে দাও শব্দের আলো
-সুসংকল্পের শব্দ কল্পনায়
-দূর হোক যত আঁধার কালো।</div>
-<div id="p2" class="poem-full" style="display:none">🙏🙏♥️জয় মা♥️🙏🙏
-
-ও মা হাতে আমার দে না অসি
-যা দিয়ে হয় অহম নাশ,
-আমার আমিত্বতে আঘাত হেনে
-শান্তি সুখে করি বাস।
-অসন্তোষে মন পুড়ে যায়
-পাহাড় প্রমাণ চাপে
-হৃদয় আমার মানবতার
-সাথে নাহি থাকে।
-তাই সৎ সাধনায় বসত করে
-পরাণ ভরে চাই নিতে শ্বাস।
-যেন শান্তি সুখে করি বাস।।
-জীবন চলে মোহের তালে
-ঘনায় বিপদ কালে কালে।
-রক্ষাকবচ হয়ে মা তুই
-দে না হাওয়া মনের পালে।
-পেতাম যদি জাদুকাঠি
-পেতাম যদি সঙ্গ তোর
-মোক্ষদায়ি হয়ে মা তুই
-মিটিয়ে দে মনের আশ।
-যেন শান্তি সুখে করি বাস।।</div>
-<div id="p3" class="poem-full" style="display:none">🇮🇳 
-🎈♥️এ কেমন স্বাধীনতা♥️🎈
-
-জন্মতো এ জীবন যোগে মাতার গর্ভাশয়ে
-আদর ভরা ভিতের গড়ন পিতার আশ্রয়ে।
-বেড়ে ওঠার হাতছানি দেয় হামাগুড়ি পা
-পরতে-পরতে হাঁটতে শেখা ধুলায় ভরে গা।
-গায়ে পায়ে ব্যথা নিয়ে খুঁজতে থাকা কোল
-কোল দিতে ঐ মাসি পিসি বাধায় গন্ডগোল।
-রাত শেষে হয় দিনের আলো নয়ন খোঁজে মাঠ
-এক ছুটেতে মন ছুঁতে চায় আগামীর চৌকাঠ।
-হাঁটতে শিখেই স্বাধীন চলায় মায়ের শাসন জারি
-টলমলে পা, চোখ রাঙানি, স্বাধীন ছুটে আড়ি।
-শুনব যেটা শিখব সেটা অবুঝ মনের জানা
-গুরুজনে পাঠ যে শেখায় স্বাধীন বলায় মানা।
-শরীর যে চায় শক্তি জোগান করতে উদর পূর্তি
-গড়তে স্বাস্থ্য না চাওয়ায় ও থাকতে হবে স্ফূর্তি।
-জগৎ দেখি ঋতুর অধীন মেঘ থেকে হয় বৃষ্টি
-ঘাম ঝরা দিন, বৃষ্টি সকাল, সূর্য দ্বারাই সৃষ্টি।
-চলার পথে নজরপাতে শরীর মনে ক্লান্তি
-স্ববশ মনের অস্থি জুড়ে ধুলোর স্বাধীন ভ্রান্তি!
-তবুও জমাই আয়ের টাকা স্বাধীনতা কিনতে
-খাতা ভরে শব্দ সাজাই দোষ কি 'কবি' মানতে!
-স্বাধীন সমাজ স্বাধীন ঘরে স্বাধীন বসবাস
-স্বাধীন হাওয়ার ঝোঁকা এলে হারাই স্বাধীন আশ।
-স্বাধীন জোরে ফুলিয়ে পেশি উড়াই স্বাধীনতা
-অহম জালে পতন জীবন এ যে গল্প গাঁথা।
-স্বাধীন সত্তার মিথ্যে মোহে বসত করে মন
-স্বাধীন কেবল প্রকৃতি মা হয়েছি বিস্মরণ।
-'স্বাধীন' এই শব্দটাতেই পরাধীনতার ধোঁয়া
-কখন আবার আকাদেমির লাগে স্বাধীন ছোঁয়া!</div>
-<div id="p4" class="poem-full" style="display:none">🏡 
-🙏🌻শুদ্ধ হোক অন্তর্দৃষ্টি🌻🙏
-
-চশমাটা আজ পাল্টে গেছে
-বিদ্ধ হয়ে উষ্ণায়নে,
-চোখের উপর পট্টি বেঁধে
-মন মেতেছে অদর্শনে।
-তোমার আমার বুদ্ধি বিবেক
-জং ধরেছে অভাব শানে,
-কেশ ঝরেছে পৃথিবীটার
-অবোধ মনের আগুন দানে।
-রাতের বেলা বুদ্ধি আঁটি
-রসের খানা গলায় ঢেলে,
-ঘুমের ঘোরে গাছকে জড়াই
-স্বপ্ন ভাঙ্গে নয়ন মেলে।
-এমনি করেই দিন চলে যায়
-সময় কিন্তু হচ্ছে ভারী,
-গরম হলে আবহাওয়া
-শ্বাসের সাথে হবে আড়ি।
-প্রতি পলেই ভাঙ্গছে বরফ
-নিয়ন্ত্রণ হীন ভালবাসায়,
-ভন্ড নীতির শীতল ছোঁয়া
-লক্ষ্য ভাঙ্গে উজান আশায়।
-গরম গরম ভাষার জোয়ার
-উন্নয়নের বিরল সাধে,
-গরম হলে আকাশ বাতাস
-সামলাবে দায় কোন সে কাঁধে?
-মাথার উপর ছাউনী দিয়ে
-চার দেয়ালের শান্তি নিবাস,
-বাড়লে গরম অগ্নি হানায়
-ধ্বংস হবে সাধের আবাস।
-ধরার এমন কি এসে যায়
-ভষ্ম হলে একটি বাড়ি!
-উষ্ণ হলে বসুন্ধরা
-প্রাণের শ্বাসে পড়বে দাঁড়ি!
-গাছ বাঁচালে ফল পাওয়া যায়
-অক্সিজেন ও জীবন বড়ি,
-মারলে তাঁরে, মরবে সবাই
-বুঝতে কেন হচ্ছে দেরী!
-থামবে বুঝি সূর্য, চাঁদের
-বিশ্ব জুড়ে আলোর মায়া,
-অকাল বোধের অহম গেরোয়
-উষ্ণায়নের করাল ছায়া।</div>
-<div id="p5" class="poem-full" style="display:none">🕊️ 
-🕊️🤝 অপরাজেয় 🤝🕊️
-
-প্রকৃতির নিয়মে বয়ে যায় পল
-নই মোরা দিশাহীন সমন্বয়ে,
-লক্ষের সমীপে মনে আছে বল
-একদিন ফিরবই সর্বজয়ে।
-স্বার্থের সংঘাত সকলের মনে
-যন্ত্রণা বঞ্চনা আছে ও থাকবেই,
-পাশে থাকা মনমতি অসহায় জনে
-হৃদয় মানসে বরাভয় জাগবেই।
-নমনীয় মানেই হেরে যাওয়া নয়
-শুদ্ধ সংস্কারে সাজালে আনন,
-অসুস্থ সমাজের কাটবেই ভয়
-ফুলেল শোভা পাবে জগৎ কানন।
-ঐক্যের আহ্বায়ক পরিচয় ধরি
-বাঁচতে বাঁচাতে লড়াই চলুক,
-সকল সহোদর এক হয়ে যদি লড়ি
-জিতবই-নিন্দুক যা খুশি বলুক।</div>
-<div id="p6" class="poem-full" style="display:none">🌻 
-♥️🌻ভাবনার ভাঙা গড়া🌻♥️
-
-অবেলায় আজি, চেতনায় সাজি
-খুলেছি দোকান হাটে,
-ক্রেতা কদাচিৎ, নয়ন রোহিত
-দিশাহীন বেলা কাটে।
-তবু আসে ভোর, কল্পনা ঘোর
-ভাবনাকে ভেঙে গড়ি,
-আসে নাই জন, মোহিত মগন
-প্রজ্ঞার সাজে ভরি।
-বয়ে যায় জল, জীবনের পল
-পশ্চিমে ঢলে সুর,
-মধু যৌবনে, পলাশের বনে
-হাঁটিয়াছি বহুদূর।
-হঠাৎ কেমনে, ব্যথায় বিজনে
-কাঁদিছে গহীন হৃদয়,
-দেবতার মনে, নিদারুণ ক্ষণে
-ভালবাসা সদাশয়!
-জুগিয়ে শব্দ, করেছে জব্দ
-লেখনী দিয়েছে হাতে,
-সামাজিক দায়, মাথা পেতে হায়
-আঁকি যে কবিতাতে।</div>
-<div id="p7" class="poem-full" style="display:none">❤️
-♥️♥️প্রিয় কবিতা♥️♥️
-
-আছো তুমি গাছে গাছে
-আছো উষ্মার আঁচে
-আছো দেওয়ালে দেওয়ালে
-আছো পোস্টারে
-আছো আবেগী মনে
-আছো বিশ্ব প্রাণে
-আছো নয়নে নয়নে
-আছো শিষ্টাচারে।
-উষার লগনে থাকো
-গোধূলির চাঁদে থাকো
-ঘুমের ঘোরেতে থাকো
-অলস আষাঢ়ে।
-কবিতা প্রিয় কবিতা--
-প্রতিবাদ প্রতিরোধে
-সূর্য কিংবা চাঁদে
-মেঘ হয়ে সেজে থাকো
-সুনীল পারে।
-মাঠে মাঠে জলসায়
-জনতা তোমারে চায়
-সুর লহরীতে থাকো
-ধারে ও ভারে।
-আছো তুমি রান্নায়
-হাসি আর কান্নায়
-খাবার পাতেও থাকো
-চাটনি আচারে।</div>
+<div id="p1" class="poem-full" style="display:none">🙏♥️ শ্রুতি নাদ ♥️🙏 ...</div>
+<div id="p2" class="poem-full" style="display:none">🙏🙏♥️জয় মা♥️🙏🙏 ...</div>
+<div id="p3" class="poem-full" style="display:none">🇮🇳 🎈♥️এ কেমন স্বাধীনতা♥️🎈 ...</div>
+<div id="p4" class="poem-full" style="display:none">🏡 🙏🌻শুদ্ধ হোক অন্তর্দৃষ্টি🌻🙏 ...</div>
+<div id="p5" class="poem-full" style="display:none">🕊️ 🕊️🤝 অপরাজেয় 🤝🕊️ ...</div>
+<div id="p6" class="poem-full" style="display:none">🌻 ♥️🌻ভাবনার ভাঙা গড়া🌻♥️ ...</div>
+<div id="p7" class="poem-full" style="display:none">❤️ ♥️♥️প্রিয় কবিতা♥️♥️ ...</div>
 </div>
 <div id="sheetFrame" style="display:none"><div style="background:#4A148C;color:#FFEB3B;padding:8px 12px;display:flex;justify-content:space-between"><span>📖 শীট</span><button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:5px 12px;border-radius:20px;font-weight:700">✕ বন্ধ</button></div><iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview"></iframe></div>
 </div>
+</div>
+</div>
+
+<div id="chetonaTab" style="display:none;padding:20px;background:#fffaf3;min-height:80vh;text-align:center;">
+<h2 style="color:#4A148C;">🕯️ চেতনা</h2>
+<p>চেতনা পেজ শীঘ্রই আসছে...</p>
+<button onclick="showTab('homeTab')" style="background:#4A148C;color:#FFEB3B;padding:10px 20px;border-radius:20px;border:0;margin-top:20px;">হোমে ফিরুন</button>
+</div>
+
+<div id="libraryTab" style="display:none;padding:20px;background:#fffaf3;min-height:80vh;text-align:center;">
+<h2 style="color:#4A148C;">📚 লাইব্রেরী</h2>
+<p>লাইব্রেরী শীঘ্রই আসছে...</p>
+<button onclick="showTab('homeTab')" style="background:#4A148C;color:#FFEB3B;padding:10px 20px;border-radius:20px;border:0;margin-top:20px;">হোমে ফিরুন</button>
+</div>
+
+<div id="profileTab" style="display:none; padding:20px; background:#f5efff; min-height:80vh;">
+  <div style="background:white; border:3px solid gold; border-radius:20px; padding:22px; box-shadow:0 8px 20px rgba(0,0,0,0.15);">
+    <div style="text-align:center;">
+      <div style="width:90px; height:90px; background:linear-gradient(gold,#b8860b); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:40px;">👤</div>
+      <h2 style="color:#4a148c; margin:10px 0 2px 0;">ভাস্কর বনিক (বিবস্বান)</h2>
+      <p style="margin:0; color:#666;">পিতা - স্বর্গীয়: ৺গোপাল চন্দ্র বনিক</p>
+    </div>
+    <hr style="border:1px dashed gold; margin:15px 0;">
+    <p><b style="color:#b8860b;">👉 স্থায়ী ঠিকানা:</b><br>১৮৩ 'কে', রোড, বেলগাছিয়া, পো:- নেতাজিগড়, থানা- লিলুয়া, জেলা- হাওড়া, পিন- ৭১১১০৮</p>
+    <p><b style="color:#b8860b;">👉 বর্তমান ঠিকানা:</b><br>৮৩৯ দক্ষিন চকপাড়া বাজার রোড, শীতলা মাতা মন্দিরের নিকটে, (লক্ষ্মী নিবাস) ৪ তল, পো:- মিলনী, থানা- লিলুয়া, পিন- ৭১১২০৪</p>
+    <a href="https://maps.app.goo.gl/p5cFVzsQUsoML8L8LNA?g_st=aw" target="_blank" style="display:block; background:#4a148c; color:white; text-align:center; padding:12px; border-radius:12px; text-decoration:none; font-weight:bold; margin:12px 0;">📍 ম্যাপে লোকেশন দেখুন</a>
+    <hr style="border:1px dashed gold; margin:15px 0;">
+    <p><b style="color:#b8860b;">📞 যোগাযোগ:</b></p>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="tel:9433209439" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৯৪৩৩২০৯৪৩৯</a>
+      <a href="tel:9674131894" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৯৬৭৪১৩১৮৯৪</a>
+      <a href="tel:7003183586" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৭০০৩১৮৩৫৮৬</a>
+    </div>
+    <p style="text-align:center; margin-top:18px; color:#b8860b; font-weight:bold;">🙏 জয় গুরুদেব 🙏</p>
+  </div>
+</div>
+
 <div class="addBtn" onclick="openModal()">+</div>
-<div class="bottom"><div class="bi on" onclick="location.href='index.html'"><div>🏠</div>হোম</div><div class="bi" onclick="location.href='chetona.html'"><div>🕯️</div>চেতনা</div><div class="bi"><div>📚</div>লাইব্রেরী</div><div class="bi"><div>👤</div>প্রোফাইল</div></div>
+
+<div id="bottomNav" class="bottomNavFixed">
+<div onclick="showTab('homeTab')" style="flex:1;text-align:center;padding:10px;cursor:pointer;">🏠<br>হোম</div>
+<div onclick="showTab('chetonaTab')" style="flex:1;text-align:center;padding:10px;cursor:pointer;">🕯️<br>চেতনা</div>
+<div onclick="showTab('libraryTab')" style="flex:1;text-align:center;padding:10px;cursor:pointer;">📚<br>লাইব্রেরী</div>
+<div onclick="showTab('profileTab')" style="flex:1;text-align:center;padding:10px;color:#4a148c;font-weight:bold;cursor:pointer;">👤<br>প্রোফাইল</div>
+</div>
+
 <div class="modal" id="modal"><div class="modalBox"><h3>নতুন কবিতা</h3><input id="t" placeholder="নাম"><textarea id="c" rows="6" placeholder="কবিতা"></textarea><button onclick="savePoem()">💾 সেভ</button><button onclick="closeModal()" style="background:#eee;color:#333">বাতিল</button></div></div>
 <div class="modal" id="cardEditModal"><div class="modalBox"><h3>✏️ বদলান</h3><input id="cardTitleInput"><textarea id="cardPoemInput" rows="14"></textarea><button onclick="saveCardPoem()">✅ সেভ</button><button onclick="closeCardEdit()" style="background:#eee;color:#333">বাতিল</button></div></div>
+
 <script>
 const SHEET_URL="https://script.google.com/macros/s/AKfycbyh2cphnPnYQ1F-3G5GdEYtiADwtCYEQPrj2h4C6NAOhf3fe3gPEXFCdgHiapLotrLp5A/exec";
 let _allData=[], sheetDataLength=0;
@@ -384,11 +244,8 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   const titleInput = document.getElementById('sharotTitleInput');
   const poemArea = document.getElementById('sharotEditArea');
   const PASS = "Biboswan @22";
-
-  // --- FULL POEM VALIDATION ---
   let savedTitle = localStorage.getItem("sharotTitle");
   if(savedTitle) titleText.innerText = savedTitle;
-
   let savedPoem = localStorage.getItem("poem_a1");
   if(savedPoem){
     let isBad = savedPoem.includes('পাওয়াবাতাসে') || !savedPoem.includes('কামিনী') || !savedPoem.includes('চোখ যে লাগে') || savedPoem.length < 350;
@@ -398,7 +255,6 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
       poemText.innerText = savedPoem;
     }
   }
-
   function openEdit(){
     let p = prompt("🔒 পাসওয়ার্ড দিন (শরৎ ব্লক):");
     if(p !== PASS){ if(p) alert("ভুল পাসওয়ার্ড"); return; }
@@ -407,7 +263,6 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
     editPanel.style.display = "block";
     editPanel.scrollIntoView({behavior:'smooth',block:'center'});
   }
-
   window.saveSharot = function(){
     let nt = titleInput.value.trim();
     let np = poemArea.value.trim();
@@ -416,7 +271,6 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
     editPanel.style.display = "none";
     alert("✅ পুরো শরৎ কবিতা সেভ হলো");
   };
-
   let tCount=0, tTimer=null;
   titleBox.addEventListener('click', ()=>{ tCount++; clearTimeout(tTimer); tTimer=setTimeout(()=>tCount=0,800); if(tCount>=3){ tCount=0; openEdit(); } });
   let lp1=null;
@@ -424,7 +278,6 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   titleBox.addEventListener('touchend', ()=>clearTimeout(lp1));
   titleBox.addEventListener('mousedown', ()=>{ lp1=setTimeout(openEdit,700); });
   titleBox.addEventListener('mouseup', ()=>clearTimeout(lp1));
-
   let pCount=0, pTimer=null;
   poemBox.addEventListener('click', (e)=>{ if(e.target.tagName==='BUTTON') return; pCount++; clearTimeout(pTimer); pTimer=setTimeout(()=>pCount=0,800); if(pCount>=3){ pCount=0; openEdit(); } });
   let lp2=null;
@@ -433,37 +286,8 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
   poemBox.addEventListener('mousedown', (e)=>{ if(e.target.tagName==='BUTTON') return; lp2=setTimeout(openEdit,700); });
   poemBox.addEventListener('mouseup', ()=>clearTimeout(lp2));
 })();
-<div id="profileTab" style="display:none; padding:20px; background:#f5efff; min-height:80vh;">
-  <div style="background:white; border:3px solid gold; border-radius:20px; padding:22px; box-shadow:0 8px 20px rgba(0,0,0,0.15);">
-    
-    <div style="text-align:center;">
-      <div style="width:90px; height:90px; background:linear-gradient(gold,#b8860b); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:40px;">👤</div>
-      <h2 style="color:#4a148c; margin:10px 0 2px 0;">ভাস্কর বনিক (বিবস্বান)</h2>
-      <p style="margin:0; color:#666;">পিতা - স্বর্গীয়: ৺গোপাল চন্দ্র বনিক</p>
-    </div>
+</script>
 
-    <hr style="border:1px dashed gold; margin:15px 0;">
-
-    <p><b style="color:#b8860b;">👉 স্থায়ী ঠিকানা:</b><br>১৮৩ 'কে', রোড, বেলগাছিয়া, পো:- নেতাজিগড়, থানা- লিলুয়া, জেলা- হাওড়া, পিন- ৭১১১০৮</p>
-
-    <p><b style="color:#b8860b;">👉 বর্তমান ঠিকানা:</b><br>৮৩৯ দক্ষিন চকপাড়া বাজার রোড, শীতলা মাতা মন্দিরের নিকটে, (লক্ষ্মী নিবাস) ৪ তল, পো:- মিলনী, থানা- লিলুয়া, পিন- ৭১১২০৪</p>
-    
-    <a href="https://maps.app.goo.gl/p5cFVzsQUsoML8LNA?g_st=aw" target="_blank" style="display:block; background:#4a148c; color:white; text-align:center; padding:12px; border-radius:12px; text-decoration:none; font-weight:bold; margin:12px 0;">
-      📍 ম্যাপে লোকেশন দেখুন
-    </a>
-
-    <hr style="border:1px dashed gold; margin:15px 0;">
-
-    <p><b style="color:#b8860b;">📞 যোগাযোগ:</b></p>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-      <a href="tel:9433209439" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৯৪৩৩২০৯৪৩৯</a>
-      <a href="tel:9674131894" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৯৬৭৪১৩১৮৯৪</a>
-      <a href="tel:7003183586" style="background:#fff8e1; border:1px solid gold; padding:10px; border-radius:12px; text-decoration:none; color:#000; font-weight:bold; text-align:center;">📱 ৭০০৩১৮৩৫৮৬</a>
-    </div>
-
-    <p style="text-align:center; margin-top:18px; color:#b8860b; font-weight:bold;">🙏 জয় গুরুদেব 🙏</p>
-  </div>
-</div>
 <script>
 function showTab(id){
 var a=['homeTab','chetonaTab','libraryTab','profileTab'];
@@ -476,11 +300,6 @@ if(o){o.style.display='block';window.scrollTo(0,0);}
 }
 showTab('homeTab');
 </script>
-<div id="bottomNav" style="position:fixed;bottom:0;left:0;width:100%;background:white;border-top:3px solid gold;display:flex;z-index:999999;">
-<div onclick="showTab('homeTab');return false;" style="flex:1;text-align:center;padding:12px;cursor:pointer;">🏠<br>হোম</div>
-<div onclick="showTab('chetonaTab');return false;" style="flex:1;text-align:center;padding:12px;cursor:pointer;">📖<br>চেতনা</div>
-<div onclick="showTab('libraryTab');return false;" style="flex:1;text-align:center;padding:12px;cursor:pointer;">📚<br>লাইব্রেরী</div>
-<div onclick="showTab('profileTab');return false;" style="flex:1;text-align:center;padding:12px;color:#4a148c;font-weight:bold;cursor:pointer;">👤<br>প্রোফাইল</div>
-</div>
+
 </body>
 </html>
