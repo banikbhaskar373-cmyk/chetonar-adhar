@@ -48,40 +48,6 @@
 #sharotPoemText{white-space:pre-wrap!important;line-height:1.9!important;display:block!important;word-break:normal;overflow-wrap:break-word;}
 #a1 button:not(.poem-close){display:none!important;}
 #homeTab,#chetonaTab,#libraryTab,#profileTab{padding-bottom:100px!important}
-#homeTab,#chetonaTab,#libraryTab,#profileTab{padding-bottom:140px!important}
-#sheetFrame{
-  width:96%!important;
-  left:50%!important;
-  top:2%!important;
-  transform:translateX(-50%)!important;
-  max-width:600px!important;
-  height:calc(100dvh - 80px)!important;
-  max-height:88vh!important;
-  z-index:99999!important;
-  background:#fff;
-  border:3px solid #FFD700;
-  border-radius:16px;
-  overflow:hidden!important;
-  display:none;
-  position:fixed!important;
-}
-#sheetFrame .sheetHeader{
-  background:#4A148C;color:#FFEB3B;padding:10px 12px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-#sheetFrame .sheetScroll{
-  height:calc(100% - 46px);
-  overflow-y:auto!important;
-  -webkit-overflow-scrolling:touch;
-  background:#fff;
-  padding-bottom:130px!important;
-}
-#sheetFrame iframe{
-  width:100%!important;
-  height:850px!important;
-  border:0!important;
-  display:block!important;
-}
 </style>
 </head>
 <body>
@@ -357,15 +323,11 @@
 কবিতা প্রিয় কবিতা‌।।♥️      
 </div>
 </div>
-<div id="sheetFrame" style="display:none">
-  <div style="background:#4A148C;color:#FFEB3B;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+<div id="sheetFrame" style="display:none"><div style="background:#4A148C;color:#FFEB3B;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
     <span style="font-weight:800">📖 শীট - সাইট টু সাইট</span>
     <button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:6px 14px;border-radius:20px;font-weight:700;font-size:14px">✕ বন্ধ</button>
   </div>
-  <div style="height:calc(100% - 46px); overflow-y:auto; -webkit-overflow-scrolling:touch; background:#fff; padding-bottom:120px;">
-    <iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%; height:800px; border:0; display:block;"></iframe>
-    <div style="height:40px; background:#fff;"></div>
-  </div>
+</div>
 </div>
 <div id="chetonaTab" style="display:none; padding:20px; background:#fffaf3; min-height:80vh; padding-bottom:100px;">
   <div style="background:white; border:3px solid #ffab40; border-radius:20px; padding:22px;">
