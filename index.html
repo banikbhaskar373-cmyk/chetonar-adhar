@@ -400,39 +400,32 @@
 
 <script>
 function showTab(id){
-  var tabs=['homeTab','chetonaTab','libraryTab','profileTab'];
-  tabs.forEach(function(t){ var e=document.getElementById(t); if(e) e.style.display='none'; });
-  closeAllFrames();
+  ['homeTab','chetonaTab','libraryTab','profileTab'].forEach(function(t){ var e=document.getElementById(t); if(e) e.style.display='none'; });
+  closeAll();
   var a=document.getElementById(id); if(a){ a.style.display='block'; window.scrollTo(0,0); }
 }
 function openPoem(pid){
   showTab('homeTab');
   for(var i=1;i<=7;i++){ var p=document.getElementById('p'+i); if(p) p.style.display='none'; }
-  var target=document.getElementById(pid);
-  if(target){ target.style.display='block'; setTimeout(function(){ target.scrollIntoView({behavior:'smooth'}); },200); }
+  var t=document.getElementById(pid); if(t){ t.style.display='block'; t.scrollIntoView({behavior:'smooth'}); }
 }
 function openSiteToSite(){
-  closeAllFrames();
+  closeAll();
   var f=document.getElementById('siteFrame');
   if(f){ f.style.display='block'; f.scrollIntoView({behavior:'smooth'}); }
+  else { alert('সাইট ফ্রেম পাওয়া যায়নি - id=siteFrame আছে কিনা দেখুন গুরুদেব'); }
 }
 function openLatest(){
-  closeAllFrames();
+  closeAll();
   var f=document.getElementById('latestFrame');
   if(f){ f.style.display='block'; f.scrollIntoView({behavior:'smooth'}); }
-  // চাইলে হোমের লেটেস্ট সেকশনেও নিয়ে যাবে
-  // showTab('homeTab');
 }
-function openBlackSheet(){
-  closeAllFrames();
-  alert('🔒 ৮ - কালো শীট - পাসওয়ার্ড লাগবে গুরুদেব 🙏');
-}
-function closeAllFrames(){
+function openBlackSheet(){ alert('🔒 ৮ - কালো শীট লক আছে গুরুদেব'); }
+function closeAll(){
   var s=document.getElementById('siteFrame'); if(s) s.style.display='none';
   var l=document.getElementById('latestFrame'); if(l) l.style.display='none';
-  var sf=document.getElementById('sheetFrame'); if(sf) sf.style.display='none';
+  var o=document.getElementById('sheetFrame'); if(o) o.style.display='none';
 }
-function closeSheet(){ closeAllFrames(); }
 </script>
 <div id="profileTab" style="display:none; padding:12px; background:#f5efff; min-height:100vh; padding-bottom:130px; overflow:auto;">
   <div style="background:white; border:3px solid gold; border-radius:20px; padding:0; overflow:visible;">
