@@ -603,6 +603,23 @@ if(bar){
 }
 showTab('homeTab');
 </script>
+<div id="globalSheetFrame" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99999; padding:12px; overflow:auto;">
+  <div style="background:white; border-radius:16px; overflow:hidden; max-width:600px; margin:20px auto; border:3px solid gold;">
+    <div style="background:#4A148C;color:#FFEB3B;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+      <b>📖 শীট - সাইট টু সাইট</b>
+      <button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:6px 14px;border-radius:20px;font-weight:900;">✕ বন্ধ</button>
+    </div>
+    <iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%; height:75vh; border:0; background:white;"></iframe>
+  </div>
+</div>
+
+<script>
+function toggleSheet(){
+  var f=document.getElementById('globalSheetFrame');
+  if(!f){ alert('globalSheetFrame নেই!'); return; }
+  f.style.display = (f.style.display==='none' || f.style.display==='') ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
 
