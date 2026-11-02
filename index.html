@@ -364,40 +364,24 @@
 </div>
 </div>
 
-<div id="libraryTab" style="display:none; padding:15px; background:#fef9f3; min-height:100vh; padding-bottom:180px;">
-  <div style="background:white; border:3px solid #7c4dff; border-radius:24px; padding:16px;">
+<div id="libraryTab" style="display:none; padding:15px; background:#f5f0ff; min-height:80vh; padding-bottom:100px; box-sizing:border-box;">
+  <div style="background:white; border:3px solid #7c4dff; border-radius:20px; padding:18px; width:100%; box-sizing:border-box; margin:0 auto;">
+    <div style="text-align:center;"><div style="font-size:50px;">📚</div><h2 style="color:#4a148c; margin:5px 0;">আমার লাইব্রেরী</h2><p style="color:#666; font-size:13px; margin:0;">বিবস্বান-র সমস্ত লেখা এক জায়গায়</p></div>
+    <hr style="border:1px dashed #b39ddb; margin:15px 0;">
     
-    <div style="text-align:center"><div style="font-size:48px">📚</div><h2 style="color:#4a148c">আমার লাইব্রেরী</h2></div><hr>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-      <div onclick="openPoem('p1')" style="background:#10b981; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">🌿 বেদের কথন</div>
-      <div onclick="openPoem('p2')" style="background:#ff8c00; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">☀️ মাতৃ সঙ্গীত</div>
-      <div onclick="openPoem('p3')" style="background:#3b82f6; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">🇮🇳 স্বাধীনতা</div>
-      <div onclick="openPoem('p4')" style="background:#7c3aed; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">🏡 পরিবার</div>
-      <div onclick="openPoem('p5')" style="background:#ec4899; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">🕊️ মানবতা</div>
-      <div onclick="openPoem('p6')" style="background:#14b8a6; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900;">💭 ভাবনা</div>
-      <div onclick="openPoem('p7')" style="background:#ef4444; color:white; padding:18px; border-radius:18px; text-align:center; font-weight:900; grid-column:span 2;">❤️ প্রিয় কবিতা</div>
-
-      <div onclick="toggleSheet()" style="background:linear-gradient(90deg,#2563EB,#7C3AED); color:white; padding:16px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; grid-column:span 2; border:2px solid gold;">
-        <div style="font-size:28px;">🌐</div>সাইট টু সাইট
-        <div style="font-size:12px; opacity:0.9;">শীটের কবিতা সরাসরি পড়ুন</div>
-      </div>
-    </div>
-
-    <div id="sheetFrame" style="display:none; margin-top:15px; border-radius:14px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.2); border:2px solid #4A148C;">
-      <div style="background:#4A148C;color:#FFEB3B;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-weight:800">📖 শীট - সাইট টু সাইট</span>
-        <button onclick="toggleSheet()" style="background:#FFEB3B;color:#4A148C;border:0;padding:6px 14px;border-radius:20px;font-weight:700;">✕ বন্ধ</button>
-      </div>
-      <iframe src="https://docs.google.com/spreadsheets/d/1N7PtCTuPf0B3DDDJgGB258m8rde31JJ6ecBtjET0PNQ/preview" style="width:100%; height:600px; border:0; background:white;"></iframe>
-    </div>
-
-    <p style="text-align:center; margin-top:16px; color:#4a148c; font-weight:bold;">🙏 জয় গুরু 🙏 জয় মা 🙏</p>
-    <button onclick="showTab('homeTab')" style="display:block; margin:10px auto; background:#4a148c; color:#ffeb3b; padding:10px 24px; border-radius:20px; font-weight:900; border:none;">🏠 হোমে ফিরুন</button>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; box-sizing:border-box;">
+      <div onclick="showTab('homeTab');document.getElementById('p1').style.display='block';document.getElementById('p1').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#0bb36a,#3ed68a); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">🌿 বেদের কথন</div>
+      <div onclick="showTab('homeTab');document.getElementById('p2').style.display='block';document.getElementById('p2').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#ff7e1a,#ffb02e); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">☀️ মাতৃ সঙ্গীত</div>
+      <div onclick="showTab('homeTab');document.getElementById('p3').style.display='block';document.getElementById('p3').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#2d7bff,#5a9bff); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">🇮🇳 স্বাধীনতা</div>
+      <div onclick="showTab('homeTab');document.getElementById('p4').style.display='block';document.getElementById('p4').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#6b4cff,#8a6cff); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">🏡 পরিবার</div>
+      <div onclick="showTab('homeTab');document.getElementById('p5').style.display='block';document.getElementById('p5').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#ff4a8a,#ff7ca8); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">🕊️ মানবতা</div>
+      <div onclick="showTab('homeTab');document.getElementById('p6').style.display='block';document.getElementById('p6').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#0faa9a,#2fd18c); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; min-height:58px;">💭 ভাবনা</div>
+      <div onclick="showTab('homeTab');document.getElementById('p7').style.display='block';document.getElementById('p7').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(90deg,#ff3a2e,#ff7a3d); color:white; padding:14px 5px; border-radius:14px; text-align:center; font-weight:bold; cursor:pointer; grid-column:span 2; display:flex; align-items:center; justify-content:center; min-height:58px;">❤️ প্রিয় কবিতা</div>
+    </div> <p style="text-align:center; margin-top:16px; margin-bottom:0; color:#4a148c; font-weight:bold; white-space:nowrap; font-size:15px;">
+🙏 জয় গুরু 🙏 জয় মা 🙏</p>
 
   </div>
 </div>
-
 
 
 <div id="profileTab" style="display:none; padding:12px; background:#f5efff; min-height:100vh; padding-bottom:130px; overflow:auto;">
