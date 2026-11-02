@@ -115,9 +115,13 @@
 </div>
 
 
-<div class="latest-box" id="latestBox" style="position:relative;padding-top:38px">
-<button onclick="closeLatest()" class="poem-close" id="latestCloseBtn">✕ বন্ধ করুন</button>
-<h3 style="display:flex;justify-content:space-between"><span>🌅 সর্বশেষ লোড কবিতা</span><span id="totalBadge" style="background:#FFC107;color:#4A148C;padding:3px 8px;border-radius:10px;font-size:10px;">0 টি</span></h3>
+<div class="latest-box" id="latestBox" style="position:relative; padding-top:38px">
+  <button onclick="closeLatest()" class="poem-close" id="latestCloseBtn" style="position:absolute; top:8px; right:8px; background:#4A148C; color:white; border:0; padding:6px 14px; border-radius:20px; font-weight:700;">✕ বন্ধ করুন</button>
+  
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <h3 style="margin:0;">🌅 সর্বশেষ লোড কবিতা</h3>
+    <span id="count" style="background:#FFEB3B; color:#4A148C; padding:4px 12px; border-radius:15px; font-weight:800; font-size:13px;">মোট 20 টি</span>
+  </div>
 <div id="latestPoem" style="white-space:pre-line;font-size:15px;line-height:1.9;margin-top:10px;background:#FFF9C4;padding:14px;border-radius:12px;border:1px solid #FFD54F">লোড হচ্ছে...</div>
 <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
 <button onclick="openLatestAgain()" style="flex:1;background:#4A148C;color:white;border:0;padding:12px;border-radius:24px;font-size:15px;font-weight:700;">🌅 সর্বশেষ লোড কবিতা</button>
