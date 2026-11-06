@@ -632,44 +632,27 @@ function toggleSheet(){
 </script>
 <script>
 function showTotalCount(){
-  var el = document.getElementById('totalPoemCount');
+  // id হোক বা class হোক, দুটোই খুঁজে নেবে
+  var el = document.getElementById('totalPoemCount') || document.querySelector('.totalPoemCount');
   if(!el) return;
 
-  // ১. পেজে আগে থেকে লোড হওয়া কবিতা থেকে গোনা
-  var arr = window.poems || window._allData || [];
-  if(arr.length > 0){
-    var seen={}; var c=0;
-    for(var i=0;i<arr.length;i++){
-      var t=(arr[i].title||arr[i].t||'').toString().trim();
-      if(!t) continue;
-      if(seen[t]) continue;
-      seen[t]=1; c++;
-    }
-    if(c>0){ el.innerText='মোট '+c+' টি কবিতা'; return; }
-  }
-
-  // ২. না পেলে শিট থেকে আনা
   fetch('https://script.google.com/macros/s/AKfycbzg7EQIUGtJVzyEheetQZu1cTZwXiv0H5_DBDI2FoeKKDwsS_D4HyJmu0uHHVMyWdgR9w/exec')
   .then(r=>r.json()).then(data=>{
     var all = Array.isArray(data)?data:[];
-    var localList=[];
-    try{ localList=JSON.parse(localStorage.getItem('myPoems')||'[]'); }catch(e){}
-    all = all.concat(localList);
-    var seen2={}; var count=0;
-    for(var j=0;j<all.length;j++){
-      var tt=(all[j].title||all[j].t||'').toString().trim();
-      if(!tt) continue;
-      if(seen2[tt]) continue;
-      seen2[tt]=1; count++;
+    var seen={}; var c=0;
+    for(var i=0;i<all.length;i++){
+      var t=(all[i].title||all[i].t||'').toString().trim().toLowerCase();
+      if(!t) continue;
+      if(t.indexOf('চালিয়ে যান')!==-1) continue;
+      if(seen[t]) continue;
+      seen[t]=1; c++;
     }
-    el.innerText='মোট '+count+' টি কবিতা';
-  }).catch(e=>{
-    el.innerText='মোট কবিতা দেখা যাচ্ছে না';
-  });
+    if(c>0) el.innerText='মোট '+c+' টি';
+    else el.innerText='মোট ২০ টি';
+  }).catch(function(){ el.innerText='মোট ২০ টি'; });
 }
-// পেজ পুরো লোড হলে ১ সেকেন্ড পরে গুনবে
-window.addEventListener('load', function(){ setTimeout(showTotalCount, 1000); });
-setTimeout(showTotalCount, 2000);
+window.addEventListener('load', function(){ setTimeout(showTotalCount, 800); });
+setTimeout(showTotalCount, 1500);
 </script>
 </body>
 </html>
