@@ -574,14 +574,14 @@ function openLatestAgain(){ var lp=document.getElementById('latestPoem'); var bt
     editPanel.style.display = "block";
     editPanel.scrollIntoView({behavior:'smooth',block:'center'});
   }
-  window.saveSharot = function(){
-    let nt = titleInput.value.trim();
-    let np = poemArea.value.trim();
-    if(nt) { titleText.innerText = nt; localStorage.setItem("sharotTitle", nt); }
-    if(np) { poemText.innerText = np; localStorage.setItem("poem_a1", np); }
-    editPanel.style.display = "none";
-    alert("✅ পুরো শরৎ কবিতা সেভ হলো");
-  };
+window.saveSharot = function(){
+  let nt = titleInput.value.trim();
+  let np = poemArea.value.trim();
+  if(nt) { titleText.innerText = nt; }
+  if(np) { poemText.innerText = np; }
+  editPanel.style.display = "none";
+  alert("✅ সেভ হলো গুরুদেব");
+};
   let tCount=0, tTimer=null;
   titleBox.addEventListener('click', ()=>{ tCount++; clearTimeout(tTimer); tTimer=setTimeout(()=>tCount=0,800); if(tCount>=3){ tCount=0; openEdit(); } });
   let lp1=null;
